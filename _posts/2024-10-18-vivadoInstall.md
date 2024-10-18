@@ -11,7 +11,7 @@ date: 2024-10-18
 
 3. 下载Windows环境下的在线安装器（Windows Self Extracting Web Installer）
 
-   <img src="../picture/download.jpg" alt="download" style="zoom:60%;" />
+   ![download](../picture/download.jpg)
 
    - 下载需要登陆AMD。如果已有AMD账户直接填写用户名和密码登陆，如果没有账户则点“Create account”免费创建一个新账户。
    - 点击链接后会要求输入个人信息，随便填即可。
@@ -25,31 +25,30 @@ date: 2024-10-18
 
 3. 点击“Next”。
 
-   <img src="../picture/continue.jpg" alt="continue" style="zoom:75%;" />
+   ![continue](../picture/continue.jpg)
 
 4. 登录下载时注册的AMD账号，点击“Next”。
 
-   <img src="../picture/login.jpg" alt="login" style="zoom:75%;" />
-
+   ![login](../picture/login.jpg)
 5. 选择“vivado”，点击“Next”。
 
-   <img src="../picture/product.jpg" alt="product" style="zoom:75%;" />
+   ![product](../picture/product.jpg)
 
 6. 选择免费的标准版，点击“Next”。
 
-   <img src="../picture/edition.jpg" alt="edition" style="zoom:75%;" />
+   ![edition](../picture/edition.jpg)
 
 7. 在“Device”中必勾选“Artix-7”，因为开发板搭载的FPGA是Artix-7，其他器件可以根据需要进行选择，“Design Tools”和“Installation Options”按照默认即可。
 
-   <img src="../picture/device.jpg" alt="device" style="zoom:75%;" />
+   ![device](../picture/device.jpg)
 
 8. 全部“I agree”，点击“Next”。
 
-   <img src="../picture/agree.jpg" alt="agree" style="zoom:75%;" />
+   ![agree](../picture/agree.jpg)
 
 9. 选择Vivado安装目录，默认安装在“C:\Xilinx”下，可以点击浏览或者直接更改路径，注意**安装路径中不能出现中文和空格**。点击“Next”。
 
-   <img src="../picture/directory.jpg" alt="directory" style="zoom:75%;" />
+   ![directory](../picture/directory.jpg)
 
    *我由于安装过了，显示和大家不一样。*
 
