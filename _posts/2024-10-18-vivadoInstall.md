@@ -11,7 +11,7 @@ date: 2024-10-18
 
 3. 下载Windows环境下的在线安装器（Windows Self Extracting Web Installer）
 
-   ![download](../assets/vivadoInstall/download.jpg)
+   ![download](/assets/vivadoInstall/download.jpg)
 
    - 下载需要登陆AMD。如果已有AMD账户直接填写用户名和密码登陆，如果没有账户则点“Create account”免费创建一个新账户。
    - 点击链接后会要求输入个人信息，随便填即可。
@@ -25,30 +25,30 @@ date: 2024-10-18
 
 3. 点击“Next”。
 
-   ![continue](../assets/vivadoInstall/continue.jpg)
+   ![continue](/assets/vivadoInstall/continue.jpg)
 
 4. 登录下载时注册的AMD账号，点击“Next”。
 
-   ![login](../assets/vivadoInstall/login.jpg)
+   ![login](/assets/vivadoInstall/login.jpg)
 5. 选择“vivado”，点击“Next”。
 
-   ![product](../assets/vivadoInstall/product.jpg)
+   ![product](/assets/vivadoInstall/product.jpg)
 
 6. 选择免费的标准版，点击“Next”。
 
-   ![edition](../assets/vivadoInstall/edition.jpg)
+   ![edition](/assets/vivadoInstall/edition.jpg)
 
 7. 在“Device”中必勾选“Artix-7”，因为开发板搭载的FPGA是Artix-7，其他器件可以根据需要进行选择，“Design Tools”和“Installation Options”按照默认即可。
 
-   ![device](../assets/vivadoInstall/device.jpg)
+   ![device](/assets/vivadoInstall/device.jpg)
 
 8. 全部“I agree”，点击“Next”。
 
-   ![agree](../assets/vivadoInstall/agree.jpg)
+   ![agree](/assets/vivadoInstall/agree.jpg)
 
 9. 选择Vivado安装目录，默认安装在“C:\Xilinx”下，可以点击浏览或者直接更改路径，注意**安装路径中不能出现中文和空格**。点击“Next”。
 
-   ![directory](../assets/vivadoInstall/directory.jpg)
+   ![directory](/assets/vivadoInstall/directory.jpg)
 
    *我由于安装过了，显示和大家不一样。*
 
