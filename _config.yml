@@ -38,21 +38,13 @@ syntax_highlighter_style: colorful
 markdown_ext:             markdown,mkdown,mkdn,mkd,md
 
 # Permalinks
-permalink:                /:year-:month-:day-:title:output_ext
+# permalink:                /:year-:month-:day-:title:output_ext
 
 # Disqus comments
 # disqushandler:            sighingnow
 
 exclude:
   - _drafts
-
-collections:
-  pages:
-    output: true
-    permalink: /:collection/:path/
-  others:
-    output: true
-    permalink: /:collection/:path/
 
 ordered_collections:
   - posts
