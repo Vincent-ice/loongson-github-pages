@@ -7,7 +7,7 @@ syntax_highlighter_style: colorful
 url: "https://vincent-ice.github.io"
 baseurl: "/loongson-github-pages"
 
-# permalink: ':title:output_ext'
+permalink: /:year-:month-:day-:title:output_ext
 
 toc:
     enabled: true
