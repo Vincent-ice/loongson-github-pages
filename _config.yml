@@ -2,3 +2,9 @@ remote_theme: sighingnow/jekyll-gitbook
 title: 龙芯班手册
 auther: Vincent-ice
 description: 龙芯班的一些教程
+syntax_highlighter_style: colorful
+
+toc:
+    enabled: true
+    h_min: 1
+    h_max: 3
