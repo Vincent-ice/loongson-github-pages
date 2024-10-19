@@ -11,7 +11,7 @@ date: 2024-10-18
 
 3. 下载Windows环境下的在线安装器（Windows Self Extracting Web Installer）
 
-   ![download](./assets/vivadoInstall/download.jpg)
+   ![download]({{site.url}}/assets/vivadoInstall/download.jpg)
 
    - 下载需要登陆AMD。如果已有AMD账户直接填写用户名和密码登陆，如果没有账户则点“Create account”免费创建一个新账户。
    - 点击链接后会要求输入个人信息，随便填即可。
