@@ -78,7 +78,7 @@ date: 2024-11-28
 在上图中，由于b_r信号声明后始终未赋值，导致其值为“X”，后续 c信号由于使用了b_r信号，导致其值也为“X”。
 
 另外，Vivado对于多驱动（2个及2个以上电路单元驱动同一信号），仿真时也会产生“X”信号，如下图:
-![multiDrive](./assets/debugTips/multi_drive.png)
+![multiDrive](./assets/debugTips/multi_driven.png)
 
 这种情况下追寻信号为“X”的原因可能不太好追，可以尝试先进行综合，观察下Critial warning，此时会报出多驱
 动的警告, 如下图:
