@@ -6,7 +6,7 @@ date: 2024-12-01
 
 # 基础整数指令定义
 ## 算术运算类指令
-### **ADD.W**
+### ADD.W
 
 <table>
 <tbody>
@@ -38,9 +38,9 @@ date: 2024-12-01
 </tbody>
 </table>
 
-**指令格式：** add.w  rd, rj, rk
+**指令格式：**  add.w  rd, rj, rk
 
-**功能描述：** ADD.W 将通用寄存器 rj 中的数据加上通用寄存器 rk 中的数据，所得结果的[31:0]位写入通用寄存器 rd 中。
+**功能描述：**  ADD.W 将通用寄存器 rj 中的数据加上通用寄存器 rk 中的数据，所得结果的[31:0]位写入通用寄存器 rd 中。
 
 **操作定义：**
 
@@ -48,7 +48,7 @@ tmp = GR[rj] + GR[rk]
 
 GR[rd] = tmp[31:0]
 
-### **SUB.W**
+### SUB.W
 
 <table>
 <tbody>
@@ -80,9 +80,9 @@ GR[rd] = tmp[31:0]
 </tbody>
 </table>
 
-**指令格式：** sub.w  rd, rj, rk
+**指令格式：**  sub.w  rd, rj, rk
 
-**功能描述：** SUB.W 将通用寄存器 rj 中的数据减去通用寄存器 rk 中的数据，所得结果的[31:0]位写入通用寄存器 rd中。
+**功能描述：**  SUB.W 将通用寄存器 rj 中的数据减去通用寄存器 rk 中的数据，所得结果的[31:0]位写入通用寄存器 rd中。
 
 **操作定义：**
 
@@ -90,7 +90,7 @@ tmp = GR[rj] - GR[rk]
 
 GR[rd] = tmp[31:0]
 
-### <a name="_toc163853444"></a>**ADDI.W**
+### ADDI.W
 
 <table>
 <tbody>
@@ -99,12 +99,8 @@ GR[rd] = tmp[31:0]
 <td style="width: 9.375%;  text-align: right;">26</td>
 <td style="width: 6.25%;   text-align: left;">25</td>
 <td style="width: 6.25%;   text-align: right;">22</td>
-<td style="width: 3.125%;  text-align: left;">21</td>
-<td style="width: 3.125%;  text-align: right;">  </td>
-<td style="width: 7.8125%; text-align: left;">  </td>
-<td style="width: 7.8125%; text-align: right;">  </td>
-<td style="width: 7.8125%; text-align: left;">  </td>
-<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 18.75%;  text-align: left;" colspan="3">21</td>
+<td style="width: 18.75%;  text-align: right;" colspan="3">10</td>
 <td style="width: 7.8125%; text-align: left;">9</td>
 <td style="width: 7.8125%; text-align: right;">5</td>
 <td style="width: 7.8125%; text-align: left;">4</td>
@@ -120,9 +116,10 @@ GR[rd] = tmp[31:0]
 </tbody>
 </table>
 
-**指令格式：** addi.w  rd, rj, si12
 
-**功能描述：** ADDI.W 将通用寄存器 rj 中的数据加上 12 比特立即数 si12 **符号扩展**后的 32 位数据，所得结果写入通用寄存器 rd 中。
+**指令格式：**  addi.w  rd, rj, si12
+
+**功能描述：**  ADDI.W 将通用寄存器 rj 中的数据加上 12 比特立即数 si12 **符号扩展**后的 32 位数据，所得结果写入通用寄存器 rd 中。
 
 **操作定义：**
 
@@ -130,23 +127,15 @@ tmp = GR[rj] + SignExtend(si12, 32)
 
 GR[rd] = tmp[31:0]
 
-### <a name="_toc163853445"></a>**LUI12I.W**
+### LUI12I.W
 
 <table>
 <tbody>
 <tr>
 <td style="width: 9.375%;  text-align: left;">31</td>
 <td style="width: 9.375%;  text-align: right;">25</td>
-<td style="width: 6.25%;   text-align: left;">24</td>
-<td style="width: 6.25%;   text-align: right;"> </td>
-<td style="width: 3.125%;  text-align: left;"> </td>
-<td style="width: 3.125%;  text-align: right;"> </td>
-<td style="width: 7.8125%; text-align: left;"> </td>
-<td style="width: 7.8125%; text-align: right;"> </td>
-<td style="width: 7.8125%; text-align: left;"> </td>
-<td style="width: 7.8125%; text-align: right;"> </td>
-<td style="width: 7.8125%; text-align: left;"> </td>
-<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 31.25%;  text-align: left;" colspan="5">24</td>
+<td style="width: 31.25%;  text-align: right;" colspan="5">5</td>
 <td style="width: 7.8125%; text-align: left;">4</td>
 <td style="width: 7.8125%; text-align: right;">0</td>
 </tr>
@@ -157,126 +146,285 @@ GR[rd] = tmp[31:0]
 </tr>
 </tbody>
 </table>
-**指令格式：** lu12i.w  rd, si20
+**指令格式：**  lu12i.w  rd, si20
 
-**功能描述：** LU12I.W 将 20 比特立即数 si20 最低位连接上 12 比特 0 后写入通用寄存器 rd 中。
+**功能描述：**  LU12I.W 将 20 比特立即数 si20 最低位连接上 12 比特 0 后写入通用寄存器 rd 中。
 
 **操作定义：**
 
 GR[rd] = {si20, 12'b0}
 
-1. ### <a name="_toc163853446"></a>**SLT**
+### SLT
 
-|31|23|22|15|14|10|9||5|4||||0|
-| - | -: | - | -: | - | -: | - | :-: | -: | - | :-: | :-: | :-: | -: |
-|000000000\_00100100|rk|rj|rd|||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0000</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00100</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** slt  rd, rj, rk
 
-**功能描述：** SLT 将通用寄存器 rj 中的数据与通用寄存器 rk 中的数据视作有符号整数进行大小比较，如果前者小于后者，则将通用寄存器 rd 的值置为 1，否则置为 0。
+**指令格式：**  slt  rd, rj, rk
+
+**功能描述：**  SLT 将通用寄存器 rj 中的数据与通用寄存器 rk 中的数据视作**有符号整数**进行大小比较，如果前者小于后者，则将通用寄存器 rd 的值置为 1，否则置为 0。
 
 **操作定义：**
 
 GR[rd] = (signed(GR[rj]) < signed(GR[rk])) ? 1 : 0
 
-**例外：**无
 
-1. ### <a name="_toc163853447"></a>**SLTU**
 
-|31|23|22|15|14|10|9||5|4||||0|
-| - | -: | - | -: | - | -: | - | :-: | -: | - | :-: | :-: | :-: | -: |
-|000000000\_00100101|rk|rj|rd|||||||||||
+### SLTU
 
-**指令格式：**sltu  rd, rj, rk
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0000</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00101</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
-**功能描述：**SLTU 将通用寄存器 rj 中的数据与通用寄存器 rk 中的数据视作无符号整数进行大小比较，如果前者小于后者，则将通用寄存器 rd 的值置为 1，否则置为 0 。
+**指令格式：** sltu  rd, rj, rk
+
+**功能描述：** SLTU 将通用寄存器 rj 中的数据与通用寄存器 rk 中的数据视作**无符号整数**进行大小比较，如果前者小于后者，则将通用寄存器 rd 的值置为 1，否则置为 0 。
 
 **操作定义：**
 
 GR[rd] = (unsigned(GR[rj]) < unsigned(GR[rk])) ? 1 : 0
 
-**例外：**无
 
 
-1. ### <a name="_toc163853448"></a>**SLTI**
 
-|31|22|21|10|9||||5|4||||0|
-| - | -: | - | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-|0000001000|si12|rj|rd|||||||||||
+### SLTI
 
-**指令格式：**slti  rd, rj, si12
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 18.75%;  text-align: left;" colspan="3">21</td>
+<td style="width: 18.75%;  text-align: right;" colspan="3">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">1000</td>
+<td style="text-align: center; width: 6.25%;  " colspan="6">si12</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
-**功能描述：**SLTI 将通用寄存器 rj 中的数据与 12 比特立即数 si12 符号扩展后所得的数据视作有符号整数进行大小比较，如果前者小于后者，则将通用寄存器 rd 的值置为 1，否则置为 0。
+**指令格式：** slti  rd, rj, si12
+
+**功能描述：** SLTI 将通用寄存器 rj 中的数据与 12 比特立即数 si12 **符号扩展**后所得的数据视作有符号整数进行大小比较，如果前者小于后者，则将通用寄存器 rd 的值置为 1，否则置为 0。
 
 **操作定义：**
-**
-`	`tmp = SignExtend(si12, 32)
+
+tmp = SignExtend(si12, 32)
 
 GR[rd] = (signed(GR[rj]) < signed(tmp)) ? 1 : 0
 
-**例外：**无
 
-1. ### <a name="_toc163853449"></a>**SLTUI**
 
-|31|22|21|10|9||||5|4||||0|
-| - | -: | - | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-|0000001001|si12|rj|rd|||||||||||
+### SLTUI
 
-**指令格式：**sltui  rd, rj, si12
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 18.75%;  text-align: left;" colspan="3">21</td>
+<td style="width: 18.75%;  text-align: right;" colspan="3">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">1001</td>
+<td style="text-align: center; width: 6.25%;  " colspan="6">si12</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
-**功能描述：**SLTI 将通用寄存器 rj 中的数据与 12 比特立即数 si12 符号扩展后所得的数据视作无符号整数进行大小比较，如果前者小于后者，则将通用寄存器 rd 的值置为 1，否则置为 0。
+**指令格式：** sltui  rd, rj, si12
+
+**功能描述：** SLTI 将通用寄存器 rj 中的数据与 12 比特立即数 si12 符号扩展后所得的数据视作无符号整数进行大小比较，如果前者小于后者，则将通用寄存器 rd 的值置为 1，否则置为 0。
 
 **操作定义：**
-**
-`	`tmp = SignExtend(si12, 32)
+
+tmp = SignExtend(si12, 32)
 
 GR[rd] = (unsigned(GR[rj]) < unsigned(tmp)) ? 1 : 0
 
-**例外：无**
 
-1. ### <a name="_toc163853450"></a>**PCADDU12I**
 
-|31|25|24|||||||||||||||5|4||||0|
-| - | -: | - | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-|0001110|si20|rd|||||||||||||||||||||
+### PCADDU12I
 
-**指令格式：**pcaddu12i  rd, si20
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">25</td>
+<td style="width: 31.25%;  text-align: left;" colspan="5">24</td>
+<td style="width: 31.25%;  text-align: right;" colspan="5">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">0001110</td>
+<td style="text-align: center;" colspan="10">si20</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
-**功能描述：**PCADDU12I 将 20 比特立即数 si20 最低位连接上 12 比特 0 之后符号扩展，所得数据加上该指令的 PC，相加结果写入通用寄存器 rd 中。
+**指令格式：** pcaddu12i  rd, si20
 
-**操作定义：**
-**
-`	`GR[rd] = PC + SignExtend({si20, 12'b0}, 32)
-
-**例外：**无
-
-1. ### <a name="_toc163853451"></a>**MUL.W**
-
-|31|23|22|15|14|10|9||5|4||||0|
-| - | -: | - | -: | - | -: | - | :-: | -: | - | :-: | :-: | :-: | -: |
-|000000000\_00111000|rk|rj|rd|||||||||||
-
-**指令格式：**mul.w  rd, rj, rk
-
-**功能描述：**MUL.W 将通用寄存器 rj 中的数据与通用寄存器 rk 中的数据进行相乘，乘积结果的[31:0]位数据写入通用寄存器 rd 中。
+**功能描述：** PCADDU12I 将 20 比特立即数 si20 最低位连接上 12 比特 0 之后**符号扩展**，所得数据加上该指令的 PC，相加结果写入通用寄存器 rd 中。
 
 **操作定义：**
-**
-`	`product = signed(GR[rj]) \* signed(GR[rk])
+
+GR[rd] = PC + SignExtend({si20, 12'b0}, 32)
+
+
+
+### MUL.W
+
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0000</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">11000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
+
+**指令格式：** mul.w  rd, rj, rk
+
+**功能描述：** MUL.W 将通用寄存器 rj 中的数据与通用寄存器 rk 中的数据进行相乘，乘积结果的[31:0]位数据写入通用寄存器 rd 中。
+
+**操作定义：**
+
+product = signed(GR[rj]) \* signed(GR[rk])
 
 GR[rd] = product[31:0]
 
-**例外：**无
 
-1. ### <a name="_toc163853452"></a>**MULH.W**
 
-|31|23|22|15|14|10|9||5|4||||0|
-| - | -: | - | -: | - | -: | - | :-: | -: | - | :-: | :-: | :-: | -: |
-|000000000\_00111001|rk|rj|rd|||||||||||
+### MULH.W
 
-**指令格式：**mulh.w  rd, rj, rk
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0000</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">11001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
-**功能描述：**MULH.W将通用寄存器rj中的数据与通用寄存器rk中的数据视作有符号数进行相乘，乘积结果的[63:32]位数据写入通用寄存器 rd 中。
+**指令格式：** mulh.w  rd, rj, rk
+
+**功能描述：** MULH.W将通用寄存器rj中的数据与通用寄存器rk中的数据视作**有符号数**进行相乘，乘积结果的[63:32]位数据写入通用寄存器 rd 中。
 
 **操作定义：**
 
@@ -284,38 +432,101 @@ GR[rd] = product[31:0]
 
 GR[rd] = product[63:32]
 
-**例外：**无
 
-1. ### <a name="_toc163853453"></a>**MULH.WU**
 
-|31|23|22|15|14|10|9||5|4||||0|
-| - | -: | - | -: | - | -: | - | :-: | -: | - | :-: | :-: | :-: | -: |
-|000000000\_00111010|rk|rj|rd|||||||||||
+### MULH.WU
 
-**指令格式：**mulh.wu  rd, rj, rk
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0000</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">11010</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
-**功能描述：**MULH.WU 将通用寄存器 rj 中的数据与通用寄存器 rk 中的数据视作无符号数进行相乘，乘积结果的[63:32]位数据符号扩展后写入通用寄存器 rd 中。
+**指令格式：** mulh.wu  rd, rj, rk
+
+**功能描述：** MULH.WU 将通用寄存器 rj 中的数据与通用寄存器 rk 中的数据视作**无符号数**进行相乘，乘积结果的[63:32]位数据符号扩展后写入通用寄存器 rd 中。
 
 **操作定义：**
-**
-`	`product = unsigned(GR[rj]) \* unsigned(GR[rk])
+
+product = unsigned(GR[rj]) \* unsigned(GR[rk])
 
 GR[rd] = product[63:32]
 
-**例外：**无
 
-1. ### <a name="_toc163853454"></a>**DIV.W，DIV.WU**
 
-||31|23|22|15|14|10|9||5|4||||0|
-| - | - | -: | - | -: | - | -: | - | :-: | -: | - | :-: | :-: | :-: | -: |
-|DIV.W|000000000\_01000000|rk|rj|rd|||||||||||
-|DIV.WU|000000000\_01000010|rk|rj|rd|||||||||||
+### DIV.W，DIV.WU
 
-**指令格式：**div.w   rd, rj, rk
+<table>
+<tbody>
+<tr>
+<td style="test-align: center;"> </td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">DIV.W</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0000</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">10</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+<tr>
+<td style="test-align: center;">DIV.WU</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0000</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">10</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00010</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
+
+**指令格式：** div.w   rd, rj, rk
 
 `		  `div.wu  rd, rj, rk
 
-**功能描述：**DIV.W 和 DIV.WU 将通用寄存器 rj 中的数据除以通用寄存器 rk 中的数据，所得的商写入通用寄存器rd 中。
+**功能描述：** DIV.W 和 DIV.WU 将通用寄存器 rj 中的数据除以通用寄存器 rk 中的数据，所得的商写入通用寄存器rd 中。
 
 **操作定义：**
 
@@ -331,20 +542,20 @@ quotient = unsigned(GR[rj]) / unsigned(GR[rk])
 
 GR[rd] = quotient[31:0]
 
-**例外：**无
 
-1. ### <a name="_toc163853455"></a>**MOD.W，MOD.WU**
+
+### **MOD.W，MOD.WU**
 
 ||31|23|22|15|14|10|9||5|4||||0|
 | - | - | -: | - | -: | - | -: | - | :-: | -: | - | :-: | :-: | :-: | -: |
 |MOD.W|000000000\_01000001|rk|rj|rd|||||||||||
 |MOD.WU|000000000\_01000011|rk|rj|rd|||||||||||
 
-**指令格式：**mod.w   rd, rj, rk
+**指令格式：** mod.w   rd, rj, rk
 
 `		  `mod.wu  rd, rj, rk
 
-**功能描述：**MOD.W 和 MOD.WU 将通用寄存器 rj 中的数据除以通用寄存器 rk 中的数据，所得的余数写入通用寄存器 rd 中。
+**功能描述：** MOD.W 和 MOD.WU 将通用寄存器 rj 中的数据除以通用寄存器 rk 中的数据，所得的余数写入通用寄存器 rd 中。
 
 **操作定义：**
 
@@ -360,146 +571,146 @@ remainder = unsigned(GR[rj]) % unsigned(GR[rk])
 
 GR[rd] = remainder[31:0]
 
-**例外：**无
 
-1. ## <a name="_toc163853456"></a>**逻辑运算类指令**
-   1. ### <a name="_toc163853457"></a>**AND**
+
+## **逻辑运算类指令**
+   ### **AND**
 
 |31|23|22|15|14|10|9||5|4||||0|
 | - | -: | - | -: | - | -: | - | :-: | -: | - | :-: | :-: | :-: | -: |
 |000000000\_00101001|rk|rj|rd|||||||||||
 
-**指令格式：**and  rd, rj, rk
+**指令格式：** and  rd, rj, rk
 
-**功能描述：**AND 将通用寄存器 rj 中的数据与通用寄存器 rk 中的数据进行按位逻辑与运算，结果写入通用寄存器rd 中。
+**功能描述：** AND 将通用寄存器 rj 中的数据与通用寄存器 rk 中的数据进行按位逻辑与运算，结果写入通用寄存器rd 中。
 
 **操作定义：**
 **
 `	`GR[rd] = GR[rj] & GR[rk]
 
-**例外：**无
 
-1. ### <a name="_toc163853458"></a>**OR**
+
+### **OR**
 
 |31|23|22|15|14|10|9||5|4||||0|
 | - | -: | - | -: | - | -: | - | :-: | -: | - | :-: | :-: | :-: | -: |
 |000000000\_00101010|rk|rj|rd|||||||||||
 
-**指令格式：**or  rd, rj, rk
+**指令格式：** or  rd, rj, rk
 
-**功能描述：**OR 将通用寄存器 rj 中的数据与通用寄存器 rk 中的数据进行按位逻辑或运算，结果写入通用寄存器 rd中。
+**功能描述：** OR 将通用寄存器 rj 中的数据与通用寄存器 rk 中的数据进行按位逻辑或运算，结果写入通用寄存器 rd中。
 
 **操作定义：**
 **
 `	`GR[rd] = GR[rj] | GR[rk]
 
-**例外：**无
 
-1. ### <a name="_toc163853459"></a>**NOR**
+
+### **NOR**
 
 |31|23|22|15|14|10|9||5|4||||0|
 | - | -: | - | -: | - | -: | - | :-: | -: | - | :-: | :-: | :-: | -: |
 |000000000\_00101000|rk|rj|rd|||||||||||
 
-**指令格式：**nor  rd, rj, rk
+**指令格式：** nor  rd, rj, rk
 
-**功能描述：**NOR 将通用寄存器 rj 中的数据与通用寄存器 rk 中的数据进行按位逻辑或非运算，结果写入通用寄存器rd 中。
+**功能描述：** NOR 将通用寄存器 rj 中的数据与通用寄存器 rk 中的数据进行按位逻辑或非运算，结果写入通用寄存器rd 中。
 
 **操作定义：**
 **
 `	`GR[rd] = ~(GR[rj] | GR[rk])
 
-**例外：**无
 
-1. ### <a name="_toc163853460"></a>**XOR**
+
+### **XOR**
 
 |31|23|22|15|14|10|9||5|4||||0|
 | - | -: | - | -: | - | -: | - | :-: | -: | - | :-: | :-: | :-: | -: |
 |000000000\_00101011|rk|rj|rd|||||||||||
 
-**指令格式：**xor  rd, rj, rk
+**指令格式：** xor  rd, rj, rk
 
-**功能描述：**XOR 将通用寄存器 rj 中的数据与通用寄存器 rk 中的数据进行按位逻辑异或运算，结果写入通用寄存器rd 中。
+**功能描述：** XOR 将通用寄存器 rj 中的数据与通用寄存器 rk 中的数据进行按位逻辑异或运算，结果写入通用寄存器rd 中。
 
 **操作定义：**
 **
 `	`GR[rd] = GR[rj] ^ GR[rk]
 
-**例外：**无
 
-1. ### <a name="_toc163853461"></a>**ANDI**
+
+### **ANDI**
 
 |31|22|21|10|9||||5|4||||0|
 | - | -: | - | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 |0000001101|si12|rj|rd|||||||||||
 
-**指令格式：**andi  rd, rj, rk
+**指令格式：** andi  rd, rj, rk
 
-**功能描述：**ANDI 将通用寄存器 rj 中的数据与 12 比特立即数零扩展之后的数据进行按位逻辑与运算，结果写入通用寄存器 rd 中。
+**功能描述：** ANDI 将通用寄存器 rj 中的数据与 12 比特立即数零扩展之后的数据进行按位逻辑与运算，结果写入通用寄存器 rd 中。
 
 **操作定义：**
 **
 `	`GR[rd] = GR[rj] & ZeroExtend(ui12, 32)
 
-**例外：**无
 
-1. ### <a name="_toc163853462"></a>**ORI**
+
+### **ORI**
 
 |31|22|21|10|9||||5|4||||0|
 | - | -: | - | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 |0000001110|si12|rj|rd|||||||||||
 
-**指令格式：**ori  rd, rj, rk
+**指令格式：** ori  rd, rj, rk
 
-**功能描述：**ORI 将通用寄存器 rj 中的数据与 12 比特立即数零扩展之后的数据进行按位逻辑或运算，结果写入通用寄存器 rd 中。
+**功能描述：** ORI 将通用寄存器 rj 中的数据与 12 比特立即数零扩展之后的数据进行按位逻辑或运算，结果写入通用寄存器 rd 中。
 
 **操作定义：**
 **
 `	`GR[rd] = GR[rj] | ZeroExtend(ui12, 32)
 
-**例外：**无
 
-1. ### <a name="_toc163853463"></a>**XORI**
+
+### **XORI**
 
 |31|22|21|10|9||||5|4||||0|
 | - | -: | - | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 |0000001111|si12|rj|rd|||||||||||
 
-**指令格式：**xori  rd, rj, rk
+**指令格式：** xori  rd, rj, rk
 
-**功能描述：**XORI 将通用寄存器 rj 中的数据与 12 比特立即数零扩展之后的数据进行按位逻辑异或运算，结果写入通用寄存器 rd 中。
+**功能描述：** XORI 将通用寄存器 rj 中的数据与 12 比特立即数零扩展之后的数据进行按位逻辑异或运算，结果写入通用寄存器 rd 中。
 
 **操作定义：**
 **
 `	`GR[rd] = GR[rj] ^ ZeroExtend(ui12, 32)
 
-**例外：**无
-1. ## <a name="_toc163853464"></a>**移位运算类指令**
-   1. ### **SLL.W**
+
+## **移位运算类指令**
+   ### **SLL.W**
 
 |31|23|22|15|14|10|9||5|4||||0|
 | - | -: | - | -: | - | -: | - | :-: | -: | - | :-: | :-: | :-: | -: |
 |000000000\_00101110|rk|rj|rd|||||||||||
 
-**指令格式：**sll.w  rd, rj, rk
+**指令格式：** sll.w  rd, rj, rk
 
-**功能描述：**SLL.W 将通用寄存器 rj 中的数据逻辑左移，移位结果写入通用寄存器 rd 中。**操作定义：**
+**功能描述：** SLL.W 将通用寄存器 rj 中的数据逻辑左移，移位结果写入通用寄存器 rd 中。**操作定义：**
 **
 `	`tmp = SLL(GR[rj], GR[rk][4:0])
 
 GR[rd] = tmp[31:0]
 
-**例外：**无
 
-1. ### **SRL.W**
+
+### **SRL.W**
 
 |31|23|22|15|14|10|9||5|4||||0|
 | - | -: | - | -: | - | -: | - | :-: | -: | - | :-: | :-: | :-: | -: |
 |000000000\_00101111|rk|rj|rd|||||||||||
 
-**指令格式：**srl.w  rd, rj, rk
+**指令格式：** srl.w  rd, rj, rk
 
-**功能描述：**SRL.W 将通用寄存器 rj 中的数据逻辑右移，移位结果写入通用寄存器 rd中。
+**功能描述：** SRL.W 将通用寄存器 rj 中的数据逻辑右移，移位结果写入通用寄存器 rd中。
 
 **操作定义：**
 **
@@ -507,17 +718,17 @@ GR[rd] = tmp[31:0]
 
 GR[rd] = tmp[31:0]
 
-**例外：**无
 
-1. ### **SRA.W**
+
+### **SRA.W**
 
 |31|23|22|15|14|10|9||5|4||||0|
 | - | -: | - | -: | - | -: | - | :-: | -: | - | :-: | :-: | :-: | -: |
 |000000000\_00110000|rk|rj|rd|||||||||||
 
-**指令格式：**sra.w  rd, rj, rk
+**指令格式：** sra.w  rd, rj, rk
 
-**功能描述：**SRA.W 将通用寄存器 rj 中的数据算术右移，移位结果写入通用寄存器 rd 中。
+**功能描述：** SRA.W 将通用寄存器 rj 中的数据算术右移，移位结果写入通用寄存器 rd 中。
 
 **操作定义：**
 **
@@ -525,17 +736,17 @@ GR[rd] = tmp[31:0]
 
 GR[rd] = tmp[31:0]
 
-**例外：**无
 
-1. ### **SLLI.W**
+
+### **SLLI.W**
 
 |31|||||18|17|15|14||10|9||5|4|||0|||
 | - | :-: | :-: | :-: | :-: | -: | :- | :-: | - | :-: | -: | - | :-: | -: | - | :-: | :-: | -: | :- | :- |
 |00000000010000|001|ui5|rj|rd||||||||||||||||
 
-**指令格式：**slli.w  rd, rj, ui5
+**指令格式：** slli.w  rd, rj, ui5
 
-**功能描述：**SLLI.W 将通用寄存器 rj 中的数据逻辑左移，移位结果写入通用寄存器 rd 中。
+**功能描述：** SLLI.W 将通用寄存器 rj 中的数据逻辑左移，移位结果写入通用寄存器 rd 中。
 
 **操作定义：**
 **
@@ -543,17 +754,17 @@ GR[rd] = tmp[31:0]
 
 GR[rd] = tmp[31:0]
 
-**例外：**无
 
-1. ### **SRLI.W**
+
+### **SRLI.W**
 
 |31|||||18|17|15|14||10|9||5|4|||0|||
 | - | :-: | :-: | :-: | :-: | -: | :- | :-: | - | :-: | -: | - | :-: | -: | - | :-: | :-: | -: | :- | :- |
 |00000000010001|001|ui5|rj|rd||||||||||||||||
 
-**指令格式：**srli.w  rd, rj, ui5
+**指令格式：** srli.w  rd, rj, ui5
 
-**功能描述：**SRLI.W 将通用寄存器 rj 中的数据逻辑右移，移位结果写入通用寄存器 rd 中。
+**功能描述：** SRLI.W 将通用寄存器 rj 中的数据逻辑右移，移位结果写入通用寄存器 rd 中。
 
 **操作定义：**
 **
@@ -561,17 +772,17 @@ GR[rd] = tmp[31:0]
 
 GR[rd] = tmp[31:0]
 
-**例外：**无
 
-1. ### **SRAI.W**
+
+### **SRAI.W**
 
 |31|||||18|17|15|14||10|9||5|4|||0|||
 | - | :-: | :-: | :-: | :-: | -: | :- | :-: | - | :-: | -: | - | :-: | -: | - | :-: | :-: | -: | :- | :- |
 |00000000010010|001|ui5|rj|rd||||||||||||||||
 
-**指令格式：**srai.w  rd, rj, ui5
+**指令格式：** srai.w  rd, rj, ui5
 
-**功能描述：**SRAI.W 将通用寄存器 rj 中的数据算术右移，移位结果写入通用寄存器 rd 中。
+**功能描述：** SRAI.W 将通用寄存器 rj 中的数据算术右移，移位结果写入通用寄存器 rd 中。
 
 **操作定义：**
 **
@@ -579,18 +790,18 @@ GR[rd] = tmp[31:0]
 
 GR[rd] = tmp[31:0]
 
-**例外：**无
 
-1. ## **转移指令**
-   1. ### **BEQ**
+
+## **转移指令**
+   ### **BEQ**
 
 |31|26|25|||||||10|9||||5|4||||0|
 | - | -: | - | :-: | :-: | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 |010110|offs[15:0]|rj|rd|||||||||||||||||
 
-**指令格式：**beq  rj, rd, offs16
+**指令格式：** beq  rj, rd, offs16
 
-**功能描述：**BEQ 将通用寄存器 rj 和通用寄存器 rd 的值进行比较，如果两者相等则跳转到目标地址，否则不跳转。
+**功能描述：** BEQ 将通用寄存器 rj 和通用寄存器 rd 的值进行比较，如果两者相等则跳转到目标地址，否则不跳转。
 
 其跳转目标地址计算方式是将指令码中的16比特立即数offs16逻辑左移2位后再符
 
@@ -602,17 +813,17 @@ if GR[rj] == GR[rd] :
 
 PC = PC + SignExtend({offs16, 2'b0}, 32)
 
-**例外：无**
 
-1. ### **BNE**
+
+### **BNE**
 
 |31|26|25|||||||10|9||||5|4||||0|
 | - | -: | - | :-: | :-: | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 |010111|offs[15:0]|rj|rd|||||||||||||||||
 
-**指令格式：**bne  rj, rd, offs16
+**指令格式：** bne  rj, rd, offs16
 
-**功能描述：**BNE 将通用寄存器 rj 和通用寄存器 rd 的值进行比较，如果两者不等则跳转到目标地址，否则不跳转。
+**功能描述：** BNE 将通用寄存器 rj 和通用寄存器 rd 的值进行比较，如果两者不等则跳转到目标地址，否则不跳转。
 
 其跳转目标地址计算方式是将指令码中的16比特立即数offs16逻辑左移2位后再符
 
@@ -624,17 +835,17 @@ if GR[rj] != GR[rd] :
 
 PC = PC + SignExtend({offs16, 2'b0}, 32)
 
-**例外：无**
 
-1. ### **BLT**
+
+### **BLT**
 
 |31|26|25|||||||10|9||||5|4||||0|
 | - | -: | - | :-: | :-: | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 |011000|offs[15:0]|rj|rd|||||||||||||||||
 
-**指令格式：**blt  rj, rd, offs16
+**指令格式：** blt  rj, rd, offs16
 
-**功能描述：**BLT 将通用寄存器 rj 和通用寄存器 rd 的值视作有符号数进行比较，如果前者小于后者则跳转到目标地址，否则不跳转。
+**功能描述：** BLT 将通用寄存器 rj 和通用寄存器 rd 的值视作有符号数进行比较，如果前者小于后者则跳转到目标地址，否则不跳转。
 
 其跳转目标地址计算方式是将指令码中的16比特立即数offs16逻辑左移2位后再符
 
@@ -646,17 +857,17 @@ if signed(GR[rj]) < signed(GR[rd]) :
 
 PC = PC + SignExtend({offs16, 2'b0}, 32)
 
-**例外：无**
 
-1. ### **BGE**
+
+### **BGE**
 
 |31|26|25|||||||10|9||||5|4||||0|
 | - | -: | - | :-: | :-: | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 |011001|offs[15:0]|rj|rd|||||||||||||||||
 
-**指令格式：**bge  rj, rd, offs16
+**指令格式：** bge  rj, rd, offs16
 
-**功能描述：**BGE 将通用寄存器 rj 和通用寄存器 rd 的值视作有符号数进行比较，如果前者大于等于后者则跳转到目标地址，否则不跳转。
+**功能描述：** BGE 将通用寄存器 rj 和通用寄存器 rd 的值视作有符号数进行比较，如果前者大于等于后者则跳转到目标地址，否则不跳转。
 
 其跳转目标地址计算方式是将指令码中的16比特立即数offs16逻辑左移2位后再符
 
@@ -668,17 +879,17 @@ if signed(GR[rj]) >= signed(GR[rd]) :
 
 PC = PC + SignExtend({offs16, 2'b0}, 32)
 
-**例外：无**
 
-1. ### **BLTU**
+
+### **BLTU**
 
 |31|26|25|||||||10|9||||5|4||||0|
 | - | -: | - | :-: | :-: | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 |011010|offs[15:0]|rj|rd|||||||||||||||||
 
-**指令格式：**bltu  rj, rd, offs16
+**指令格式：** bltu  rj, rd, offs16
 
-**功能描述：**BLTU 将通用寄存器 rj 和通用寄存器 rd 的值视作无符号数进行比较，如果前者小于后者则跳转到目标地址，否则不跳转。
+**功能描述：** BLTU 将通用寄存器 rj 和通用寄存器 rd 的值视作无符号数进行比较，如果前者小于后者则跳转到目标地址，否则不跳转。
 
 其跳转目标地址计算方式是将指令码中的16比特立即数offs16逻辑左移2位后再符
 
@@ -690,17 +901,17 @@ if unsigned(GR[rj]) < unsigned(GR[rd]) :
 
 PC = PC + SignExtend({offs16, 2'b0}, 32)
 
-**例外：无**
 
-1. ### **BGEU**
+
+### **BGEU**
 
 |31|26|25|||||||10|9||||5|4||||0|
 | - | -: | - | :-: | :-: | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 |011011|offs[15:0]|rj|rd|||||||||||||||||
 
-**指令格式：**bgeu  rj, rd, offs16
+**指令格式：** bgeu  rj, rd, offs16
 
-**功能描述：**BGEU 将通用寄存器 rj 和通用寄存器 rd 的值视作无符号数进行比较，如果前者大于等于后者则跳转到目标地址，否则不跳转。
+**功能描述：** BGEU 将通用寄存器 rj 和通用寄存器 rd 的值视作无符号数进行比较，如果前者大于等于后者则跳转到目标地址，否则不跳转。
 
 其跳转目标地址计算方式是将指令码中的16比特立即数offs16逻辑左移2位后再符
 
@@ -712,18 +923,18 @@ if unsigned(GR[rj]) >= unsigned(GR[rd]) :
 
 PC = PC + SignExtend({offs16, 2'b0}, 32)
 
-**例外：无**
 
 
-1. ### **B**
+
+### **B**
 
 |31|26|25|||||||10|9|||||||||0|
 | - | -: | - | :-: | :-: | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | - | :-: | :-: | :-: | :-: |
 |010100|offs[15:0]|offs[25:16]||||||||||||||||||
 
-**指令格式：**b  offs26
+**指令格式：** b  offs26
 
-**功能描述：**B 无条件跳转到目标地址处。
+**功能描述：** B 无条件跳转到目标地址处。
 
 其跳转目标地址是将指令码中的 26 比特立即数 offs26 逻辑左移 2 位后再符号扩展，所得的偏移值加上该分支指令的 PC。
 
@@ -731,17 +942,17 @@ PC = PC + SignExtend({offs16, 2'b0}, 32)
 
 PC = PC + SignExtend({offs26, 2'b0}, 32)
 
-**例外：无**
 
-1. ### **BL**
+
+### **BL**
 
 |31|26|25|||||||10|9|||||||||0|
 | - | -: | - | :-: | :-: | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | - | :-: | :-: | :-: | :-: |
 |010101|offs[15:0]|offs[25:16]||||||||||||||||||
 
-**指令格式：**bl  offs26
+**指令格式：** bl  offs26
 
-**功能描述：**BL 无条件跳转到目标地址处，同时将该指令的 PC 值加 4 的结果写入到 1 号通用寄存器 r1 中。
+**功能描述：** BL 无条件跳转到目标地址处，同时将该指令的 PC 值加 4 的结果写入到 1 号通用寄存器 r1 中。
 
 其跳转目标地址是将指令码中的 26 比特立即数 offs26 逻辑左移 2 位后再符号扩展，所得的偏移值加上该分支指令的 PC。
 
@@ -751,17 +962,17 @@ GR[1] = PC + 4
 
 PC = PC + SignExtend({offs26, 2'b0}, 32)
 
-**例外：无**
 
-1. ### **JIRL**
+
+### **JIRL**
 
 |31|26|25|||||||10|9||||5|4||||0|
 | - | -: | - | :-: | :-: | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 |010011|offs[15:0]|rj|rd|||||||||||||||||
 
-**指令格式：**jirl  rj, rd, offs16
+**指令格式：** jirl  rj, rd, offs16
 
-**功能描述：**JIRL 无条件跳转到目标地址处，同时将该指令的 PC 值加 4 的结果写入到通用寄存器 rd 中。
+**功能描述：** JIRL 无条件跳转到目标地址处，同时将该指令的 PC 值加 4 的结果写入到通用寄存器 rd 中。
 
 该指令的跳转目标地址是将指令码中的 16 比特立即数 offs16 逻辑左移 2 位后再符号扩展，所得的偏移值加上通用寄存器 rj中的值。
 
@@ -771,14 +982,14 @@ GR[rd] = PC + 4
 
 PC = GR[rj] + SignExtend({offs16, 2'b0}, 32)
 
-**例外：无**
+
 
 注：上述指令如果在写汇编时采用直接填入偏移值的方式，则汇编表示中的立即数应
 
 填入以字节为单位的偏移值，即指令码中offs<<2。
 
-1. ## **普通访存指令**
-   1. ### **LD.B，LD.H，LD.W**
+## **普通访存指令**
+   ### **LD.B，LD.H，LD.W**
 
 ||31|22|21|10|9||||5|4||||0|
 | - | - | -: | - | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
@@ -786,13 +997,13 @@ PC = GR[rj] + SignExtend({offs16, 2'b0}, 32)
 |LD.H|0010100001|si12|rj|rd|||||||||||
 |LD.W|0010100010|si12|rj|rd|||||||||||
 
-**指令格式：**ld.b  rd, rj, si12
+**指令格式：** ld.b  rd, rj, si12
 
 ld.h  rd, rj, si12
 
 ld.w  rd, rj, si12
 
-**功能描述：**LD.{B/H}从内存取回一个字节/半字的数据符号扩展后写入通用寄存器 rd，LD.W 从内存取回一个字的数据写入通用寄存器 rd。
+**功能描述：** LD.{B/H}从内存取回一个字节/半字的数据符号扩展后写入通用寄存器 rd，LD.W 从内存取回一个字的数据写入通用寄存器 rd。
 
 其访存地址计算方式是将通用寄存器rj中的值与符号扩展后的12比特立即数si12相加求和。
 
@@ -836,18 +1047,18 @@ GR[rd] = word
 
 **例外：**如果访存地址非自然对齐[^1]，则触发地址非对齐例外（ALE）。
 
-1. ### **LD.BU，LD.HU**
+### **LD.BU，LD.HU**
 
 ||31|22|21|10|9||||5|4||||0|
 | - | - | -: | - | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 |LD.BU|0010101000|si12|rj|rd|||||||||||
 |LD.HU|0010101001|si12|rj|rd|||||||||||
 
-**指令格式：**ld.bu  rd, rj, si12
+**指令格式：** ld.bu  rd, rj, si12
 
 ld.hu  rd, rj, si12
 
-**功能描述：**LD.{BU/HU}从内存取回一个字节/半字的数据零扩展后写入通用寄存器 rd。
+**功能描述：** LD.{BU/HU}从内存取回一个字节/半字的数据零扩展后写入通用寄存器 rd。
 
 其访存地址计算方式是将通用寄存器rj中的值与符号扩展后的12比特立即数si12相加求和。
 
@@ -879,7 +1090,7 @@ GR[rd] = ZeroExtend(halfword, 32)
 
 **例外：**如果访存地址非自然对齐1，则触发地址非对齐例外（ALE）。
 
-1. ### **ST.B，ST.H，ST.W**
+### **ST.B，ST.H，ST.W**
 
 ||31|22|21|10|9||||5|4||||0|
 | - | - | -: | - | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
@@ -887,13 +1098,13 @@ GR[rd] = ZeroExtend(halfword, 32)
 |ST.H|0010100101|si12|rj|rd|||||||||||
 |ST.W|0010100110|si12|rj|rd|||||||||||
 
-**指令格式：**st.b  rd, rj, si12
+**指令格式：** st.b  rd, rj, si12
 
 st.h  rd, rj, si12
 
 st.w  rd, rj, si12
 
-**功能描述：**ST.{B/H/W}将通用寄存器 rd 中的[7:0]/[15:0]/[31:0]位数据写入到内存中。
+**功能描述：** ST.{B/H/W}将通用寄存器 rd 中的[7:0]/[15:0]/[31:0]位数据写入到内存中。
 
 其访存地址计算方式是将通用寄存器rj中的值与符号扩展后的12比特立即数si12相加求和。
 
@@ -931,15 +1142,15 @@ MemoryStore(GR[rd][31:0], paddr, WORD)
 
 **例外：**如果访存地址非自然对齐1，则触发地址非对齐例外（ALE）。
 
-1. ### **PRELD**
+### **PRELD**
 
 |31|22|21|10|9||||5|4||||0|
 | - | -: | - | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 |0000001001|si12|rj|hint|||||||||||
 
-**指令格式：**preld**  hint, rj, si12
+**指令格式：** preld**  hint, rj, si12
 
-**功能描述：**PRELD 从内存中预取一个 Cache 行的数据进入 Cache 中。其访存地址的计算方式是将通用寄存器 rj 中的值与符号扩展后的 12 比特立即数 si12 相加求和。该访存地址落在待预取的 Cache 行内。
+**功能描述：** PRELD 从内存中预取一个 Cache 行的数据进入 Cache 中。其访存地址的计算方式是将通用寄存器 rj 中的值与符号扩展后的 12 比特立即数 si12 相加求和。该访存地址落在待预取的 Cache 行内。
 
 PRELD 指令中的 hint 提示处理器预取的类型以及取回的数据填入哪一级 Cache。hint 从 0~31 有 32 个可选值。目前 hint=0 定义为 load 预取至一级数据 Cache，hint=8 定义为 store 预取至一级数据 Cache。其余hint 值的含义暂未定义，处理器执行时视同 NOP 指令处理。
 
@@ -947,21 +1158,21 @@ PRELD 指令中的 hint 提示处理器预取的类型以及取回的数据填�
 
 **操作定义：**
 
-**例外：无**
 
-1. ## **原子访存指令**
-   1. ### **LL.W, SC.W**
+
+## **原子访存指令**
+   ### **LL.W, SC.W**
 
 ||31|24|23|||||10|9||||5|4||||0|
 | - | - | -: | - | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 |LL.W|00100000|si14|rj|rd|||||||||||||||
 |SC.W|00100001|si14|rj|rd|||||||||||||||
 
-**指令格式：**ll.w   rd, rj, si14
+**指令格式：** ll.w   rd, rj, si14
 
 sc.w  rd, rj, si14
 
-**功能描述：**LL.W 和 SC.W 这一对指令用于实现原子的“读-修改-写”访存操作序列。LL.W 指令从内存指定地址取回一个字的数据符号扩展后写入通用寄存器 rd，与之配对的 SC.W 指令操作同样宽度的数据且访问相同的内存地址。访存操作序列原子性的维护机制是，LL.W 执行时记录下访问地址并置上一个标记（LLbit 置为1），SC.W 指令执行时会查看 LLbit，仅当 LLbit 为 1 时才真正产生写动作，否则不写。当软件需要一定成功完成一个原子的“读-修改-写”访存操作序列时，需要构建一个循环来反复执行 LL-SC 指令对直至 SC 成功完成。为了构建这个循环，SC.{W/D}指令会将其执行成功与否的标志（也可以简单理解为 SC 指令执行时所看到的 LLbit 值）写入到通用寄存器 rd 中返回。
+**功能描述：** LL.W 和 SC.W 这一对指令用于实现原子的“读-修改-写”访存操作序列。LL.W 指令从内存指定地址取回一个字的数据符号扩展后写入通用寄存器 rd，与之配对的 SC.W 指令操作同样宽度的数据且访问相同的内存地址。访存操作序列原子性的维护机制是，LL.W 执行时记录下访问地址并置上一个标记（LLbit 置为1），SC.W 指令执行时会查看 LLbit，仅当 LLbit 为 1 时才真正产生写动作，否则不写。当软件需要一定成功完成一个原子的“读-修改-写”访存操作序列时，需要构建一个循环来反复执行 LL-SC 指令对直至 SC 成功完成。为了构建这个循环，SC.{W/D}指令会将其执行成功与否的标志（也可以简单理解为 SC 指令执行时所看到的 LLbit 值）写入到通用寄存器 rd 中返回。
 
 在配对的 LL-SC 执行期间，下列事件会让 LLbit 清 0：
 
@@ -979,16 +1190,16 @@ vaddr = GR[rj] + SignExtend({si14, 2'b0}, 32)
 
 **例外：**
 
-1. ## **栅障指令**
-   1. ### **DBAR**
+## **栅障指令**
+   ### **DBAR**
 
 |31|||||15|14|||||||||||0|
 | - | :-: | :-: | :-: | :-: | -: | - | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 |00111000011100100|hint|||||||||||||||||
 
-**指令格式：**dbar  hint
+**指令格式：** dbar  hint
 
-**功能描述：**DBAR 指令用于完成 load/store 访存操作之间的栅障功能。其携带的立即数 hint 用于指示该栅障的同步对象和同步程度。
+**功能描述：** DBAR 指令用于完成 load/store 访存操作之间的栅障功能。其携带的立即数 hint 用于指示该栅障的同步对象和同步程度。
 
 hint 值为 0 是默认必须实现的，其指示一个完全功能的同步栅障。只有等到之前所有 load/store 访存操作彻底执行完毕后，“DBAR 0”指令才能开始执行；且只有“DBAR 0”执行完成执行后，其后所有 load/store访存操作才能开始执行。
 
@@ -998,15 +1209,15 @@ hint 值为 0 是默认必须实现的，其指示一个完全功能的同步栅
 
 **例外：**
 
-1. ### **IBAR**
+### **IBAR**
 
 |31|||||15|14|||||||||||0|
 | - | :-: | :-: | :-: | :-: | -: | - | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 |00111000011100101|hint|||||||||||||||||
 
-**指令格式：**ibar  hint
+**指令格式：** ibar  hint
 
-**功能描述：**IBAR 指令使用完成单个处理器核内部 store 操作与取指操作之间的同步。其携带的立即数 hint 用于指示该栅障的同步对象和同步程度。
+**功能描述：** IBAR 指令使用完成单个处理器核内部 store 操作与取指操作之间的同步。其携带的立即数 hint 用于指示该栅障的同步对象和同步程度。
 
 hint 值为 0 是默认必须实现的。它能够确保“IBAR 0”指令之后的取指一定能够观察到“IBAR 0”指令之前所有 store操作的执行效果。
 
@@ -1014,16 +1225,16 @@ hint 值为 0 是默认必须实现的。它能够确保“IBAR 0”指令之后
 
 **例外：**
 
-1. ## **其它杂项指令**
-   1. ### **SYSCALL**
+## **其它杂项指令**
+   ### **SYSCALL**
 
 |31|||||15|14|||||||||||0|
 | - | :-: | :-: | :-: | :-: | -: | - | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 |00000000001010110|code|||||||||||||||||
 
-**指令格式：**syscall  code
+**指令格式：** syscall  code
 
-**功能描述：**执行 SYSCALL 指令将立即无条件的触发系统调用例外。
+**功能描述：** 执行 SYSCALL 指令将立即无条件的触发系统调用例外。
 
 指令码中 code 域携带的信息可供例外处理例程作为所传递的参数使用。
 
@@ -1031,15 +1242,15 @@ hint 值为 0 是默认必须实现的。它能够确保“IBAR 0”指令之后
 
 **例外：**执行SYSCALL指令将确定地立刻触发系统调用例外（SYS）。
 
-1. ### **BREAK**
+### **BREAK**
 
 |31|||||15|14|||||||||||0|
 | - | :-: | :-: | :-: | :-: | -: | - | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 |00000000001010100|code|||||||||||||||||
 
-**指令格式：**break  code
+**指令格式：** break  code
 
-**功能描述：**执行 BREAK 指令将立即无条件的触发系统调用例外。
+**功能描述：** 执行 BREAK 指令将立即无条件的触发系统调用例外。
 
 指令码中 code 域携带的信息可供例外处理例程作为所传递的参数使用。
 
@@ -1047,7 +1258,7 @@ hint 值为 0 是默认必须实现的。它能够确保“IBAR 0”指令之后
 
 **例外：**执行BREAK指令将确定地立刻触发断点例外（BRK）。
 
-1. ### **RDCNTV{L/H}.W, RDCNTID**
+### **RDCNTV{L/H}.W, RDCNTID**
 
 ||31|||||||15|14||10|9||5|4|||0|||
 | - | - | :-: | :-: | :-: | :-: | -: | :- | :-: | - | :-: | -: | - | :-: | -: | - | :-: | :-: | -: | :- | :- |
@@ -1055,13 +1266,13 @@ hint 值为 0 是默认必须实现的。它能够确保“IBAR 0”指令之后
 |RDCNTVL.W|00000000000000000|11000|00000|rd|||||||||||||||||
 |RDCNTVH.W|00000000000000000|11001|00000|rd|||||||||||||||||
 
-**指令格式：**rdcntvl.w  	rd
+**指令格式：** rdcntvl.w  	rd
 
 rdcntvh.w 	rd
 
 rdcntid   	rj
 
-**功能描述：**龙芯架构 32 位精简版定义了一个恒定频率计时器，其主体是一个 64 位的计数器，称为 Stable Counter。Stable Counter 在复位后置为 0，随后每个计数时钟周期自增 1，当计数至全 1 时自动绕回至 0 继续自增。同时每个计时器都有一个软件可配置的全局唯一编号，称为 Counter ID。
+**功能描述：** 龙芯架构 32 位精简版定义了一个恒定频率计时器，其主体是一个 64 位的计数器，称为 Stable Counter。Stable Counter 在复位后置为 0，随后每个计数时钟周期自增 1，当计数至全 1 时自动绕回至 0 继续自增。同时每个计时器都有一个软件可配置的全局唯一编号，称为 Counter ID。
 
 RDCNTV{L/H}.W 指令用于读取恒定频率计时器信息，其中 RDCNTVL.W 读取 Counter 的[31:0]位写入通用寄存器 rd 中，RDCNTVH.W 读取 Counter 的[63:32]位。RDCNTID Counter ID 号信息写入通用寄存器 rj中。
 
@@ -1081,23 +1292,23 @@ GR[rd] = Counter [63:32]
 
 GR[rj] = Counter ID
 
-**例外：**无
 
 
-1. # **基础浮点数指令**
-   1. ## **浮点运算类指令**
-      1. ### **FADD.{S/D}**
+
+# **基础浮点数指令**
+   ## **浮点运算类指令**
+      ### **FADD.{S/D}**
 
 ||31|24|23|15|14|10|9||||5|4||||0|
 | - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
 |FADD.S |00000001|000000001|fk|fj|fd||||||||||||
 |FADD.D|00000001|000000010|fk|fj|fd||||||||||||
 
-**指令格式：**fadd.s		fd, fj, fk
+**指令格式：** fadd.s		fd, fj, fk
 
 fadd.d		fd, fj, fk
 
-**功能描述：**FADD.{S/D}指令将浮点寄存器 fj 中的单精度/双精度浮点数加上浮点寄存器 fk 中的单精度/双精度浮点数，得到的单精度/双精度浮点数结果写入到浮点寄存器 fd 中。浮点加法运算遵循 IEEE 754-2008 标准中addition(x,y)操作的规范。
+**功能描述：** FADD.{S/D}指令将浮点寄存器 fj 中的单精度/双精度浮点数加上浮点寄存器 fk 中的单精度/双精度浮点数，得到的单精度/双精度浮点数结果写入到浮点寄存器 fd 中。浮点加法运算遵循 IEEE 754-2008 标准中addition(x,y)操作的规范。
 
 **操作定义：**
 
@@ -1109,18 +1320,18 @@ FR[fd][31:0] = FP32\_addition(FR[fj][31:0], FR[fk][31:0])
 
 FR[fd] = FP64\_addition(FR[fj], FR[fk])
 
-1. ### **FSUB.{S/D}**
+### **FSUB.{S/D}**
 
 ||31|24|23|15|14|10|9||||5|4||||0|
 | - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
 |FSUB.S |00000001|000000101|fk|fj|fd||||||||||||
 |FSUB.D|00000001|000000110|fk|fj|fd||||||||||||
 
-**指令格式：**fsub.s		fd, fj, fk
+**指令格式：** fsub.s		fd, fj, fk
 
 fsub.d		fd, fj, fk
 
-**功能描述：**FSUB.{S/D}指令将浮点寄存器 fj 中的单精度/双精度浮点数减去浮点寄存器 fk 中的单精度/双精度浮点数，得到的单精度/双精度浮点数结果写入到浮点寄存器 fd 中。浮点减法运算遵循 IEEE 754-2008 标准中subtraction(x,y)操作的规范。
+**功能描述：** FSUB.{S/D}指令将浮点寄存器 fj 中的单精度/双精度浮点数减去浮点寄存器 fk 中的单精度/双精度浮点数，得到的单精度/双精度浮点数结果写入到浮点寄存器 fd 中。浮点减法运算遵循 IEEE 754-2008 标准中subtraction(x,y)操作的规范。
 
 **操作定义：**
 
@@ -1132,18 +1343,18 @@ FR[fd][31:0] = FP32\_subtraction(FR[fj][31:0], FR[fk][31:0])
 
 FR[fd] = FP64\_subtraction(FR[fj], FR[fk])
 
-1. ### **FMUL.{S/D}**
+### **FMUL.{S/D}**
 
 ||31|24|23|15|14|10|9||||5|4||||0|
 | - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
 |FMUL.S |00000001|000001001|fk|fj|fd||||||||||||
 |FMUL.D|00000001|000001010|fk|fj|fd||||||||||||
 
-**指令格式：**fmul.s		fd, fj, fk
+**指令格式：** fmul.s		fd, fj, fk
 
 fmul.d		fd, fj, fk
 
-**功能描述：**FMUL.{S/D}指令将浮点寄存器 fj 中的单精度/双精度浮点数乘以浮点寄存器 fk 中的单精度/双精度浮点数，得到的单精度/双精度浮点数结果写入到浮点寄存器 fd 中。浮点乘法运算遵循 IEEE 754-2008 标准中multiplication(x,y)操作的规范。
+**功能描述：** FMUL.{S/D}指令将浮点寄存器 fj 中的单精度/双精度浮点数乘以浮点寄存器 fk 中的单精度/双精度浮点数，得到的单精度/双精度浮点数结果写入到浮点寄存器 fd 中。浮点乘法运算遵循 IEEE 754-2008 标准中multiplication(x,y)操作的规范。
 
 **操作定义：**
 
@@ -1155,18 +1366,18 @@ FR[fd][31:0] = FP32\_multiplication(FR[fj][31:0], FR[fk][31:0])
 
 FR[fd] = FP64\_multiplication(FR[fj], FR[fk])
 
-1. ### **FDIV.{S/D}**
+### **FDIV.{S/D}**
 
 ||31|24|23|15|14|10|9||||5|4||||0|
 | - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
 |FDIV.S |00000001|000001101|fk|fj|fd||||||||||||
 |FDIV.D|00000001|000001110|fk|fj|fd||||||||||||
 
-**指令格式：**fdiv.s		fd, fj, fk
+**指令格式：** fdiv.s		fd, fj, fk
 
 fdiv.d		fd, fj, fk
 
-**功能描述：**FDIV.{S/D}指令将浮点寄存器 fj 中的单精度/双精度浮点数除以浮点寄存器 fk 中的单精度/双精度浮点数，得到的单精度/双精度浮点数结果写入到浮点寄存器 fd 中。浮点除法运算遵循 IEEE 754-2008 标准中division(x,y)操作的规范。
+**功能描述：** FDIV.{S/D}指令将浮点寄存器 fj 中的单精度/双精度浮点数除以浮点寄存器 fk 中的单精度/双精度浮点数，得到的单精度/双精度浮点数结果写入到浮点寄存器 fd 中。浮点除法运算遵循 IEEE 754-2008 标准中division(x,y)操作的规范。
 
 **操作定义：**
 
@@ -1178,18 +1389,18 @@ FR[fd][31:0] = FP32\_division(FR[fj][31:0], FR[fk][31:0])
 
 FR[fd] = FP64\_division(FR[fj], FR[fk])
 
-1. ### **FMADD.{S/D}**
+### **FMADD.{S/D}**
 
 ||31||||20|19|15|14||10|9||||5|4||||0|
 | - | - | :- | :- | :- | -: | - | -: | - | :- | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
 |FMADD.S |000010000001|fa|fk|fj|fd||||||||||||||||
 |FMADD.D|000010000010|fa|fk|fj|fd||||||||||||||||
 
-**指令格式：**fmadd.s		fd, fj, fk
+**指令格式：** fmadd.s		fd, fj, fk
 
 fmadd.d		fd, fj, fk
 
-**功能描述：**FMADD.{S/D}指令将浮点寄存器 fj 中的单精度/双精度浮点数与浮点寄存器 fk 中的单精度/双精度浮点数相乘，得到的结果加上浮点寄存器 fa 中的单精度/双精度浮点数，得到的单精度/双精度浮点数结果写入到浮点寄存器 fd 中。
+**功能描述：** FMADD.{S/D}指令将浮点寄存器 fj 中的单精度/双精度浮点数与浮点寄存器 fk 中的单精度/双精度浮点数相乘，得到的结果加上浮点寄存器 fa 中的单精度/双精度浮点数，得到的单精度/双精度浮点数结果写入到浮点寄存器 fd 中。
 
 **操作定义：**
 
@@ -1201,18 +1412,18 @@ FR[fd][31:0] = FP32\_fusedMultiplyAdd(FR[fj][31:0], FR[fk][31:0], FR[fa][31:0])
 
 FR[fd] = FP64\_fusedMultiplyAdd(FR[fj], FR[fk], FR[fa])
 
-1. ### **FMSUB.{S/D}**
+### **FMSUB.{S/D}**
 
 ||31||||20|19|15|14||10|9||||5|4||||0|
 | - | - | :- | :- | :- | -: | - | -: | - | :- | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
 |FMSUB.S |000010000101|fa|fk|fj|fd||||||||||||||||
 |FMSUB.D|000010000110|fa|fk|fj|fd||||||||||||||||
 
-**指令格式：**fmsub.s		fd, fj, fk
+**指令格式：** fmsub.s		fd, fj, fk
 
 fmsub.d		fd, fj, fk
 
-**功能描述：**FMSUB.{S/D}指令将浮点寄存器 fj 中的单精度/双精度浮点数与浮点寄存器 fk 中的单精度/双精度浮点数相乘，得到的结果减去浮点寄存器 fa 中的单精度/双精度浮点数，得到的单精度/双精度浮点数结果写入到浮点寄存器 fd 中。
+**功能描述：** FMSUB.{S/D}指令将浮点寄存器 fj 中的单精度/双精度浮点数与浮点寄存器 fk 中的单精度/双精度浮点数相乘，得到的结果减去浮点寄存器 fa 中的单精度/双精度浮点数，得到的单精度/双精度浮点数结果写入到浮点寄存器 fd 中。
 
 **操作定义：**
 
@@ -1224,18 +1435,18 @@ FR[fd][31:0] = FP32\_fusedMultiplyAdd(FR[fj][31:0], FR[fk][31:0], -FR[fa][31:0])
 
 FR[fd] = FP64\_fusedMultiplyAdd(FR[fj], FR[fk], -FR[fa])
 
-1. ### **FNMADD.{S/D}**
+### **FNMADD.{S/D}**
 
 ||31||||20|19|15|14||10|9||||5|4||||0|
 | - | - | :- | :- | :- | -: | - | -: | - | :- | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
 |FNMADD.S |000010001001|fa|fk|fj|fd||||||||||||||||
 |FNMADD.D|000010001010|fa|fk|fj|fd||||||||||||||||
 
-**指令格式：**fnmadd.s		fd, fj, fk
+**指令格式：** fnmadd.s		fd, fj, fk
 
 fnmadd.d		fd, fj, fk
 
-**功能描述：**FNMADD.{S/D}指令将浮点寄存器 fj 中的单精度/双精度浮点数与浮点寄存器 fk 中的单精度/双精度浮点数相乘，得到的结果加上浮点寄存器 fa 中的单精度/双精度浮点数，得到的单精度/双精度浮点数结果取负后写入到浮点寄存器 fd 中。
+**功能描述：** FNMADD.{S/D}指令将浮点寄存器 fj 中的单精度/双精度浮点数与浮点寄存器 fk 中的单精度/双精度浮点数相乘，得到的结果加上浮点寄存器 fa 中的单精度/双精度浮点数，得到的单精度/双精度浮点数结果取负后写入到浮点寄存器 fd 中。
 
 **操作定义：**
 
@@ -1247,18 +1458,18 @@ FR[fd][31:0] = -FP32\_fusedMultiplyAdd(FR[fj][31:0], FR[fk][31:0], FR[fa][31:0])
 
 FR[fd] = -FP64\_fusedMultiplyAdd(FR[fj], FR[fk], FR[fa])
 
-1. ### **FNMSUB.{S/D}**
+### **FNMSUB.{S/D}**
 
 ||31||||20|19|15|14||10|9||||5|4||||0|
 | - | - | :- | :- | :- | -: | - | -: | - | :- | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
 |FNMSUB.S |000010001101|fa|fk|fj|fd||||||||||||||||
 |FNMSUB.D|000010001110|fa|fk|fj|fd||||||||||||||||
 
-**指令格式：**fnmsub.s		fd, fj, fk
+**指令格式：** fnmsub.s		fd, fj, fk
 
 fnmsub.d		fd, fj, fk
 
-**功能描述：**FNMSUB.{S/D}指令将浮点寄存器 fj 中的单精度/双精度浮点数与浮点寄存器 fk 中的单精度/双精度浮点数相乘，得到的结果减去浮点寄存器 fa 中的单精度/双精度浮点数，得到的单精度/双精度浮点数结果取负后写入到浮点寄存器 fd 中。
+**功能描述：** FNMSUB.{S/D}指令将浮点寄存器 fj 中的单精度/双精度浮点数与浮点寄存器 fk 中的单精度/双精度浮点数相乘，得到的结果减去浮点寄存器 fa 中的单精度/双精度浮点数，得到的单精度/双精度浮点数结果取负后写入到浮点寄存器 fd 中。
 
 **操作定义：**
 
@@ -1270,18 +1481,18 @@ FR[fd][31:0] = -FP32\_fusedMultiplyAdd(FR[fj][31:0], FR[fk][31:0], -FR[fa][31:0]
 
 FR[fd] = -FP64\_fusedMultiplyAdd(FR[fj], FR[fk], -FR[fa])
 
-1. ### **FMAX.{S/D}**
+### **FMAX.{S/D}**
 
 ||31|24|23|15|14|10|9||||5|4||||0|
 | - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
 |FMAX.S |00000001|000010001|fk|fj|fd||||||||||||
 |FMAX.D|00000001|000010010|fk|fj|fd||||||||||||
 
-**指令格式：**fmax.s		fd, fj, fk
+**指令格式：** fmax.s		fd, fj, fk
 
 fmax.d		fd, fj, fk
 
-**功能描述：**FMAX.{S/D}指令选择浮点寄存器 fj 中的单精度/双精度浮点数与浮点寄存器 fk 中的单精度/双精度浮点数中的较大者写入到浮点寄存器 fd 中。这两条指令的运算遵循 IEEE 754-2008 标准中 maxNum(x,y)操作的规范。
+**功能描述：** FMAX.{S/D}指令选择浮点寄存器 fj 中的单精度/双精度浮点数与浮点寄存器 fk 中的单精度/双精度浮点数中的较大者写入到浮点寄存器 fd 中。这两条指令的运算遵循 IEEE 754-2008 标准中 maxNum(x,y)操作的规范。
 
 **操作定义：**
 
@@ -1293,18 +1504,18 @@ FR[fd][31:0] = FP32\_maxNum(FR[fj][31:0], FR[fk][31:0])
 
 FR[fd] = FP64\_maxNum(FR[fj], FR[fk])
 
-1. ### **FMIN.{S/D}**
+### **FMIN.{S/D}**
 
 ||31|24|23|15|14|10|9||||5|4||||0|
 | - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
 |FMIN.S |00000001|000010101|fk|fj|fd||||||||||||
 |FMIN.D|00000001|000010110|fk|fj|fd||||||||||||
 
-**指令格式：**fmin.s		fd, fj, fk
+**指令格式：** fmin.s		fd, fj, fk
 
 fmin.d		fd, fj, fk
 
-**功能描述：**FMIN.{S/D}指令选择浮点寄存器 fj 中的单精度/双精度浮点数与浮点寄存器 fk 中的单精度/双精度浮点数中的较小者写入到浮点寄存器 fd 中。这两条指令的运算遵循 IEEE 754-2008 标准中 minNum(x,y)操作的规范。
+**功能描述：** FMIN.{S/D}指令选择浮点寄存器 fj 中的单精度/双精度浮点数与浮点寄存器 fk 中的单精度/双精度浮点数中的较小者写入到浮点寄存器 fd 中。这两条指令的运算遵循 IEEE 754-2008 标准中 minNum(x,y)操作的规范。
 
 **操作定义：**
 
@@ -1316,18 +1527,18 @@ FR[fd][31:0] = FP32\_minNum(FR[fj][31:0], FR[fk][31:0])
 
 FR[fd] = FP64\_minNum(FR[fj], FR[fk])
 
-1. ### **FMAXA.{S/D}**
+### **FMAXA.{S/D}**
 
 ||31|24|23|15|14|10|9||||5|4||||0|
 | - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
 |FMAXA.S |00000001|000011001|fk|fj|fd||||||||||||
 |FMAXA.D|00000001|000011010|fk|fj|fd||||||||||||
 
-**指令格式：**fmaxa.s		fd, fj, fk
+**指令格式：** fmaxa.s		fd, fj, fk
 
 fmaxa.d		fd, fj, fk
 
-**功能描述：**FMAXA.{S/D}指令选择浮点寄存器 fj 中的单精度/双精度浮点数与浮点寄存器 fk 中的单精度/双精度浮点数中绝对值较大者写入到浮点寄存器 fd 中。这两条指令的运算遵循 IEEE 754-2008 标准中 maxNumMag(x,y)操作的规范。
+**功能描述：** FMAXA.{S/D}指令选择浮点寄存器 fj 中的单精度/双精度浮点数与浮点寄存器 fk 中的单精度/双精度浮点数中绝对值较大者写入到浮点寄存器 fd 中。这两条指令的运算遵循 IEEE 754-2008 标准中 maxNumMag(x,y)操作的规范。
 
 **操作定义：**
 
@@ -1339,18 +1550,18 @@ FR[fd][31:0] = FP32\_maxNumMag(FR[fj][31:0], FR[fk][31:0])
 
 FR[fd] = FP64\_maxNumMag(FR[fj], FR[fk])
 
-1. ### **FMINA.{S/D}**
+### **FMINA.{S/D}**
 
 ||31|24|23|15|14|10|9||||5|4||||0|
 | - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
 |FMINA.S |00000001|000011101|fk|fj|fd||||||||||||
 |FMINA.D|00000001|000011110|fk|fj|fd||||||||||||
 
-**指令格式：**fmina.s		fd, fj, fk
+**指令格式：** fmina.s		fd, fj, fk
 
 fmina.d		fd, fj, fk
 
-**功能描述：**FMINA.{S/D}指令选择浮点寄存器 fj 中的单精度/双精度浮点数与浮点寄存器 fk 中的单精度/双精度浮点数中绝对值较小者写入到浮点寄存器fd中。这两条指令的运算遵循IEEE 754-2008标准中minNumMag(x,y)操作的规范。
+**功能描述：** FMINA.{S/D}指令选择浮点寄存器 fj 中的单精度/双精度浮点数与浮点寄存器 fk 中的单精度/双精度浮点数中绝对值较小者写入到浮点寄存器fd中。这两条指令的运算遵循IEEE 754-2008标准中minNumMag(x,y)操作的规范。
 
 **操作定义：**
 
@@ -1362,18 +1573,18 @@ FR[fd][31:0] = FP32\_minNumMag(FR[fj][31:0], FR[fk][31:0])
 
 FR[fd] = FP64\_minNumMag(FR[fj], FR[fk])
 
-1. ### **FABS.{S/D}**
+### **FABS.{S/D}**
 
 ||31|24|23|15|14|10|9||||5|4||||0|
 | - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
 |FABS.S |00000001|000101000|00001|fj|fd||||||||||||
 |FABS.D|00000001|000101000|00010|fj|fd||||||||||||
 
-**指令格式：**fabs.s		fd, fj
+**指令格式：** fabs.s		fd, fj
 
 fabs.d		fd, fj
 
-**功能描述：**FABS.{S/D}指令选择浮点寄存器 fj 中的单精度/双精度浮点数，取其绝对值（也即将符号位置为 0，其它部分不变），写入到浮点寄存器 fd 中。这两条指令的运算遵循 IEEE 754-2008 标准中 abs(x)操作的规范。
+**功能描述：** FABS.{S/D}指令选择浮点寄存器 fj 中的单精度/双精度浮点数，取其绝对值（也即将符号位置为 0，其它部分不变），写入到浮点寄存器 fd 中。这两条指令的运算遵循 IEEE 754-2008 标准中 abs(x)操作的规范。
 
 **操作定义：**
 
@@ -1385,18 +1596,18 @@ FR[fd][31:0] = FP32\_abs(FR[fj][31:0])
 
 FR[fd] = FP64\_abs(FR[fj])
 
-1. ### **FNEG.{S/D}**
+### **FNEG.{S/D}**
 
 ||31|24|23|15|14|10|9||||5|4||||0|
 | - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
 |FNEG.S |00000001|000101000|00101|fj|fd||||||||||||
 |FNEG.D|00000001|000101000|00110|fj|fd||||||||||||
 
-**指令格式：**fneg.s		fd, fj
+**指令格式：** fneg.s		fd, fj
 
 fneg.d		fd, fj
 
-**功能描述：**FNEG.{S/D}指令选择浮点寄存器 fj 中的单精度/双精度浮点数，取其相反数（也即将符号位取反，其它部分不变），写入到浮点寄存器 fd 中。这两条指令的运算遵循 IEEE 754-2008 标准中 negate(x)操作的规范。
+**功能描述：** FNEG.{S/D}指令选择浮点寄存器 fj 中的单精度/双精度浮点数，取其相反数（也即将符号位取反，其它部分不变），写入到浮点寄存器 fd 中。这两条指令的运算遵循 IEEE 754-2008 标准中 negate(x)操作的规范。
 
 **操作定义：**
 
@@ -1408,18 +1619,18 @@ FR[fd][31:0] = FP32\_negate(FR[fj][31:0])
 
 FR[fd] = FP64\_negate(FR[fj])
 
-1. ### **FSQRT.{S/D}**
+### **FSQRT.{S/D}**
 
 ||31|24|23|15|14|10|9||||5|4||||0|
 | - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
 |FSQRT.S |00000001|000101000|10001|fj|fd||||||||||||
 |FSQRT.D|00000001|000101000|10010|fj|fd||||||||||||
 
-**指令格式：**fsqrt.s		fd, fj
+**指令格式：** fsqrt.s		fd, fj
 
 fsqrt.d		fd, fj
 
-**功能描述：**FSQRT.{S/D}指令选择浮点寄存器 fj 中的单精度/双精度浮点数，将其开方后得到的单精度/双精度浮点数写入到浮点寄存器 fd 中。浮点开方运算遵循 IEEE 754-2008 标准中 squareRoot(x)操作的规范。
+**功能描述：** FSQRT.{S/D}指令选择浮点寄存器 fj 中的单精度/双精度浮点数，将其开方后得到的单精度/双精度浮点数写入到浮点寄存器 fd 中。浮点开方运算遵循 IEEE 754-2008 标准中 squareRoot(x)操作的规范。
 
 **操作定义：**
 
@@ -1431,18 +1642,18 @@ FR[fd][31:0] = FP32\_squareRoot(FR[fj][31:0])
 
 FR[fd] = FP64\_squareRoot(FR[fj])
 
-1. ### **FRECIP.{S/D}**
+### **FRECIP.{S/D}**
 
 ||31|24|23|15|14|10|9||||5|4||||0|
 | - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
 |FRECIP.S |00000001|000101000|10101|fj|fd||||||||||||
 |FRECIP.D|00000001|000101000|10110|fj|fd||||||||||||
 
-**指令格式：**frecip.s	fd, fj
+**指令格式：** frecip.s	fd, fj
 
 frecip.d	fd, fj
 
-**功能描述：**FRECIP.{S/D}指令选择浮点寄存器 fj 中的单精度/双精度浮点数，用 1.0 除以这个浮点数后将得到的单精度/双精度浮点数写入到浮点寄存器 fd 中。相当于 IEEE 754-2008 标准中 division(1.0,x)操作。
+**功能描述：** FRECIP.{S/D}指令选择浮点寄存器 fj 中的单精度/双精度浮点数，用 1.0 除以这个浮点数后将得到的单精度/双精度浮点数写入到浮点寄存器 fd 中。相当于 IEEE 754-2008 标准中 division(1.0,x)操作。
 
 **操作定义：**
 
@@ -1454,18 +1665,18 @@ FR[fd][31:0] = FP32\_division(1.0, FR[fj][31:0])
 
 FR[fd] = FP64\_division(1.0, FR[fj])
 
-1. ### **FRSQRT.{S/D}**
+### **FRSQRT.{S/D}**
 
 ||31|24|23|15|14|10|9||||5|4||||0|
 | - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
 |FRSQRT.S |00000001|000101000|11001|fj|fd||||||||||||
 |FRSQRT.D|00000001|000101000|11010|fj|fd||||||||||||
 
-**指令格式：**frsqrt.s		fd, fj
+**指令格式：** frsqrt.s		fd, fj
 
 frsqrt.d	fd, fj
 
-**功能描述：**FRSQRT.{S/D}指令选择浮点寄存器 fj 中的单精度/双精度浮点数，将其开方后得到的单精度/双精度浮点数再用 1.0除，得到的单精度/双精度浮点数写入到浮点寄存器 fd 中。浮点开方求倒运算遵循 IEEE 754-2008标准中 rSqrt(x)操作的规范。
+**功能描述：** FRSQRT.{S/D}指令选择浮点寄存器 fj 中的单精度/双精度浮点数，将其开方后得到的单精度/双精度浮点数再用 1.0除，得到的单精度/双精度浮点数写入到浮点寄存器 fd 中。浮点开方求倒运算遵循 IEEE 754-2008标准中 rSqrt(x)操作的规范。
 
 **操作定义：**
 
@@ -1477,18 +1688,18 @@ FR[fd][31:0] = FP32\_division(1.0, FP\_squareRoot(FR[fj][31:0]))
 
 FR[fd] = FP64\_division(1.0, FP\_squareRoot(FR[fj]))
 
-1. ### **FCOPYSIGN.{S/D}**
+### **FCOPYSIGN.{S/D}**
 
 ||31|24|23|15|14|10|9||||5|4||||0|
 | - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
 |FCOPYSIGN.S |00000001|000100101|fk|fj|fd||||||||||||
 |FCOPYSIGN.D|00000001|000100110|fk|fj|fd||||||||||||
 
-**指令格式：**fcopysign.s  	fd, fj, fk
+**指令格式：** fcopysign.s  	fd, fj, fk
 
 fcopysign.d  	fd, fj, fk
 
-**功能描述：**FCOPYSIGN.{S/D}指令选择浮点寄存器 fj 中的单精度/双精度浮点数，将它的符号位改为浮点寄存器 fk中的单精度/双精度浮点数的符号位，得到的新的单精度/双精度浮点数写入到浮点寄存器 fd 中。浮点复制符号运算遵循 IEEE 754-2008 标准中 copySign(x, y)操作的规范。
+**功能描述：** FCOPYSIGN.{S/D}指令选择浮点寄存器 fj 中的单精度/双精度浮点数，将它的符号位改为浮点寄存器 fk中的单精度/双精度浮点数的符号位，得到的新的单精度/双精度浮点数写入到浮点寄存器 fd 中。浮点复制符号运算遵循 IEEE 754-2008 标准中 copySign(x, y)操作的规范。
 
 **操作定义：**
 
@@ -1500,18 +1711,18 @@ FR[fd][31:0] = FP32\_copySign(FR[fj][31:0], FR[fk][31:0])
 
 FR[fd] = FP64\_copySign(FR[fj], FR[fk])
 
-1. ### **FCLASS.{S/D}**
+### **FCLASS.{S/D}**
 
 ||31|24|23|15|14|10|9||||5|4||||0|
 | - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
 |FCLASS.S |00000001|000101000|01101|fj|fd||||||||||||
 |FCLASS.D|00000001|000101000|01110|fj|fd||||||||||||
 
-**指令格式：**fclass.s  	fd, fj 
+**指令格式：** fclass.s  	fd, fj 
 
 fclass.d 	fd, fj
 
-**功能描述：**本指令对浮点寄存器 fj 中的浮点数进行类别的判断，所得的判断结果一共由 10 比特信息组成，每比特的含义如下表所示:
+**功能描述：** 本指令对浮点寄存器 fj 中的浮点数进行类别的判断，所得的判断结果一共由 10 比特信息组成，每比特的含义如下表所示:
 
 <table><tr><th colspan="1">Bit0</th><th colspan="1">Bit1</th><th colspan="1">Bit2</th><th colspan="1">Bit3</th><th colspan="1">Bit4</th><th colspan="1">Bit5</th><th colspan="1">Bit6</th><th colspan="1">Bit7</th><th colspan="1">Bit8</th><th colspan="1">Bit9</th></tr>
 <tr><td colspan="1" rowspan="2">SNaN</td><td colspan="1" rowspan="2">QNaN</td><td colspan="4">negative value</td><td colspan="4">positive value</td></tr>
@@ -1530,19 +1741,19 @@ FR[fd][31:0] = FP32\_class(FR[fj][31:0])
 
 FR[fd] = FP64\_class(FR[fj])
 
-1. ## **浮点比较指令**
-   1. ### **FCMP.cond.{S/D}**
+## **浮点比较指令**
+   ### **FCMP.cond.{S/D}**
 
 ||31|||20|19|15|14|10|9||||5|4|3|2||0|
 | :-: | - | :-: | :-: | -: | - | -: | - | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 |FCMP.cond.S|000011000001|cond|fk|fj|0|0|cd||||||||||||
 |FCMP.cond.D|000011000010|cond|fk|fj|0|0|cd||||||||||||
 
-**指令格式：**fcmp.cond.s  cc, fj, fk 
+**指令格式：** fcmp.cond.s  cc, fj, fk 
 
 fcmp.cond.d  cc, fj, f
 
-**功能描述：**这是一条浮点比较指令，将比较的结果存入指定的状态码（cc）。这条指令的 cond 有 22 种，这些比较条件以及判断的标准在下表中列出来:
+**功能描述：** 这是一条浮点比较指令，将比较的结果存入指定的状态码（cc）。这条指令的 cond 有 22 种，这些比较条件以及判断的标准在下表中列出来:
 
 <table><tr><th colspan="1"><b>助记符</b></th><th colspan="1"><b>cond</b></th><th colspan="1"><b>含义</b></th><th colspan="1"><b>True Condition</b></th><th colspan="1"><b>QNaN是否 报例外</b></th><th colspan="1"><b>对应 IEEE 754-2008 函数</b></th></tr>
 <tr><td colspan="1" valign="bottom">CAF</td><td colspan="1" valign="bottom">Ox0</td><td colspan="1" valign="bottom">否</td><td colspan="1" valign="bottom">无</td><td colspan="1" rowspan="11">否</td><td colspan="1" valign="bottom"></td></tr>
@@ -1570,47 +1781,47 @@ fcmp.cond.d  cc, fj, f
 <tr><td colspan="6">注：UN表示无法比较、EQ表示相等、LT表示小于。当有两个操作数中有至少一个NaN时，这两个数就无法比较。</td></tr>
 </table>
 
-1. ## **浮点转换指令**
-   1. ### **FCVT.S.D**
+## **浮点转换指令**
+   ### **FCVT.S.D**
 
 |31|24|23|15|14|10|9||||5|4||||0|
 | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
 |00000001|000110010|00110|fj|fd||||||||||||
 
-**指令格式：**fcvt.s.d 	fd, fj
+**指令格式：** fcvt.s.d 	fd, fj
 
-**功能描述：**FCVT.S.D 指令选择浮点寄存器 fj 中的双精度浮点数转换为单精度浮点数，得到的单精度浮点数写入到浮点寄存器 fd 中。
+**功能描述：** FCVT.S.D 指令选择浮点寄存器 fj 中的双精度浮点数转换为单精度浮点数，得到的单精度浮点数写入到浮点寄存器 fd 中。
 
 **操作定义：**
 
 FR[fd][31:0] = FP32\_convertFormat(FR[fj], FP64)
 
-1. ### **FCVT.D.S**
+### **FCVT.D.S**
 
 |31|24|23|15|14|10|9||||5|4||||0|
 | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
 |00000001|000110010|01001|fj|fd||||||||||||
 
-**指令格式：**fcvt.d.s 	fd, fj
+**指令格式：** fcvt.d.s 	fd, fj
 
-**功能描述：**FCVT.D.S 指令选择浮点寄存器 fj 中的单精度浮点数转换为双精度浮点数，得到的双精度浮点数写入到浮点寄存器 fd 中。
+**功能描述：** FCVT.D.S 指令选择浮点寄存器 fj 中的单精度浮点数转换为双精度浮点数，得到的双精度浮点数写入到浮点寄存器 fd 中。
 
 **操作定义：**
 
 FR[fd] = FP64\_convertFormat(FR[fj][31:0], FP32)
 
-1. ### **FFINT.{S/D}.W**
+### **FFINT.{S/D}.W**
 
 ||31|24|23|15|14|10|9||||5|4||||0|
 | - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
 |FFINT.S.W|00000001|000111010|00100|fj|fd||||||||||||
 |FFINT.D.W|00000001|000111010|01000|fj|fd||||||||||||
 
-**指令格式：**ffint.s.w	fd, fj
+**指令格式：** ffint.s.w	fd, fj
 
 ffint.d.w	fd, fj
 
-**功能描述：**FFINT.{S/D}.W 指令选择浮点寄存器 fj 中的整数型定点数转换为单精度/双精度浮点数，得到的单精度/双精度浮点数写入到浮点寄存器 fd 中。此浮点格式转换运算遵循 IEEE 754-2008 标准中 convertFromInt(x)操作的规范。
+**功能描述：** FFINT.{S/D}.W 指令选择浮点寄存器 fj 中的整数型定点数转换为单精度/双精度浮点数，得到的单精度/双精度浮点数写入到浮点寄存器 fd 中。此浮点格式转换运算遵循 IEEE 754-2008 标准中 convertFromInt(x)操作的规范。
 
 **操作定义：**
 
@@ -1622,18 +1833,18 @@ FR[fd][31:0] = FP32\_convertFromInt(FR[fj][31:0], SINT32)
 
 FR[fd] = FP64\_convertFromInt(FR[fj][31:0], SINT32)
 
-1. ### **FTINT.W.{S/D}**
+### **FTINT.W.{S/D}**
 
 ||31|24|23|15|14|10|9||||5|4||||0|
 | - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
 |FTINT.W.S|00000001|000110110|00001|fj|fd||||||||||||
 |FTINT.W.D|00000001|000110110|00010|fj|fd||||||||||||
 
-**指令格式：**ftint.w.s	fd, fj
+**指令格式：** ftint.w.s	fd, fj
 
 ftint.w.d	fd, fj
 
-**功能描述：**FTINT.W.{S/D}指令选择浮点寄存器 fj 中的单精度/双精度浮点数转换为整数型定点数，得到的整数型定点数写入到浮点寄存器 fd 中。根据 FCSR 中不同的状态，此浮点格式转换运算遵循的 IEEE 754-2008 标准中的操作见下表:
+**功能描述：** FTINT.W.{S/D}指令选择浮点寄存器 fj 中的单精度/双精度浮点数转换为整数型定点数，得到的整数型定点数写入到浮点寄存器 fd 中。根据 FCSR 中不同的状态，此浮点格式转换运算遵循的 IEEE 754-2008 标准中的操作见下表:
 
 |**舍入模式**|**IEEE754-2008标准中的操作**|
 | :-: | :-: |
@@ -1652,7 +1863,7 @@ FR[fd][31:0] = FP32convertToSint32(FR[fj][31:0], FCSR.RM)
 
 FR[fd] = FP64convertToSint32(FR[fj], FCSR.RM)
 
-1. ### **FTINT{RM/RP/RZ/RNE}.W.{S/D}**
+### **FTINT{RM/RP/RZ/RNE}.W.{S/D}**
 
 ||31|24|23|15|14|10|9||||5|4||||0|
 | - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
@@ -1665,7 +1876,7 @@ FR[fd] = FP64convertToSint32(FR[fj], FCSR.RM)
 |FTINTRNE.W.S|00000001|000110101|10001|fj|fd||||||||||||
 |FTINTRNE.W.D|00000001|000110101|10010|fj|fd||||||||||||
 
-**指令格式：**ftintrm.w.s 	fd, fj 	ftintrp.w.s 	fd, fj
+**指令格式：** ftintrm.w.s 	fd, fj 	ftintrp.w.s 	fd, fj
 
 ftintrm.w.d	fd, fj 	ftintrp.w.d	fd, fj
 
@@ -1673,7 +1884,7 @@ ftintrz.w.s 	fd, fj 	ftintrne.w.s 	fd, fj
 
 ftintrz.w.d 	fd, fj 	ftintrne.w.d 	fd, fj
 
-**功能描述：**FTINTRM.W.{S/D}指令选择浮点寄存器 fj 中的单精度/双精度浮点数转换为整数型定点数，得到的整数型定点数写入到浮点寄存器 fd 中，采用“向负无穷方向舍入”的方式。
+**功能描述：** FTINTRM.W.{S/D}指令选择浮点寄存器 fj 中的单精度/双精度浮点数转换为整数型定点数，得到的整数型定点数写入到浮点寄存器 fd 中，采用“向负无穷方向舍入”的方式。
 
 FTINTRP.W.{S/D}指令选择浮点寄存器 fj 中的单精度/双精度浮点数转换为整数型定点数，得到的整数型定点数写入到浮点寄存器fd 中，采用“向正无穷方向舍入”的方式。
 
@@ -1714,19 +1925,19 @@ FR[fd][31:0] = FP32convertToSint32(FR[fj][31:0], 0)
 **FTINTRNE.W.D:**
 
 FR[fd] = FP64convertToSint32(FR[fj], 0)
-1. ## **浮点搬运指令**
-   1. ### **FMOV.{S/D}**
+## **浮点搬运指令**
+   ### **FMOV.{S/D}**
 
 ||31|24|23|15|14|10|9||||5|4||||0|
 | - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
 |FMOV.S|00000001|000101001|00101|fj|fd||||||||||||
 |FMOV.D|00000001|000101001|00110|fj|fd||||||||||||
 
-**指令格式：**fmov.s 	fd, fj 
+**指令格式：** fmov.s 	fd, fj 
 
 fmov.d 	fd, fj
 
-**功能描述：**FMOV.{S/D}将浮点寄存器 fj 的值按单精度/双精度浮点数格式写入到浮点寄
+**功能描述：** FMOV.{S/D}将浮点寄存器 fj 的值按单精度/双精度浮点数格式写入到浮点寄
 
 存器 fd 中，如果 fj 的值不是单精度/双精度浮点数格式，则结果不确定。
 
@@ -1742,32 +1953,32 @@ FR[fd] = FR[fj]
 
 `	`**例外：**上述指令操作是非算术的，不会引发 IEEE 754 例外，也不修改浮点控制状态寄存器的 Cause 和 Flags域。
 
-1. ### **FSEL**
+### **FSEL**
 
 |31|||20|19|18|17|15|14|10|9|5|4|0|||||
 | - | :-: | :-: | -: | :-: | :-: | :-: | -: | - | -: | - | -: | - | -: | :- | :- | :- | :- |
 |000011010000|0|0|ca|fk|fj|fd||||||||||||
 
-**指令格式：**fsel 	fd, fj, fk, ca
+**指令格式：** fsel 	fd, fj, fk, ca
 
-**功能描述：**FSEL 指令进行条件赋值操作。FSEL 执行时，如果条件标志寄存器 ca 的值等于 0 则将浮点寄存器 fj 的值写入到浮点寄存器 fd 中，否则将浮点寄存器 fk 的值写入到浮点寄存器 fd 中。
+**功能描述：** FSEL 指令进行条件赋值操作。FSEL 执行时，如果条件标志寄存器 ca 的值等于 0 则将浮点寄存器 fj 的值写入到浮点寄存器 fd 中，否则将浮点寄存器 fk 的值写入到浮点寄存器 fd 中。
 
 **操作定义：**
 
 FR[fd] = CFR[ca] ? FR[fk] : FR[fj]
 
-1. ### **MOVGR2FR.W, MOVGR2FRH.W**
+### **MOVGR2FR.W, MOVGR2FRH.W**
 
 ||31|24|23|15|14|10|9||||5|4||||0|
 | - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
 |MOVGR2FR.W|00000001|000101001|01001|rj|fd||||||||||||
 |MOVGR2FRH.W|00000001|000101001|01011|rj|fd||||||||||||
 
-**指令格式：**movgr2fr.w 	fd, rj
+**指令格式：** movgr2fr.w 	fd, rj
 
 movgr2frh.w 	fd, rj
 
-**功能描述：**MOVGR2FR.W 将通用寄存器 rj 值写入浮点寄存器 fd 的低 32 位中。若浮
+**功能描述：** MOVGR2FR.W 将通用寄存器 rj 值写入浮点寄存器 fd 的低 32 位中。若浮
 
 点寄存器位宽为 64 位，则 fd的高 32 位值不确定。
 
@@ -1785,18 +1996,18 @@ FR[fd][63:32] = GR[rj]
 
 FR[fd][31: 0] = FR[fd][31:0]
 
-1. ### **MOVFR2GR.S, MOVFRH2GR.S**
+### **MOVFR2GR.S, MOVFRH2GR.S**
 
 ||31|24|23|15|14|10|9||||5|4||||0|
 | - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
 |MOVFR2GR.S|00000001|000101001|01101|fj|rd||||||||||||
 |MOVFRH2GR.S|00000001|000101001|01111|fj|rd||||||||||||
 
-**指令格式：**movfr2gr.s 	rd, fj
+**指令格式：** movfr2gr.s 	rd, fj
 
 movfrh2gr.s 	rd, fj
 
-**功能描述：**MOVFR2GR/MOVFRH2GR.S 将浮点寄存器 fj 的低 32 位/高 32 位值写入
+**功能描述：** MOVFR2GR/MOVFRH2GR.S 将浮点寄存器 fj 的低 32 位/高 32 位值写入
 
 通用寄存器 rd。
 
@@ -1810,18 +2021,18 @@ GR[rd] = FR[fj][31:0]
 
 GR[rd] = FR[fj][63:32]
 
-1. ### **MOVGR2FCSR, MOVFCSR2GR**
+### **MOVGR2FCSR, MOVFCSR2GR**
 
 ||31|24|23|15|14|10|9||||5|4||||0|
 | - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
 |MOVGR2FCSR|00000001|000101001|10000|rj|fcsr||||||||||||
 |MOVFCSR2GR|00000001|000101001|10010|fcsr|rd||||||||||||
 
-**指令格式：**movgr2fcsr 	fcsr, rj
+**指令格式：** movgr2fcsr 	fcsr, rj
 
 movfcsr2gr 	rd, fcsr
 
-**功能描述：**MOVGR2FCSR 根据通用寄存器 rj 值修改 fcsr 指示的浮点控制状态寄存器对应的软件可写域的值。如果MOVGR2FCSR 指令修改 FCSR0 使得其 Cause 域的位和对应的 Enables 的位同时为 1，或者修改 FCSR1 的Enables 域、FCSR2 的 Cause 域，使得 Cause 的位和对应 Enables 位同时为 1，MOVGR2FCSR 指令自身不会触发浮点例外。
+**功能描述：** MOVGR2FCSR 根据通用寄存器 rj 值修改 fcsr 指示的浮点控制状态寄存器对应的软件可写域的值。如果MOVGR2FCSR 指令修改 FCSR0 使得其 Cause 域的位和对应的 Enables 的位同时为 1，或者修改 FCSR1 的Enables 域、FCSR2 的 Cause 域，使得 Cause 的位和对应 Enables 位同时为 1，MOVGR2FCSR 指令自身不会触发浮点例外。
 
 MOVFCSR2GR 将 fcsr 指示的浮点控制状态寄存器的 32 位值写入通用寄存器 rd。
 
@@ -1837,18 +2048,18 @@ GR[rd] = FCSR[fcsr]
 
 `	`**注：**如果上述指令中的 fcsr 指示的浮点控制状态寄存器不存在，则结果不确定。
 
-1. ### **MOVFR2CF, MOVCF2FR**
+### **MOVFR2CF, MOVCF2FR**
 
 ||31|24|23|15|14|10|9|8|7||5|4|3|2||0|||
 | - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
 |MOVFR2CF|00000001|000101001|10100|fj|0|0|cd||||||||||||
 |MOVCF2FR|00000001|000101001|10101|0|0|cj|fd||||||||||||
 
-**指令格式：**movfr2cf 	cd, fj
+**指令格式：** movfr2cf 	cd, fj
 
 movcf2fr 	fd, cj
 
-**功能描述：**
+**功能描述：** 
 
 MOVFR2CF 将浮点寄存器 fj 的最低一比特的值写入条件标志寄存器 cd。
 
@@ -1864,18 +2075,18 @@ CFR[cd] = FR[fj][0]
 
 FR[fd][0] = ZeroExtend(CFR[cj], 64)
 
-1. ### **MOVGR2CF, MOVCF2GR**
+### **MOVGR2CF, MOVCF2GR**
 
 ||31|24|23|15|14|10|9|8|7||5|4|3|2||0|||
 | - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
 |MOVGR2CF|00000001|000101001|10110|rj|0|0|cd||||||||||||
 |MOVCF2GR|00000001|000101001|10111|0|0|cj|rd||||||||||||
 
-**指令格式：**movgr2cf 	cd, rj
+**指令格式：** movgr2cf 	cd, rj
 
 movcf2gr 	rd, cj
 
-**功能描述：**
+**功能描述：** 
 
 MOVGR2CF 将通用寄存器 rj 的最低一比特的值写入条件标志寄存器 cd。
 
@@ -1891,16 +2102,16 @@ CFR[cd] = GR[rj][0]
 
 GR[rd][0] = ZeroExtend(CFR[cj], 32)
 
-1. ## **浮点分支指令**
-   1. ### **BCEQZ**
+## **浮点分支指令**
+   ### **BCEQZ**
 
 |31|26|25|||||||10|9|8|7||5|4||||0|
 | - | -: | - | :-: | :-: | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 |010010|offs[15:0]|0|0|cj|offs[20:16]|||||||||||||||
 
-**指令格式：**bceqz 	cj, offs21
+**指令格式：** bceqz 	cj, offs21
 
-**功能描述：**BCEQZ 对条件标志寄存器 cj 的值进行判断，如果等于 0 则跳转到目标地址，否则不跳转。
+**功能描述：** BCEQZ 对条件标志寄存器 cj 的值进行判断，如果等于 0 则跳转到目标地址，否则不跳转。
 
 跳转目标地址是将指令码中的 21 比特立即数 offs21 逻辑左移 2 位后再符号扩展，所得的偏移值加上该分支指令的 PC。
 
@@ -1910,15 +2121,15 @@ if CFR[cj]==0 :
 
 PC = PC + SignExtend({offs21, 2'b0}, 32)
 
-1. ### **BCNEZ**
+### **BCNEZ**
 
 |31|26|25|||||||10|9|8|7||5|4||||0|
 | - | -: | - | :-: | :-: | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 |010010|offs[15:0]|0|1|cj|offs[20:16]|||||||||||||||
 
-**指令格式：**bcnez 	cj, offs21
+**指令格式：** bcnez 	cj, offs21
 
-**功能描述：**BCNEZ 对条件标志寄存器 cj 的值进行判断，如果不等于 0 则跳转到目标地址，否则不跳转。
+**功能描述：** BCNEZ 对条件标志寄存器 cj 的值进行判断，如果不等于 0 则跳转到目标地址，否则不跳转。
 
 跳转目标地址是将指令码中的 21 比特立即数 offs21 逻辑左移 2 位后再符号扩展，所得的偏移值加上该分支指令的 PC。
 
@@ -1932,8 +2143,8 @@ PC = PC + SignExtend({offs21, 2'b0}, 32)
 
 填入以字节为单位的偏移值，即指令码中offs<<2。
 
-1. ## **浮点普通访存指令**
-   1. ### **FLD.{S/D}, FST.{S/D}**
+## **浮点普通访存指令**
+   ### **FLD.{S/D}, FST.{S/D}**
 
 ||31|22|21|10|9||||5|4||||0|
 | - | - | -: | - | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
@@ -1942,7 +2153,7 @@ PC = PC + SignExtend({offs21, 2'b0}, 32)
 |FST.S|0010101110|si12|rj|fd|||||||||||
 |FST.D|0010101111|si12|rj|fd|||||||||||
 
-**指令格式：**fld.s 	fd, rj, si12
+**指令格式：** fld.s 	fd, rj, si12
 
 fld.d 	fd, rj, si12
 
@@ -1950,7 +2161,7 @@ fst.s 	fd, rj, si12
 
 fst.d	fd, rj, si12
 
-**功能描述：**FLD.S 从内存取回一个字的数据写入浮点寄存器 fd 的低 32 位。若浮点寄存器位宽为 64 位，则 fd 的高32 位值不确定。FLD.D 从内存取回一个双字的数据写入浮点寄存器 fd。
+**功能描述：** FLD.S 从内存取回一个字的数据写入浮点寄存器 fd 的低 32 位。若浮点寄存器位宽为 64 位，则 fd 的高32 位值不确定。FLD.D 从内存取回一个双字的数据写入浮点寄存器 fd。
 
 FST.S 将浮点寄存器 fd 中低 32 位字数据写入到内存中。FST.D 将浮点寄存器 fd 中双字数据写入到内存中。
 
@@ -2004,9 +2215,9 @@ MemoryStore(FR[fd][63:0], paddr, DOUBLEWORD)
 
 **例外：**如果访存地址非自然对齐1，则触发地址非对齐例外（ALE）。
 
-1. # **特权指令**
-   1. ## **CSR 访问指令**
-      1. ### **CSRRD, CSRWR, CSRXCHG**
+# **特权指令**
+   ## **CSR 访问指令**
+      ### **CSRRD, CSRWR, CSRXCHG**
 
 ||31|24|23|||||||10|9|||||4||||0||
 | :-: | - | -: | - | :-: | :-: | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :- |
@@ -2020,7 +2231,7 @@ MemoryStore(FR[fd][63:0], paddr, DOUBLEWORD)
 
 **csrxchg 	rd, rj, csr\_num**
 
-**功能描述：**
+**功能描述：** 
 
 CSRRD、CSRWR 和 CSRXCHG 指令用于软件访问 CSR。
 
@@ -2036,16 +2247,16 @@ CSRXCHG 指令根据通用寄存器 rj 中存放的写掩码信息，将通用�
 
 当 CSR 访问指令访问一个架构中未定义或硬件未实现的 CSR 时，读动作返回全 0 值，写动作不修改处理器的任何软件可见状态。需要提请注意的是，CSRWR 和 CSRXCHG 指令不仅包含更新 CSR 的写动作，也包含读取 CSR 旧值的读动作。
 
-1. ## **Cache 维护指令**
-   1. ### **CACOP**
+## **Cache 维护指令**
+   ### **CACOP**
 
 |31|22|21|||||10|9||||5|4||||0|
 | - | -: | - | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 |0000011000|si12|rj|rd|||||||||||||||
 
-**指令格式：**cacop 	code, rj, si12
+**指令格式：** cacop 	code, rj, si12
 
-**功能描述：**
+**功能描述：** 
 
 CACOP 指令主要用于 Cache 的初始化以及 Cache 一致性维护。
 
@@ -2063,72 +2274,72 @@ code[4:3]=2 表示采用查询索引方式维护 Cache 一致性（Hit Invalidat
 
 code[4:3]=3 属于实现自定义的 Cache 操作，架构规范中不予明确的功能定义。
 
-1. ## **TLB 维护指令**
-   1. ### **TLBSRCH**
+## **TLB 维护指令**
+   ### **TLBSRCH**
 
 |31|22|21|||||10|9||||5|4||||0|
 | - | -: | - | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 |0000011001\_001000001010|00000|00000||||||||||||||||
 
-**指令格式：**tlbsrch
+**指令格式：** tlbsrch
 
-**功能描述：**
+**功能描述：** 
 
 使用 CSR.ASID 和 CSR.TLBEHI 的信息去查询 TLB。如果有命中项，那么将命中项的索引值写入到CSR.TLBIDX 的 Index 域，同时将 CSR.TLBIDX 的 NE 位置为 0；如果没有命中项，那么将 CSR.TLBIDX 的NE 位置为 1。
 
 TLB 中各项的索引值计算规则是，从 0 开始依次递增编号，从第 0 行至最后一行。
 
-1. ### **TLBRD**
+### **TLBRD**
 
 |31|22|21|||||10|9||||5|4||||0|
 | - | -: | - | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 |0000011001\_001000001011|00000|00000||||||||||||||||
 
-**指令格式：**tlbrd
+**指令格式：** tlbrd
 
-**功能描述：**
+**功能描述：** 
 
 将 CSR.TLBIDX 的 Index 域的值作为索引值去读取 TLB 中的指定项。如果指定位置处是一个有效 TLB项，那么将该 TLB 项的页表信息写入到 CSR.TLBEHI、CSR.TLBELO0、CSR.TLBELO1 和 CSR.TLBIDX.PS中，且将 CSR.TLBIDX 的 NE 位置为 0；如果指定位置处是一个无效 TLB 项，需将 CSR.TLBIDX 的 NE 位置为 1，且将 CSR.ASID.ASID、CSR.TLBEHI、CSR.TLBELO0、CSR.TLBELO1 和 CSR.TLBIDX.PS 全置为0。
 
 需要注意的是，有效/无效 TLB 项和 TLB 中的页表项有效/无效是两个概念。如果访问所用的 index 值超过了 TLB 的范围，则处理器的行为不确定
 
-1. ### **TLBWR**
+### **TLBWR**
 
 |31|22|21|||||10|9||||5|4||||0|
 | - | -: | - | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 |0000011001\_001000001100|00000|00000||||||||||||||||
 
-**指令格式：**tlbwr
+**指令格式：** tlbwr
 
-**功能描述：**
+**功能描述：** 
 
 `	`TLBWR 指令将 TLB 相关 CSR 中所存放的页表项信息写入到 TLB 的指定项。被填入的页表项信息来自于 CSR.TLBEHI、CSR.TLBELO0、CSR.TLBELO1 和 CSR.TLBIDX.PS。若此时 CSR.ESTAT.Ecode=0x3F，即处于 TLB 重填例外处理过程中，那么 TLB 中总是填入一个有效项（即 TLB 项的 E 位为 1）。否则的话，就需要看 CSR.TLBIDX.NE 位的值。此时如果 CSR.TLBIDX.NE=1，那么 TLB 中会被填入一个无效 TLB 项；仅当 CSR.TLBIDX.NE=0 时，TLB 中才会被填入一个有效 TLB 项。
 
 执行 TLBWR 时，页表项写入 TLB 的位置是由 CSR.TLBIDX 的 Index 域的值指定的。具体的对应规则请参看 TLBSRCH 指令中关于 TLB中各项索引值的计算规则。
 
-1. ### **TLBFILL**
+### **TLBFILL**
 
 |31|22|21|||||10|9||||5|4||||0|||
 | - | -: | - | :-: | :-: | :-: | :-: | -: | - | :-: | :-: | :-: | -: | - | :-: | :-: | :-: | :-: | :- | :- |
 |0000011001\_001000001101|00000|00000||||||||||||||||||
 
-**指令格式：**tlbfill
+**指令格式：** tlbfill
 
-**功能描述：**
+**功能描述：** 
 
 TLBFILL 指令将 TLB 相关 CSR 中所存放的页表项信息填入到 TLB 中。被填入的页表项信息来自于CSR.TLBEHI、CSR.TLBELO0、CSR.TLBELO1 和 CSR.TLBIDX.PS。若此时 CSR.ESTAT.Ecode=0x3F，即处于 TLB 重填例外处理过程中，那么 TLB 中总是填入一个有效项（即 TLB 项的 E 位为 1）。否则的话，就需要看 CSR.TLBIDX.NE 位的值。此时如果 CSR.TLBIDX.NE=1，那么 TLB 中会被填入一个无效 TLB 项；仅当 CSR.TLBIDX.NE=0 时，TLB 中才会被填入一个有效 TLB 项。
 
 执行 TLBFILL 时，页表项被填入到 TLB 的哪一项，是由硬件随机选择的。
 
-1. ### **INVTLB**
+### **INVTLB**
 
 |31|23|22|15|14|10|9||5|4||||0|
 | - | -: | - | -: | - | -: | - | :-: | -: | - | :-: | :-: | :-: | -: |
 |000001100\_10010011|rk|rj|rd|||||||||||
 
-**指令格式：**invtlb op, rj, rk
+**指令格式：** invtlb op, rj, rk
 
-**功能描述：**
+**功能描述：** 
 
 INVTLB 指令用于无效 TLB 中的内容，以维持 TLB 与内存之间页表数据的一致性。
 
@@ -2150,16 +2361,16 @@ INVTLB 指令用于无效 TLB 中的内容，以维持 TLB 与内存之间页表
 |0x5|清除 G=0，且 ASID 等于寄存器指定 ASID，且 VA 等于寄存器指定 VA 的页表项|
 |0x6|清除所有 G=1 或 ASID 等于寄存器指定 ASID，且 VA 等于寄存器指定 VA 的页表项|
 
-1. ## **其它杂项指令**
-   1. ### **ERTN**
+## **其它杂项指令**
+   ### **ERTN**
 
 |31|22|21|||||10|9||||5|4||||0|
 | - | -: | - | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 |0000011001|001000001110|00000|00000|||||||||||||||
 
-**指令格式：**ertn
+**指令格式：** ertn
 
-**功能描述：**
+**功能描述：** 
 
 `	`ERTN 指令用于从例外处理返回。
 
@@ -2169,15 +2380,15 @@ INVTLB 指令用于无效 TLB 中的内容，以维持 TLB 与内存之间页表
 
 执行 ERTN 指令时，如果 CSR.LLBCTL 中的 KLO 位不等于 1，则将 LLbit 置 0，否则 LLbit 不修改。
 
-1. ### **IDLE**
+### **IDLE**
 
 |31|23|22|15|14|||||||||0|
 | - | -: | - | -: | - | -: | - | :-: | -: | - | :-: | :-: | :-: | -: |
 |000001100\_10010001|level|||||||||||||
 
-**指令格式：**idle 	level
+**指令格式：** idle 	level
 
-**功能描述：**
+**功能描述：** 
 
 IDLE 指令执行完毕后，处理器核将停止取指进入等待状态，直至其被中断唤醒或被复位。从停止状态
 
@@ -2220,14 +2431,14 @@ IDLE 指令执行完毕后，处理器核将停止取指进入等待状态，直
 
 
 
-1. #
+#
 |31|30|29|28|27|26|25|24|23|22|21|20|19|18|17|16|15|14|13|12|11|10|9|8|7|6|5|4|3|2|1|0|
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 |||||||||||||||||||||||||||||||||
 
-**指令格式：**
+**指令格式：** 
 
-**功能描述：**
+**功能描述：** 
 
 **操作定义：**
 
@@ -2236,4 +2447,4 @@ IDLE 指令执行完毕后，处理器核将停止取指进入等待状态，直
 69
 
 
-[^1]: <a name="_ref163895196"></a> 所谓自然对齐是指，访问半字对象时地址是2字节边界对齐，访问字对象时地址是4字节边界对齐，访问双字对象时地址是8字节边界对齐，访问128 位向量对象时地址是16字节边界对齐，访问256位向量对象时地址是32字节边界对齐。
+[^1]:  所谓自然对齐是指，访问半字对象时地址是2字节边界对齐，访问字对象时地址是4字节边界对齐，访问双字对象时地址是8字节边界对齐，访问128 位向量对象时地址是16字节边界对齐，访问256位向量对象时地址是32字节边界对齐。
