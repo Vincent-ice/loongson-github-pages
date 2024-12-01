@@ -146,6 +146,7 @@ GR[rd] = tmp[31:0]
 </tr>
 </tbody>
 </table>
+
 **指令格式：**  lu12i.w  rd, si20
 
 **功能描述：**  LU12I.W 将 20 比特立即数 si20 最低位连接上 12 比特 0 后写入通用寄存器 rd 中。
@@ -428,7 +429,7 @@ GR[rd] = product[31:0]
 
 **操作定义：**
 
-`	`product = signed(GR[rj]) \* signed(GR[rk])
+product = signed(GR[rj]) \* signed(GR[rk])
 
 GR[rd] = product[63:32]
 
@@ -521,8 +522,9 @@ GR[rd] = product[63:32]
 </tr>
 </tbody>
 </table>
+**指令格式：** 
 
-**指令格式：** div.w   rd, rj, rk
+div.w   rd, rj, rk
 
 `		  `div.wu  rd, rj, rk
 
@@ -544,14 +546,52 @@ GR[rd] = quotient[31:0]
 
 
 
-### **MOD.W，MOD.WU**
+### MOD.W，MOD.WU
 
-||31|23|22|15|14|10|9||5|4||||0|
-| - | - | -: | - | -: | - | -: | - | :-: | -: | - | :-: | :-: | :-: | -: |
-|MOD.W|000000000\_01000001|rk|rj|rd|||||||||||
-|MOD.WU|000000000\_01000011|rk|rj|rd|||||||||||
+<table>
+<tbody>
+<tr>
+<td style="test-align: center;"> </td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">MOD.W</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0000</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">10</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+<tr>
+<td style="test-align: center;">MOD.WU</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0000</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">10</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00011</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
+**指令格式：** 
 
-**指令格式：** mod.w   rd, rj, rk
+mod.w   rd, rj, rk
 
 `		  `mod.wu  rd, rj, rk
 
@@ -573,370 +613,799 @@ GR[rd] = remainder[31:0]
 
 
 
-## **逻辑运算类指令**
-   ### **AND**
+## 逻辑运算类指令
+   ### AND
 
-|31|23|22|15|14|10|9||5|4||||0|
-| - | -: | - | -: | - | -: | - | :-: | -: | - | :-: | :-: | :-: | -: |
-|000000000\_00101001|rk|rj|rd|||||||||||
-
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0000</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 **指令格式：** and  rd, rj, rk
 
 **功能描述：** AND 将通用寄存器 rj 中的数据与通用寄存器 rk 中的数据进行按位逻辑与运算，结果写入通用寄存器rd 中。
 
 **操作定义：**
-**
-`	`GR[rd] = GR[rj] & GR[rk]
+
+GR[rd] = GR[rj] & GR[rk]
 
 
 
-### **OR**
+### OR
 
-|31|23|22|15|14|10|9||5|4||||0|
-| - | -: | - | -: | - | -: | - | :-: | -: | - | :-: | :-: | :-: | -: |
-|000000000\_00101010|rk|rj|rd|||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0000</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01010</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** or  rd, rj, rk
 
 **功能描述：** OR 将通用寄存器 rj 中的数据与通用寄存器 rk 中的数据进行按位逻辑或运算，结果写入通用寄存器 rd中。
 
 **操作定义：**
-**
-`	`GR[rd] = GR[rj] | GR[rk]
+
+GR[rd] = GR[rj] | GR[rk]
 
 
 
-### **NOR**
+### NOR
 
-|31|23|22|15|14|10|9||5|4||||0|
-| - | -: | - | -: | - | -: | - | :-: | -: | - | :-: | :-: | :-: | -: |
-|000000000\_00101000|rk|rj|rd|||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0000</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** nor  rd, rj, rk
 
 **功能描述：** NOR 将通用寄存器 rj 中的数据与通用寄存器 rk 中的数据进行按位逻辑或非运算，结果写入通用寄存器rd 中。
 
 **操作定义：**
-**
-`	`GR[rd] = ~(GR[rj] | GR[rk])
+
+GR[rd] = ~(GR[rj] | GR[rk])
 
 
 
-### **XOR**
+### XOR
 
-|31|23|22|15|14|10|9||5|4||||0|
-| - | -: | - | -: | - | -: | - | :-: | -: | - | :-: | :-: | :-: | -: |
-|000000000\_00101011|rk|rj|rd|||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0000</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01011</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** xor  rd, rj, rk
 
 **功能描述：** XOR 将通用寄存器 rj 中的数据与通用寄存器 rk 中的数据进行按位逻辑异或运算，结果写入通用寄存器rd 中。
 
 **操作定义：**
-**
-`	`GR[rd] = GR[rj] ^ GR[rk]
+
+GR[rd] = GR[rj] ^ GR[rk]
 
 
 
-### **ANDI**
+### ANDI
 
-|31|22|21|10|9||||5|4||||0|
-| - | -: | - | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-|0000001101|si12|rj|rd|||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 18.75%;  text-align: left;" colspan="3">21</td>
+<td style="width: 18.75%;  text-align: right;" colspan="3">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">1101</td>
+<td style="text-align: center; width: 6.25%;  " colspan="6">si12</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** andi  rd, rj, rk
 
-**功能描述：** ANDI 将通用寄存器 rj 中的数据与 12 比特立即数零扩展之后的数据进行按位逻辑与运算，结果写入通用寄存器 rd 中。
+**功能描述：** ANDI 将通用寄存器 rj 中的数据与 12 比特立即数**零扩展**之后的数据进行按位逻辑与运算，结果写入通用寄存器 rd 中。
 
 **操作定义：**
-**
-`	`GR[rd] = GR[rj] & ZeroExtend(ui12, 32)
+
+GR[rd] = GR[rj] & ZeroExtend(ui12, 32)
 
 
 
-### **ORI**
+### ORI
 
-|31|22|21|10|9||||5|4||||0|
-| - | -: | - | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-|0000001110|si12|rj|rd|||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 18.75%;  text-align: left;" colspan="3">21</td>
+<td style="width: 18.75%;  text-align: right;" colspan="3">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">1110</td>
+<td style="text-align: center; width: 6.25%;  " colspan="6">si12</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
+
 
 **指令格式：** ori  rd, rj, rk
 
-**功能描述：** ORI 将通用寄存器 rj 中的数据与 12 比特立即数零扩展之后的数据进行按位逻辑或运算，结果写入通用寄存器 rd 中。
+**功能描述：** ORI 将通用寄存器 rj 中的数据与 12 比特立即数**零扩展**之后的数据进行按位逻辑或运算，结果写入通用寄存器 rd 中。
 
 **操作定义：**
-**
-`	`GR[rd] = GR[rj] | ZeroExtend(ui12, 32)
+
+GR[rd] = GR[rj] | ZeroExtend(ui12, 32)
 
 
 
-### **XORI**
+### XORI
 
-|31|22|21|10|9||||5|4||||0|
-| - | -: | - | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-|0000001111|si12|rj|rd|||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 18.75%;  text-align: left;" colspan="3">21</td>
+<td style="width: 18.75%;  text-align: right;" colspan="3">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">1111</td>
+<td style="text-align: center; width: 6.25%;  " colspan="6">si12</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** xori  rd, rj, rk
 
-**功能描述：** XORI 将通用寄存器 rj 中的数据与 12 比特立即数零扩展之后的数据进行按位逻辑异或运算，结果写入通用寄存器 rd 中。
+**功能描述：** XORI 将通用寄存器 rj 中的数据与 12 比特立即数**零扩展**之后的数据进行按位逻辑异或运算，结果写入通用寄存器 rd 中。
 
 **操作定义：**
-**
-`	`GR[rd] = GR[rj] ^ ZeroExtend(ui12, 32)
+
+GR[rd] = GR[rj] ^ ZeroExtend(ui12, 32)
 
 
-## **移位运算类指令**
-   ### **SLL.W**
+## 移位运算类指令
+   ### SLL.W
 
-|31|23|22|15|14|10|9||5|4||||0|
-| - | -: | - | -: | - | -: | - | :-: | -: | - | :-: | :-: | :-: | -: |
-|000000000\_00101110|rk|rj|rd|||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0000</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01110</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** sll.w  rd, rj, rk
 
-**功能描述：** SLL.W 将通用寄存器 rj 中的数据逻辑左移，移位结果写入通用寄存器 rd 中。**操作定义：**
-**
-`	`tmp = SLL(GR[rj], GR[rk][4:0])
+**功能描述：** SLL.W 将通用寄存器 rj 中的数据**逻辑左移**，移位结果写入通用寄存器 rd 中。
+
+**操作定义：**
+
+tmp = SLL(GR[rj], GR\[rk][4:0])
 
 GR[rd] = tmp[31:0]
 
 
 
-### **SRL.W**
+### SRL.W
 
-|31|23|22|15|14|10|9||5|4||||0|
-| - | -: | - | -: | - | -: | - | :-: | -: | - | :-: | :-: | :-: | -: |
-|000000000\_00101111|rk|rj|rd|||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0000</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01111</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** srl.w  rd, rj, rk
 
-**功能描述：** SRL.W 将通用寄存器 rj 中的数据逻辑右移，移位结果写入通用寄存器 rd中。
+**功能描述：** SRL.W 将通用寄存器 rj 中的数据**逻辑右移**，移位结果写入通用寄存器 rd中。
 
 **操作定义：**
-**
-`	`tmp = SRL(GR[rj], GR[rk][4:0])
+
+tmp = SRL(GR[rj], GR\[rk][4:0])
 
 GR[rd] = tmp[31:0]
 
 
 
-### **SRA.W**
+### SRA.W
 
-|31|23|22|15|14|10|9||5|4||||0|
-| - | -: | - | -: | - | -: | - | :-: | -: | - | :-: | :-: | :-: | -: |
-|000000000\_00110000|rk|rj|rd|||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0000</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** sra.w  rd, rj, rk
 
-**功能描述：** SRA.W 将通用寄存器 rj 中的数据算术右移，移位结果写入通用寄存器 rd 中。
+**功能描述：** SRA.W 将通用寄存器 rj 中的数据**算术右移**，移位结果写入通用寄存器 rd 中。
 
 **操作定义：**
-**
-`	`tmp = SRA(GR[rj], GR[rk][4:0])
+
+tmp = SRA(GR[rj], GR\[rk][4:0])
 
 GR[rd] = tmp[31:0]
 
 
 
-### **SLLI.W**
+### SLLI.W
 
-|31|||||18|17|15|14||10|9||5|4|||0|||
-| - | :-: | :-: | :-: | :-: | -: | :- | :-: | - | :-: | -: | - | :-: | -: | - | :-: | :-: | -: | :- | :- |
-|00000000010000|001|ui5|rj|rd||||||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0001</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">00</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">ui5</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** slli.w  rd, rj, ui5
 
-**功能描述：** SLLI.W 将通用寄存器 rj 中的数据逻辑左移，移位结果写入通用寄存器 rd 中。
+**功能描述：** SLLI.W 将通用寄存器 rj 中的数据**逻辑左移**，移位结果写入通用寄存器 rd 中。
 
 **操作定义：**
-**
-`	`tmp = SLL(GR[rj], ui5)
+
+tmp = SLL(GR[rj], ui5)
 
 GR[rd] = tmp[31:0]
 
 
 
-### **SRLI.W**
+### SRLI.W
 
-|31|||||18|17|15|14||10|9||5|4|||0|||
-| - | :-: | :-: | :-: | :-: | -: | :- | :-: | - | :-: | -: | - | :-: | -: | - | :-: | :-: | -: | :- | :- |
-|00000000010001|001|ui5|rj|rd||||||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0001</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">00</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">ui5</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** srli.w  rd, rj, ui5
 
-**功能描述：** SRLI.W 将通用寄存器 rj 中的数据逻辑右移，移位结果写入通用寄存器 rd 中。
+**功能描述：** SRLI.W 将通用寄存器 rj 中的数据**逻辑右移**，移位结果写入通用寄存器 rd 中。
 
 **操作定义：**
-**
-`	`tmp = SRL(GR[rj], ui5)
+
+tmp = SRL(GR[rj], ui5)
 
 GR[rd] = tmp[31:0]
 
 
 
-### **SRAI.W**
+### SRAI.W
 
-|31|||||18|17|15|14||10|9||5|4|||0|||
-| - | :-: | :-: | :-: | :-: | -: | :- | :-: | - | :-: | -: | - | :-: | -: | - | :-: | :-: | -: | :- | :- |
-|00000000010010|001|ui5|rj|rd||||||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0001</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">00</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">ui5</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** srai.w  rd, rj, ui5
 
-**功能描述：** SRAI.W 将通用寄存器 rj 中的数据算术右移，移位结果写入通用寄存器 rd 中。
+**功能描述：** SRAI.W 将通用寄存器 rj 中的数据**算术右移**，移位结果写入通用寄存器 rd 中。
 
 **操作定义：**
-**
-`	`tmp = SRA(GR[rj], ui5)
+
+tmp = SRA(GR[rj], ui5)
 
 GR[rd] = tmp[31:0]
 
 
 
-## **转移指令**
-   ### **BEQ**
+## 转移指令
+   ### BEQ
 
-|31|26|25|||||||10|9||||5|4||||0|
-| - | -: | - | :-: | :-: | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-|010110|offs[15:0]|rj|rd|||||||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 25%;     text-align: left;" colspan="4">25</td>
+<td style="width: 25%;     text-align: right;" colspan="4">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">010110</td>
+<td style="text-align: center;" colspan="8">offs16</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** beq  rj, rd, offs16
 
-**功能描述：** BEQ 将通用寄存器 rj 和通用寄存器 rd 的值进行比较，如果两者相等则跳转到目标地址，否则不跳转。
+**功能描述：** BEQ 将通用寄存器 rj 和通用寄存器 rd 的值进行比较，如果两者<u>相等则跳转</u>到目标地址，否则不跳转。
 
-其跳转目标地址计算方式是将指令码中的16比特立即数offs16逻辑左移2位后再符
-
-号扩展，所得的偏移值加上该分支指令的PC。
+其跳转目标地址计算方式是将指令码中的16比特立即数offs16**逻辑左移**2位后再**符号扩展**，所得的偏移值加上该分支指令的PC。
 
 **操作定义：**
 
 if GR[rj] == GR[rd] :
 
-PC = PC + SignExtend({offs16, 2'b0}, 32)
+​	PC = PC + SignExtend({offs16, 2'b0}, 32)
 
 
 
-### **BNE**
+### BNE
 
-|31|26|25|||||||10|9||||5|4||||0|
-| - | -: | - | :-: | :-: | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-|010111|offs[15:0]|rj|rd|||||||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 25%;     text-align: left;" colspan="4">25</td>
+<td style="width: 25%;     text-align: right;" colspan="4">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">010111</td>
+<td style="text-align: center;" colspan="8">offs16</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** bne  rj, rd, offs16
 
-**功能描述：** BNE 将通用寄存器 rj 和通用寄存器 rd 的值进行比较，如果两者不等则跳转到目标地址，否则不跳转。
+**功能描述：** BNE 将通用寄存器 rj 和通用寄存器 rd 的值进行比较，如果两者<u>不等则跳转</u>到目标地址，否则不跳转。
 
-其跳转目标地址计算方式是将指令码中的16比特立即数offs16逻辑左移2位后再符
-
-号扩展，所得的偏移值加上该分支指令的PC。
+其跳转目标地址计算方式是将指令码中的16比特立即数offs16**逻辑左移**2位后再**符号扩展**，所得的偏移值加上该分支指令的PC。
 
 **操作定义：**
 
 if GR[rj] != GR[rd] :
 
-PC = PC + SignExtend({offs16, 2'b0}, 32)
+​	PC = PC + SignExtend({offs16, 2'b0}, 32)
 
 
 
-### **BLT**
+### BLT
 
-|31|26|25|||||||10|9||||5|4||||0|
-| - | -: | - | :-: | :-: | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-|011000|offs[15:0]|rj|rd|||||||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 25%;     text-align: left;" colspan="4">25</td>
+<td style="width: 25%;     text-align: right;" colspan="4">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">011000</td>
+<td style="text-align: center;" colspan="8">offs16</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** blt  rj, rd, offs16
 
-**功能描述：** BLT 将通用寄存器 rj 和通用寄存器 rd 的值视作有符号数进行比较，如果前者小于后者则跳转到目标地址，否则不跳转。
+**功能描述：** BLT 将通用寄存器 rj 和通用寄存器 rd 的值视作**有符号数**进行比较，如果<u>前者小于后者则跳转</u>到目标地址，否则不跳转。
 
-其跳转目标地址计算方式是将指令码中的16比特立即数offs16逻辑左移2位后再符
-
-号扩展，所得的偏移值加上该分支指令的PC。
+其跳转目标地址计算方式是将指令码中的16比特立即数offs16**逻辑左移**2位后再符号扩展，所得的偏移值加上该分支指令的PC。
 
 **操作定义：**
 
 if signed(GR[rj]) < signed(GR[rd]) :
 
-PC = PC + SignExtend({offs16, 2'b0}, 32)
+​	PC = PC + SignExtend({offs16, 2'b0}, 32)
 
 
 
-### **BGE**
+### BGE
 
-|31|26|25|||||||10|9||||5|4||||0|
-| - | -: | - | :-: | :-: | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-|011001|offs[15:0]|rj|rd|||||||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 25%;     text-align: left;" colspan="4">25</td>
+<td style="width: 25%;     text-align: right;" colspan="4">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">011001</td>
+<td style="text-align: center;" colspan="8">offs16</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** bge  rj, rd, offs16
 
-**功能描述：** BGE 将通用寄存器 rj 和通用寄存器 rd 的值视作有符号数进行比较，如果前者大于等于后者则跳转到目标地址，否则不跳转。
+**功能描述：** BGE 将通用寄存器 rj 和通用寄存器 rd 的值视作**有符号数**进行比较，如果<u>前者大于等于后者则跳转</u>到目标地址，否则不跳转。
 
-其跳转目标地址计算方式是将指令码中的16比特立即数offs16逻辑左移2位后再符
-
-号扩展，所得的偏移值加上该分支指令的PC。
+其跳转目标地址计算方式是将指令码中的16比特立即数offs16**逻辑左移**2位后再符号扩展，所得的偏移值加上该分支指令的PC。
 
 **操作定义：**
 
 if signed(GR[rj]) >= signed(GR[rd]) :
 
-PC = PC + SignExtend({offs16, 2'b0}, 32)
+​	PC = PC + SignExtend({offs16, 2'b0}, 32)
 
 
 
-### **BLTU**
+### BLTU
 
-|31|26|25|||||||10|9||||5|4||||0|
-| - | -: | - | :-: | :-: | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-|011010|offs[15:0]|rj|rd|||||||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 25%;     text-align: left;" colspan="4">25</td>
+<td style="width: 25%;     text-align: right;" colspan="4">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">011010</td>
+<td style="text-align: center;" colspan="8">offs16</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** bltu  rj, rd, offs16
 
-**功能描述：** BLTU 将通用寄存器 rj 和通用寄存器 rd 的值视作无符号数进行比较，如果前者小于后者则跳转到目标地址，否则不跳转。
+**功能描述：** BLTU 将通用寄存器 rj 和通用寄存器 rd 的值视作**无符号数**进行比较，如果<u>前者小于后者则跳转</u>到目标地址，否则不跳转。
 
-其跳转目标地址计算方式是将指令码中的16比特立即数offs16逻辑左移2位后再符
-
-号扩展，所得的偏移值加上该分支指令的PC。
+其跳转目标地址计算方式是将指令码中的16比特立即数offs16**逻辑左移**2位后再符号扩展，所得的偏移值加上该分支指令的PC。
 
 **操作定义：**
 
 if unsigned(GR[rj]) < unsigned(GR[rd]) :
 
-PC = PC + SignExtend({offs16, 2'b0}, 32)
+​	PC = PC + SignExtend({offs16, 2'b0}, 32)
 
 
 
-### **BGEU**
+### BGEU
 
-|31|26|25|||||||10|9||||5|4||||0|
-| - | -: | - | :-: | :-: | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-|011011|offs[15:0]|rj|rd|||||||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 25%;     text-align: left;" colspan="4">25</td>
+<td style="width: 25%;     text-align: right;" colspan="4">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">011011</td>
+<td style="text-align: center;" colspan="8">offs16</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** bgeu  rj, rd, offs16
 
-**功能描述：** BGEU 将通用寄存器 rj 和通用寄存器 rd 的值视作无符号数进行比较，如果前者大于等于后者则跳转到目标地址，否则不跳转。
+**功能描述：** BGEU 将通用寄存器 rj 和通用寄存器 rd 的值视作**无符号数**进行比较，如果<u>前者大于等于后者则跳转</u>到目标地址，否则不跳转。
 
-其跳转目标地址计算方式是将指令码中的16比特立即数offs16逻辑左移2位后再符
-
-号扩展，所得的偏移值加上该分支指令的PC。
+其跳转目标地址计算方式是将指令码中的16比特立即数offs16**逻辑左移**2位后再**符号扩展**，所得的偏移值加上该分支指令的PC。
 
 **操作定义：**
 
 if unsigned(GR[rj]) >= unsigned(GR[rd]) :
 
-PC = PC + SignExtend({offs16, 2'b0}, 32)
+​	PC = PC + SignExtend({offs16, 2'b0}, 32)
 
 
 
 
-### **B**
+### B
 
-|31|26|25|||||||10|9|||||||||0|
-| - | -: | - | :-: | :-: | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | - | :-: | :-: | :-: | :-: |
-|010100|offs[15:0]|offs[25:16]||||||||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 25%;     text-align: left;" colspan="4">25</td>
+<td style="width: 25%;     text-align: right;" colspan="4">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">010100</td>
+<td style="text-align: center;" colspan="8">offs16</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** b  offs26
 
-**功能描述：** B 无条件跳转到目标地址处。
+**功能描述：** B <u>无条件跳转</u>到目标地址处。
 
-其跳转目标地址是将指令码中的 26 比特立即数 offs26 逻辑左移 2 位后再符号扩展，所得的偏移值加上该分支指令的 PC。
+其跳转目标地址是将指令码中的 26 比特立即数 offs26 **逻辑左移** 2 位后再**符号扩展**，所得的偏移值加上该分支指令的 PC。
 
 **操作定义：**
 
@@ -944,17 +1413,34 @@ PC = PC + SignExtend({offs26, 2'b0}, 32)
 
 
 
-### **BL**
+### BL
 
-|31|26|25|||||||10|9|||||||||0|
-| - | -: | - | :-: | :-: | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | - | :-: | :-: | :-: | :-: |
-|010101|offs[15:0]|offs[25:16]||||||||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 25%;     text-align: left;" colspan="4">25</td>
+<td style="width: 25%;     text-align: right;" colspan="4">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">010101</td>
+<td style="text-align: center;" colspan="8">offs16</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** bl  offs26
 
-**功能描述：** BL 无条件跳转到目标地址处，同时将该指令的 PC 值加 4 的结果写入到 1 号通用寄存器 r1 中。
+**功能描述：** BL <u>无条件跳转</u>到目标地址处，同时将该指令的 PC 值加 4 的结果写入到 1 号通用寄存器 r1 中。
 
-其跳转目标地址是将指令码中的 26 比特立即数 offs26 逻辑左移 2 位后再符号扩展，所得的偏移值加上该分支指令的 PC。
+其跳转目标地址是将指令码中的 26 比特立即数 offs26 **逻辑左移** 2 位后再符号扩展，所得的偏移值加上该分支指令的 PC。
 
 **操作定义：**
 
@@ -964,17 +1450,34 @@ PC = PC + SignExtend({offs26, 2'b0}, 32)
 
 
 
-### **JIRL**
+### JIRL
 
-|31|26|25|||||||10|9||||5|4||||0|
-| - | -: | - | :-: | :-: | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-|010011|offs[15:0]|rj|rd|||||||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 25%;     text-align: left;" colspan="4">25</td>
+<td style="width: 25%;     text-align: right;" colspan="4">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">010011</td>
+<td style="text-align: center;" colspan="8">offs16</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** jirl  rj, rd, offs16
 
-**功能描述：** JIRL 无条件跳转到目标地址处，同时将该指令的 PC 值加 4 的结果写入到通用寄存器 rd 中。
+**功能描述：** JIRL <u>无条件跳转</u>到目标地址处，同时将该指令的 PC 值加 4 的结果写入到通用寄存器 rd 中。
 
-该指令的跳转目标地址是将指令码中的 16 比特立即数 offs16 逻辑左移 2 位后再符号扩展，所得的偏移值加上通用寄存器 rj中的值。
+该指令的跳转目标地址是将指令码中的 16 比特立即数 offs16 **逻辑左移** 2 位后再符号扩展，所得的偏移值加上通用寄存器 rj中的值。
 
 **操作定义：**
 
@@ -988,24 +1491,62 @@ PC = GR[rj] + SignExtend({offs16, 2'b0}, 32)
 
 填入以字节为单位的偏移值，即指令码中offs<<2。
 
-## **普通访存指令**
-   ### **LD.B，LD.H，LD.W**
+## 普通访存指令
+   ### LD.B，LD.H，LD.W
 
-||31|22|21|10|9||||5|4||||0|
-| - | - | -: | - | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-|LD.B|0010100000|si12|rj|rd|||||||||||
-|LD.H|0010100001|si12|rj|rd|||||||||||
-|LD.W|0010100010|si12|rj|rd|||||||||||
+<table>
+<tbody>
+<tr>
+<td></td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 18.75%;  text-align: left;" colspan="3">21</td>
+<td style="width: 18.75%;  text-align: right;" colspan="3">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">LD.B</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">001010</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0000</td>
+<td style="text-align: center; width: 6.25%;  " colspan="6">si12</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+<tr>
+<td style="test-align: center;">LD.H</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">001010</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0001</td>
+<td style="text-align: center; width: 6.25%;  " colspan="6">si12</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+<tr>
+<td style="test-align: center;">LD.W</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">001010</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0010</td>
+<td style="text-align: center; width: 6.25%;  " colspan="6">si12</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** ld.b  rd, rj, si12
+**指令格式：** 
+
+ld.b  rd, rj, si12
 
 ld.h  rd, rj, si12
 
 ld.w  rd, rj, si12
 
-**功能描述：** LD.{B/H}从内存取回一个字节/半字的数据符号扩展后写入通用寄存器 rd，LD.W 从内存取回一个字的数据写入通用寄存器 rd。
+**功能描述：** LD.{B/H}从内存取回一个字节/半字的数据**符号扩展**后写入通用寄存器 rd，LD.W 从内存取回一个字的数据写入通用寄存器 rd。
 
-其访存地址计算方式是将通用寄存器rj中的值与符号扩展后的12比特立即数si12相加求和。
+其访存地址计算方式是将通用寄存器rj中的值与**符号扩展**后的12比特立即数si12相加求和。
 
 **操作定义：**
 
@@ -1047,20 +1588,51 @@ GR[rd] = word
 
 **例外：**如果访存地址非自然对齐[^1]，则触发地址非对齐例外（ALE）。
 
-### **LD.BU，LD.HU**
+### LD.BU，LD.HU
 
-||31|22|21|10|9||||5|4||||0|
-| - | - | -: | - | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-|LD.BU|0010101000|si12|rj|rd|||||||||||
-|LD.HU|0010101001|si12|rj|rd|||||||||||
+<table>
+<tbody>
+<tr>
+<td></td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 18.75%;  text-align: left;" colspan="3">21</td>
+<td style="width: 18.75%;  text-align: right;" colspan="3">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">LD.BU</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">001010</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">1000</td>
+<td style="text-align: center; width: 6.25%;  " colspan="6">si12</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+<tr>
+<td style="test-align: center;">LD.HU</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">001010</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">1001</td>
+<td style="text-align: center; width: 6.25%;  " colspan="6">si12</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** ld.bu  rd, rj, si12
+**指令格式：** 
+
+ld.bu  rd, rj, si12
 
 ld.hu  rd, rj, si12
 
-**功能描述：** LD.{BU/HU}从内存取回一个字节/半字的数据零扩展后写入通用寄存器 rd。
+**功能描述：** LD.{BU/HU}从内存取回一个字节/半字的数据**零扩展**后写入通用寄存器 rd。
 
-其访存地址计算方式是将通用寄存器rj中的值与符号扩展后的12比特立即数si12相加求和。
+其访存地址计算方式是将通用寄存器rj中的值与**符号扩展**后的12比特立即数si12相加求和。
 
 **操作定义：**
 
@@ -1088,17 +1660,55 @@ halfword = MemoryLoad(paddr, HALFWORD)
 
 GR[rd] = ZeroExtend(halfword, 32)
 
-**例外：**如果访存地址非自然对齐1，则触发地址非对齐例外（ALE）。
+**例外：**如果访存地址非自然对齐[^1]，则触发地址非对齐例外（ALE）。
 
-### **ST.B，ST.H，ST.W**
+### ST.B，ST.H，ST.W
 
-||31|22|21|10|9||||5|4||||0|
-| - | - | -: | - | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-|ST.B|0010100100|si12|rj|rd|||||||||||
-|ST.H|0010100101|si12|rj|rd|||||||||||
-|ST.W|0010100110|si12|rj|rd|||||||||||
+<table>
+<tbody>
+<tr>
+<td></td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 18.75%;  text-align: left;" colspan="3">21</td>
+<td style="width: 18.75%;  text-align: right;" colspan="3">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">ST.B</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">001010</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="6">si12</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+<tr>
+<td style="test-align: center;">ST.H</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">001010</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0101</td>
+<td style="text-align: center; width: 6.25%;  " colspan="6">si12</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+<tr>
+<td style="test-align: center;">ST.W</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">001010</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0110</td>
+<td style="text-align: center; width: 6.25%;  " colspan="6">si12</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** st.b  rd, rj, si12
+**指令格式：** 
+
+st.b  rd, rj, si12
 
 st.h  rd, rj, si12
 
@@ -1106,7 +1716,7 @@ st.w  rd, rj, si12
 
 **功能描述：** ST.{B/H/W}将通用寄存器 rd 中的[7:0]/[15:0]/[31:0]位数据写入到内存中。
 
-其访存地址计算方式是将通用寄存器rj中的值与符号扩展后的12比特立即数si12相加求和。
+其访存地址计算方式是将通用寄存器rj中的值与**符号扩展**后的12比特立即数si12相加求和。
 
 **操作定义：**
 
@@ -1140,35 +1750,84 @@ paddr = AddressTranslation(vaddr)
 
 MemoryStore(GR[rd][31:0], paddr, WORD)
 
-**例外：**如果访存地址非自然对齐1，则触发地址非对齐例外（ALE）。
+**例外：**如果访存地址非自然对齐[^1]，则触发地址非对齐例外（ALE）。
 
-### **PRELD**
+### PRELD
 
-|31|22|21|10|9||||5|4||||0|
-| - | -: | - | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-|0000001001|si12|rj|hint|||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 18.75%;  text-align: left;" colspan="3">21</td>
+<td style="width: 18.75%;  text-align: right;" colspan="3">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">1001</td>
+<td style="text-align: center; width: 6.25%;  " colspan="6">si12</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">hint</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** preld**  hint, rj, si12
+**指令格式：** preld   hint, rj, si12
 
-**功能描述：** PRELD 从内存中预取一个 Cache 行的数据进入 Cache 中。其访存地址的计算方式是将通用寄存器 rj 中的值与符号扩展后的 12 比特立即数 si12 相加求和。该访存地址落在待预取的 Cache 行内。
+**功能描述：** PRELD 从内存中预取一个 Cache 行的数据进入 Cache 中。其访存地址的计算方式是将通用寄存器 rj 中的值与**符号扩展**后的 12 比特立即数 si12 相加求和。该访存地址落在待预取的 Cache 行内。
 
 PRELD 指令中的 hint 提示处理器预取的类型以及取回的数据填入哪一级 Cache。hint 从 0~31 有 32 个可选值。目前 hint=0 定义为 load 预取至一级数据 Cache，hint=8 定义为 store 预取至一级数据 Cache。其余hint 值的含义暂未定义，处理器执行时视同 NOP 指令处理。
 
 如果 PRELD 指令的访存地址的 Cache 属性不是 cached，那么该指令不能产生访存动作，视同 NOP 指令处理。
 
-**操作定义：**
 
 
+## 原子访存指令
+   ### LL.W, SC.W
 
-## **原子访存指令**
-   ### **LL.W, SC.W**
+<table>
+<tbody>
+<tr>
+<td></td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">24</td>
+<td style="width: 18.75%;  text-align: left;" colspan="3">23</td>
+<td style="width: 18.75%;  text-align: right;" colspan="3">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">LL.W</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">001000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">00</td>
+<td style="text-align: center; width: 6.25%;  " colspan="6">si14</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+<tr>
+<td style="test-align: center;">SC.W</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">001010</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">01</td>
+<td style="text-align: center; width: 6.25%;  " colspan="6">si14</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
-||31|24|23|||||10|9||||5|4||||0|
-| - | - | -: | - | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-|LL.W|00100000|si14|rj|rd|||||||||||||||
-|SC.W|00100001|si14|rj|rd|||||||||||||||
+**指令格式：**
 
-**指令格式：** ll.w   rd, rj, si14
+ll.w   rd, rj, si14
 
 sc.w  rd, rj, si14
 
@@ -1186,16 +1845,34 @@ sc.w  rd, rj, si14
 
 vaddr = GR[rj] + SignExtend({si14, 2'b0}, 32)
 
-**操作定义：**
 
-**例外：**
 
-## **栅障指令**
-   ### **DBAR**
+## 栅障指令
+   ### DBAR
 
-|31|||||15|14|||||||||||0|
-| - | :-: | :-: | :-: | :-: | -: | - | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-|00111000011100100|hint|||||||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 23.4375%; text-align: left;" colspan="3">14</td>
+<td style="width: 23.4375%; text-align: right;" colspan="3">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">001110</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0001</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">11</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00100</td>
+<td style="text-align: center;" colspan="6">hint</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** dbar  hint
 
@@ -1205,15 +1882,33 @@ hint 值为 0 是默认必须实现的，其指示一个完全功能的同步栅
 
 如果没有专门的功能实现，其它所有 hint 值都必须按照 hint=0 执行。
 
-**操作定义：**
 
-**例外：**
 
-### **IBAR**
+### IBAR
 
-|31|||||15|14|||||||||||0|
-| - | :-: | :-: | :-: | :-: | -: | - | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-|00111000011100101|hint|||||||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 23.4375%; text-align: left;" colspan="3">14</td>
+<td style="width: 23.4375%; text-align: right;" colspan="3">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">001110</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0001</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">11</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00101</td>
+<td style="text-align: center;" colspan="6">hint</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** ibar  hint
 
@@ -1221,16 +1916,34 @@ hint 值为 0 是默认必须实现的，其指示一个完全功能的同步栅
 
 hint 值为 0 是默认必须实现的。它能够确保“IBAR 0”指令之后的取指一定能够观察到“IBAR 0”指令之前所有 store操作的执行效果。
 
-**操作定义：**
 
-**例外：**
 
-## **其它杂项指令**
-   ### **SYSCALL**
+## 其它杂项指令
+   ### SYSCALL
 
-|31|||||15|14|||||||||||0|
-| - | :-: | :-: | :-: | :-: | -: | - | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-|00000000001010110|code|||||||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 23.4375%; text-align: left;" colspan="3">14</td>
+<td style="width: 23.4375%; text-align: right;" colspan="3">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0000</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">10</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10110</td>
+<td style="text-align: center;" colspan="6">code</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** syscall  code
 
@@ -1238,15 +1951,33 @@ hint 值为 0 是默认必须实现的。它能够确保“IBAR 0”指令之后
 
 指令码中 code 域携带的信息可供例外处理例程作为所传递的参数使用。
 
-**操作定义：**
-
 **例外：**执行SYSCALL指令将确定地立刻触发系统调用例外（SYS）。
 
-### **BREAK**
+### BREAK
 
-|31|||||15|14|||||||||||0|
-| - | :-: | :-: | :-: | :-: | -: | - | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-|00000000001010100|code|||||||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 23.4375%; text-align: left;" colspan="3">14</td>
+<td style="width: 23.4375%; text-align: right;" colspan="3">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0000</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">10</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10100</td>
+<td style="text-align: center;" colspan="6">code</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** break  code
 
@@ -1254,19 +1985,65 @@ hint 值为 0 是默认必须实现的。它能够确保“IBAR 0”指令之后
 
 指令码中 code 域携带的信息可供例外处理例程作为所传递的参数使用。
 
-**操作定义：**
-
 **例外：**执行BREAK指令将确定地立刻触发断点例外（BRK）。
 
-### **RDCNTV{L/H}.W, RDCNTID**
+### RDCNTV{L/H}.W, RDCNTID
 
-||31|||||||15|14||10|9||5|4|||0|||
-| - | - | :-: | :-: | :-: | :-: | -: | :- | :-: | - | :-: | -: | - | :-: | -: | - | :-: | :-: | -: | :- | :- |
-|RDCNTID|00000000000000000|11000|rj|00000|||||||||||||||||
-|RDCNTVL.W|00000000000000000|11000|00000|rd|||||||||||||||||
-|RDCNTVH.W|00000000000000000|11001|00000|rd|||||||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="test-align: center;"> </td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">RDCNTID</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0000</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">00</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">11000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00000</td>
+</tr>
+<tr>
+<td style="test-align: center;">RDCNTVL.W</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0000</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">00</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">11000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+<tr>
+<td style="test-align: center;">RDCNTVH.W</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0000</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">00</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">11001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** rdcntvl.w  	rd
+**指令格式：** 
+
+rdcntvl.w  	rd
 
 rdcntvh.w 	rd
 
@@ -1276,7 +2053,7 @@ rdcntid   	rj
 
 RDCNTV{L/H}.W 指令用于读取恒定频率计时器信息，其中 RDCNTVL.W 读取 Counter 的[31:0]位写入通用寄存器 rd 中，RDCNTVH.W 读取 Counter 的[63:32]位。RDCNTID Counter ID 号信息写入通用寄存器 rj中。
 
-\*龙芯架构 32 位精简版中的 RDCNTVL.W rd、RDCNTVH.W rd 和 RDCNTID rj 指令实际上分别对应 32位龙芯架构中的RDTIMEL.W rd, zero、RDTIMEH.W rd, zero和RDTIMEL.W zero, rj这三种 RDTIME{L/H}.W指令的特殊使用。
+> 龙芯架构 32 位精简版中的 `RDCNTVL.W rd`、`RDCNTVH.W rd` 和 `RDCNTID rj` 指令实际上分别对应 32位龙芯架构中的`RDTIMEL.W rd, zero`、`RDTIMEH.W rd, zero`和`RDTIMEL.W zero, rj`这三种 RDTIME{L/H}.W指令的特殊使用。
 
 **操作定义：**
 
@@ -1295,9 +2072,9 @@ GR[rj] = Counter ID
 
 
 
-# **基础浮点数指令**
-   ## **浮点运算类指令**
-      ### **FADD.{S/D}**
+# 基础浮点数指令
+   ## 浮点运算类指令
+### FADD.{S/D}
 
 ||31|24|23|15|14|10|9||||5|4||||0|
 | - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
