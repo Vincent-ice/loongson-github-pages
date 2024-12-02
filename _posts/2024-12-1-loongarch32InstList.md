@@ -1,7 +1,8 @@
 ---
-title: LoongArch32精简版指令手册
+title: 自制:LoongArch32精简版指令手册
 date: 2024-12-01
 ---
+原手册: https://vincent-ice.github.io/loongson-github-pages/2024-12-02-LoongArch32R-Manual.html
 ***有错误请及时联系我***
 
 # 基础整数指令定义
