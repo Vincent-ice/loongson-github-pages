@@ -526,13 +526,13 @@ GR[rd] = product[63:32]
 
 div.w   rd, rj, rk
 
-`		  `div.wu  rd, rj, rk
+div.wu  rd, rj, rk
 
 **功能描述：** DIV.W 和 DIV.WU 将通用寄存器 rj 中的数据除以通用寄存器 rk 中的数据，所得的商写入通用寄存器rd 中。
 
 **操作定义：**
 
-`	`**DIV.W:**
+**DIV.W:**
 
 quotient = signed(GR[rj]) / signed(GR[rk])
 
@@ -593,13 +593,13 @@ GR[rd] = quotient[31:0]
 
 mod.w   rd, rj, rk
 
-`		  `mod.wu  rd, rj, rk
+mod.wu  rd, rj, rk
 
 **功能描述：** MOD.W 和 MOD.WU 将通用寄存器 rj 中的数据除以通用寄存器 rk 中的数据，所得的余数写入通用寄存器 rd 中。
 
 **操作定义：**
 
-`	`**MOD.W:**
+**MOD.W:**
 
 remainder = signed(GR[rj]) % signed(GR[rk])
 
@@ -1550,7 +1550,7 @@ ld.w  rd, rj, si12
 
 **操作定义：**
 
-`	`**LD.B:**
+**LD.B:**
 
 vaddr = GR[rj] + SignExtend(si12, 32)
 
@@ -1636,7 +1636,7 @@ ld.hu  rd, rj, si12
 
 **操作定义：**
 
-`	`**LD.BU:**
+**LD.BU:**
 
 vaddr = GR[rj] + SignExtend(si12, 32)
 
@@ -1720,7 +1720,7 @@ st.w  rd, rj, si12
 
 **操作定义：**
 
-`	`**ST.B:**
+**ST.B:**
 
 vaddr = GR[rj] + SignExtend(si12, 32)
 
@@ -1787,6 +1787,8 @@ PRELD 指令中的 hint 提示处理器预取的类型以及取回的数据填�
 如果 PRELD 指令的访存地址的 Cache 属性不是 cached，那么该指令不能产生访存动作，视同 NOP 指令处理。
 
 
+
+[^1]:  所谓自然对齐是指，访问半字对象时地址是2字节边界对齐，访问字对象时地址是4字节边界对齐，访问双字对象时地址是8字节边界对齐，访问128 位向量对象时地址是16字节边界对齐，访问256位向量对象时地址是32字节边界对齐。
 
 ## 原子访存指令
    ### LL.W, SC.W
@@ -2061,7 +2063,7 @@ RDCNTV{L/H}.W 指令用于读取恒定频率计时器信息，其中 RDCNTVL.W �
 
 GR[rd] = Counter [31:0]
 
-`		`**RDCNTVH.W:**
+**RDCNTVH.W:**
 
 GR[rd] = Counter [63:32]
 
@@ -2076,12 +2078,51 @@ GR[rj] = Counter ID
    ## 浮点运算类指令
 ### FADD.{S/D}
 
-||31|24|23|15|14|10|9||||5|4||||0|
-| - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
-|FADD.S |00000001|000000001|fk|fj|fd||||||||||||
-|FADD.D|00000001|000000010|fk|fj|fd||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="test-align: center;"> </td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">FADD.S</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">00</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+<tr>
+<td style="test-align: center;">FADD.D</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">00</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00010</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** fadd.s		fd, fj, fk
+**指令格式：** 
+
+fadd.s		fd, fj, fk
 
 fadd.d		fd, fj, fk
 
@@ -2091,20 +2132,59 @@ fadd.d		fd, fj, fk
 
 **FADD.S:**
 
-FR[fd][31:0] = FP32\_addition(FR[fj][31:0], FR[fk][31:0])
+FR\[fd][31:0] = FP32\_addition(FR\[fj][31:0], FR\[fk][31:0])
 
 **FADD.D:**
 
 FR[fd] = FP64\_addition(FR[fj], FR[fk])
 
-### **FSUB.{S/D}**
+### FSUB.{S/D}
 
-||31|24|23|15|14|10|9||||5|4||||0|
-| - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
-|FSUB.S |00000001|000000101|fk|fj|fd||||||||||||
-|FSUB.D|00000001|000000110|fk|fj|fd||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="test-align: center;"> </td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">FSUB.S</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">00</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00101</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+<tr>
+<td style="test-align: center;">FSUB.D</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">00</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00110</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** fsub.s		fd, fj, fk
+**指令格式：** 
+
+fsub.s		fd, fj, fk
 
 fsub.d		fd, fj, fk
 
@@ -2114,20 +2194,59 @@ fsub.d		fd, fj, fk
 
 **FSUB.S:**
 
-FR[fd][31:0] = FP32\_subtraction(FR[fj][31:0], FR[fk][31:0])
+FR\[fd][31:0] = FP32\_subtraction(FR\[fj][31:0], FR\[fk][31:0])
 
 **FSUB.D:**
 
 FR[fd] = FP64\_subtraction(FR[fj], FR[fk])
 
-### **FMUL.{S/D}**
+### FMUL.{S/D}
 
-||31|24|23|15|14|10|9||||5|4||||0|
-| - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
-|FMUL.S |00000001|000001001|fk|fj|fd||||||||||||
-|FMUL.D|00000001|000001010|fk|fj|fd||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="test-align: center;"> </td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">FMUL.S</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">00</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+<tr>
+<td style="test-align: center;">FMUL.D</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">00</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01010</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** fmul.s		fd, fj, fk
+**指令格式：** 
+
+fmul.s		fd, fj, fk
 
 fmul.d		fd, fj, fk
 
@@ -2137,20 +2256,59 @@ fmul.d		fd, fj, fk
 
 **FMUL.S:**
 
-FR[fd][31:0] = FP32\_multiplication(FR[fj][31:0], FR[fk][31:0])
+FR\[fd][31:0] = FP32\_multiplication(FR\[fj][31:0], FR\[fk][31:0])
 
 **FMUL.D:**
 
 FR[fd] = FP64\_multiplication(FR[fj], FR[fk])
 
-### **FDIV.{S/D}**
+### FDIV.{S/D}
 
-||31|24|23|15|14|10|9||||5|4||||0|
-| - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
-|FDIV.S |00000001|000001101|fk|fj|fd||||||||||||
-|FDIV.D|00000001|000001110|fk|fj|fd||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="test-align: center;"> </td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">FDIV.S</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">00</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01101</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+<tr>
+<td style="test-align: center;">FDIV.D</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">00</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01110</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** fdiv.s		fd, fj, fk
+**指令格式：** 
+
+fdiv.s		fd, fj, fk
 
 fdiv.d		fd, fj, fk
 
@@ -2160,20 +2318,59 @@ fdiv.d		fd, fj, fk
 
 **FDIV.S:**
 
-FR[fd][31:0] = FP32\_division(FR[fj][31:0], FR[fk][31:0])
+FR\[fd][31:0] = FP32\_division(FR\[fj][31:0], FR\[fk][31:0])
 
 **FDIV.D:**
 
 FR[fd] = FP64\_division(FR[fj], FR[fk])
 
-### **FMADD.{S/D}**
+### FMADD.{S/D}
 
-||31||||20|19|15|14||10|9||||5|4||||0|
-| - | - | :- | :- | :- | -: | - | -: | - | :- | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
-|FMADD.S |000010000001|fa|fk|fj|fd||||||||||||||||
-|FMADD.D|000010000010|fa|fk|fj|fd||||||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="test-align: center;"> </td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">FMADD.S</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000010</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0000</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fa</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+<tr>
+<td style="test-align: center;">FMADD.D</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000010</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0000</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">10</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fa</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** fmadd.s		fd, fj, fk
+**指令格式：** 
+
+fmadd.s		fd, fj, fk
 
 fmadd.d		fd, fj, fk
 
@@ -2183,20 +2380,59 @@ fmadd.d		fd, fj, fk
 
 **FMADD.S:**
 
-FR[fd][31:0] = FP32\_fusedMultiplyAdd(FR[fj][31:0], FR[fk][31:0], FR[fa][31:0])
+FR\[fd][31:0] = FP32\_fusedMultiplyAdd(FR\[fj][31:0], FR\[fk][31:0], FR\[fa][31:0])
 
 **FMADD.D:**
 
 FR[fd] = FP64\_fusedMultiplyAdd(FR[fj], FR[fk], FR[fa])
 
-### **FMSUB.{S/D}**
+### FMSUB.{S/D}
 
-||31||||20|19|15|14||10|9||||5|4||||0|
-| - | - | :- | :- | :- | -: | - | -: | - | :- | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
-|FMSUB.S |000010000101|fa|fk|fj|fd||||||||||||||||
-|FMSUB.D|000010000110|fa|fk|fj|fd||||||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="test-align: center;"> </td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">FMSUB.S</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000010</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0001</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fa</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+<tr>
+<td style="test-align: center;">FMSUB.D</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000010</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0001</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">10</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fa</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** fmsub.s		fd, fj, fk
+**指令格式：** 
+
+fmsub.s		fd, fj, fk
 
 fmsub.d		fd, fj, fk
 
@@ -2206,20 +2442,59 @@ fmsub.d		fd, fj, fk
 
 **FMSUB.S:**
 
-FR[fd][31:0] = FP32\_fusedMultiplyAdd(FR[fj][31:0], FR[fk][31:0], -FR[fa][31:0])
+FR\[fd][31:0] = FP32\_fusedMultiplyAdd(FR\[fj][31:0], FR\[fk][31:0], -FR\[fa][31:0])
 
 **FMSUB.D:**
 
 FR[fd] = FP64\_fusedMultiplyAdd(FR[fj], FR[fk], -FR[fa])
 
-### **FNMADD.{S/D}**
+### FNMADD.{S/D}
 
-||31||||20|19|15|14||10|9||||5|4||||0|
-| - | - | :- | :- | :- | -: | - | -: | - | :- | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
-|FNMADD.S |000010001001|fa|fk|fj|fd||||||||||||||||
-|FNMADD.D|000010001010|fa|fk|fj|fd||||||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="test-align: center;"> </td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">FNMADD.S</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000010</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0010</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fa</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+<tr>
+<td style="test-align: center;">FNMADD.D</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000010</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0010</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">10</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fa</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** fnmadd.s		fd, fj, fk
+**指令格式：** 
+
+fnmadd.s		fd, fj, fk
 
 fnmadd.d		fd, fj, fk
 
@@ -2229,20 +2504,59 @@ fnmadd.d		fd, fj, fk
 
 **FNMADD.S:**
 
-FR[fd][31:0] = -FP32\_fusedMultiplyAdd(FR[fj][31:0], FR[fk][31:0], FR[fa][31:0])
+FR\[fd][31:0] = -FP32\_fusedMultiplyAdd(FR\[fj][31:0], FR\[fk][31:0], FR\[fa][31:0])
 
 **FNMADD.D:**
 
 FR[fd] = -FP64\_fusedMultiplyAdd(FR[fj], FR[fk], FR[fa])
 
-### **FNMSUB.{S/D}**
+### FNMSUB.{S/D}
 
-||31||||20|19|15|14||10|9||||5|4||||0|
-| - | - | :- | :- | :- | -: | - | -: | - | :- | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
-|FNMSUB.S |000010001101|fa|fk|fj|fd||||||||||||||||
-|FNMSUB.D|000010001110|fa|fk|fj|fd||||||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="test-align: center;"> </td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">FNMSUB.S</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000010</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0011</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fa</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+<tr>
+<td style="test-align: center;">FNMSUB.D</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000010</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0011</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">10</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fa</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** fnmsub.s		fd, fj, fk
+**指令格式：** 
+
+fnmsub.s		fd, fj, fk
 
 fnmsub.d		fd, fj, fk
 
@@ -2252,20 +2566,59 @@ fnmsub.d		fd, fj, fk
 
 **FNMSUB.S:**
 
-FR[fd][31:0] = -FP32\_fusedMultiplyAdd(FR[fj][31:0], FR[fk][31:0], -FR[fa][31:0])
+FR\[fd][31:0] = -FP32\_fusedMultiplyAdd(FR\[fj][31:0], FR\[fk][31:0], -FR\[fa][31:0])
 
 **FNMSUB.D:**
 
 FR[fd] = -FP64\_fusedMultiplyAdd(FR[fj], FR[fk], -FR[fa])
 
-### **FMAX.{S/D}**
+### FMAX.{S/D}
 
-||31|24|23|15|14|10|9||||5|4||||0|
-| - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
-|FMAX.S |00000001|000010001|fk|fj|fd||||||||||||
-|FMAX.D|00000001|000010010|fk|fj|fd||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="test-align: center;"> </td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">FMAX.S</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">00</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+<tr>
+<td style="test-align: center;">FMAX.D</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">00</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10010</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** fmax.s		fd, fj, fk
+**指令格式：** 
+
+fmax.s		fd, fj, fk
 
 fmax.d		fd, fj, fk
 
@@ -2275,20 +2628,59 @@ fmax.d		fd, fj, fk
 
 **FMAX.S:**
 
-FR[fd][31:0] = FP32\_maxNum(FR[fj][31:0], FR[fk][31:0])
+FR\[fd][31:0] = FP32\_maxNum(FR\[fj][31:0], FR\[fk][31:0])
 
 **FMAX.D:**
 
 FR[fd] = FP64\_maxNum(FR[fj], FR[fk])
 
-### **FMIN.{S/D}**
+### FMIN.{S/D}
 
-||31|24|23|15|14|10|9||||5|4||||0|
-| - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
-|FMIN.S |00000001|000010101|fk|fj|fd||||||||||||
-|FMIN.D|00000001|000010110|fk|fj|fd||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="test-align: center;"> </td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">FMIN.S</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">00</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10101</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+<tr>
+<td style="test-align: center;">FMIN.D</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">00</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10110</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** fmin.s		fd, fj, fk
+**指令格式：** 
+
+fmin.s		fd, fj, fk
 
 fmin.d		fd, fj, fk
 
@@ -2298,20 +2690,59 @@ fmin.d		fd, fj, fk
 
 **FMIN.S:**
 
-FR[fd][31:0] = FP32\_minNum(FR[fj][31:0], FR[fk][31:0])
+FR\[fd][31:0] = FP32\_minNum(FR\[fj][31:0], FR\[fk][31:0])
 
 **FMIN.D:**
 
 FR[fd] = FP64\_minNum(FR[fj], FR[fk])
 
-### **FMAXA.{S/D}**
+### FMAXA.{S/D}
 
-||31|24|23|15|14|10|9||||5|4||||0|
-| - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
-|FMAXA.S |00000001|000011001|fk|fj|fd||||||||||||
-|FMAXA.D|00000001|000011010|fk|fj|fd||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="test-align: center;"> </td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">FMAXA.S</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">00</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">11001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+<tr>
+<td style="test-align: center;">FMAXA.D</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">00</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">11010</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** fmaxa.s		fd, fj, fk
+**指令格式：** 
+
+fmaxa.s		fd, fj, fk
 
 fmaxa.d		fd, fj, fk
 
@@ -2321,20 +2752,59 @@ fmaxa.d		fd, fj, fk
 
 **FMAXA.S:**
 
-FR[fd][31:0] = FP32\_maxNumMag(FR[fj][31:0], FR[fk][31:0])
+FR\[fd][31:0] = FP32\_maxNumMag(FR\[fj][31:0], FR\[fk][31:0])
 
 **FMAXA.D:**
 
 FR[fd] = FP64\_maxNumMag(FR[fj], FR[fk])
 
-### **FMINA.{S/D}**
+### FMINA.{S/D}
 
-||31|24|23|15|14|10|9||||5|4||||0|
-| - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
-|FMINA.S |00000001|000011101|fk|fj|fd||||||||||||
-|FMINA.D|00000001|000011110|fk|fj|fd||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="test-align: center;"> </td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">FMINA.S</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">00</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">11101</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+<tr>
+<td style="test-align: center;">FMINA.D</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">00</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">11110</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** fmina.s		fd, fj, fk
+**指令格式：** 
+
+fmina.s		fd, fj, fk
 
 fmina.d		fd, fj, fk
 
@@ -2344,20 +2814,59 @@ fmina.d		fd, fj, fk
 
 **FMINA.S:**
 
-FR[fd][31:0] = FP32\_minNumMag(FR[fj][31:0], FR[fk][31:0])
+FR\[fd][31:0] = FP32\_minNumMag(FR\[fj][31:0], FR\[fk][31:0])
 
 **FMINA.D:**
 
 FR[fd] = FP64\_minNumMag(FR[fj], FR[fk])
 
-### **FABS.{S/D}**
+### FABS.{S/D}
 
-||31|24|23|15|14|10|9||||5|4||||0|
-| - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
-|FABS.S |00000001|000101000|00001|fj|fd||||||||||||
-|FABS.D|00000001|000101000|00010|fj|fd||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="test-align: center;"> </td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">FABS.S</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+<tr>
+<td style="test-align: center;">FABS.D</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00010</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** fabs.s		fd, fj
+**指令格式：** 
+
+fabs.s		fd, fj
 
 fabs.d		fd, fj
 
@@ -2367,20 +2876,59 @@ fabs.d		fd, fj
 
 **FABS.S:**
 
-FR[fd][31:0] = FP32\_abs(FR[fj][31:0])
+FR\[fd][31:0] = FP32\_abs(FR\[fj][31:0])
 
 **FABS.D:**
 
 FR[fd] = FP64\_abs(FR[fj])
 
-### **FNEG.{S/D}**
+### FNEG.{S/D}
 
-||31|24|23|15|14|10|9||||5|4||||0|
-| - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
-|FNEG.S |00000001|000101000|00101|fj|fd||||||||||||
-|FNEG.D|00000001|000101000|00110|fj|fd||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="test-align: center;"> </td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">FNEG.S</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00101</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+<tr>
+<td style="test-align: center;">FNEG.D</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00110</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** fneg.s		fd, fj
+**指令格式：** 
+
+fneg.s		fd, fj
 
 fneg.d		fd, fj
 
@@ -2390,20 +2938,59 @@ fneg.d		fd, fj
 
 **FNEG.S:**
 
-FR[fd][31:0] = FP32\_negate(FR[fj][31:0])
+FR\[fd][31:0] = FP32\_negate(FR\[fj][31:0])
 
 **FNEG.D:**
 
 FR[fd] = FP64\_negate(FR[fj])
 
-### **FSQRT.{S/D}**
+### FSQRT.{S/D}
 
-||31|24|23|15|14|10|9||||5|4||||0|
-| - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
-|FSQRT.S |00000001|000101000|10001|fj|fd||||||||||||
-|FSQRT.D|00000001|000101000|10010|fj|fd||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="test-align: center;"> </td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">FSQRT.S</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+<tr>
+<td style="test-align: center;">FSQRT.D</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10010</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** fsqrt.s		fd, fj
+**指令格式：** 
+
+fsqrt.s		fd, fj
 
 fsqrt.d		fd, fj
 
@@ -2413,20 +3000,59 @@ fsqrt.d		fd, fj
 
 **FSQRT.S:**
 
-FR[fd][31:0] = FP32\_squareRoot(FR[fj][31:0])
+FR\[fd][31:0] = FP32\_squareRoot(FR\[fj][31:0])
 
 **FSQRT.D:**
 
 FR[fd] = FP64\_squareRoot(FR[fj])
 
-### **FRECIP.{S/D}**
+### FRECIP.{S/D}
 
-||31|24|23|15|14|10|9||||5|4||||0|
-| - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
-|FRECIP.S |00000001|000101000|10101|fj|fd||||||||||||
-|FRECIP.D|00000001|000101000|10110|fj|fd||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="test-align: center;"> </td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">FRECIP.S</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10101</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+<tr>
+<td style="test-align: center;">FRECIP.D</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10110</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** frecip.s	fd, fj
+**指令格式：** 
+
+frecip.s	fd, fj
 
 frecip.d	fd, fj
 
@@ -2436,20 +3062,59 @@ frecip.d	fd, fj
 
 **FRECIP.S:**
 
-FR[fd][31:0] = FP32\_division(1.0, FR[fj][31:0])
+FR\[fd][31:0] = FP32\_division(1.0, FR\[fj][31:0])
 
 **FRECIP.D:**
 
 FR[fd] = FP64\_division(1.0, FR[fj])
 
-### **FRSQRT.{S/D}**
+### FRSQRT.{S/D}
 
-||31|24|23|15|14|10|9||||5|4||||0|
-| - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
-|FRSQRT.S |00000001|000101000|11001|fj|fd||||||||||||
-|FRSQRT.D|00000001|000101000|11010|fj|fd||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="test-align: center;"> </td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">FRSQRT.S</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">11001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+<tr>
+<td style="test-align: center;">FRSQRT.D</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">11010</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** frsqrt.s		fd, fj
+**指令格式：** 
+
+frsqrt.s		fd, fj
 
 frsqrt.d	fd, fj
 
@@ -2459,20 +3124,59 @@ frsqrt.d	fd, fj
 
 **FRSQRT.S:**
 
-FR[fd][31:0] = FP32\_division(1.0, FP\_squareRoot(FR[fj][31:0]))
+FR\[fd][31:0] = FP32\_division(1.0, FP\_squareRoot(FR\[fj][31:0]))
 
 **FRSQRT.D:**
 
 FR[fd] = FP64\_division(1.0, FP\_squareRoot(FR[fj]))
 
-### **FCOPYSIGN.{S/D}**
+### FCOPYSIGN.{S/D}
 
-||31|24|23|15|14|10|9||||5|4||||0|
-| - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
-|FCOPYSIGN.S |00000001|000100101|fk|fj|fd||||||||||||
-|FCOPYSIGN.D|00000001|000100110|fk|fj|fd||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="test-align: center;"> </td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">FCOPYSIGN.S</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00101</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+<tr>
+<td style="test-align: center;">FCOPYSIGN.D</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00110</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** fcopysign.s  	fd, fj, fk
+**指令格式：** 
+
+fcopysign.s  	fd, fj, fk
 
 fcopysign.d  	fd, fj, fk
 
@@ -2482,29 +3186,94 @@ fcopysign.d  	fd, fj, fk
 
 **FCOPYSIGN.S:**
 
-FR[fd][31:0] = FP32\_copySign(FR[fj][31:0], FR[fk][31:0])
+FR\[fd][31:0] = FP32\_copySign(FR\[fj][31:0], FR\[fk][31:0])
 
 **FCOPYSIGN.D:**
 
 FR[fd] = FP64\_copySign(FR[fj], FR[fk])
 
-### **FCLASS.{S/D}**
+### FCLASS.{S/D}
 
-||31|24|23|15|14|10|9||||5|4||||0|
-| - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
-|FCLASS.S |00000001|000101000|01101|fj|fd||||||||||||
-|FCLASS.D|00000001|000101000|01110|fj|fd||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="test-align: center;"> </td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">FCLASS.S</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01101</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+<tr>
+<td style="test-align: center;">FCLASS.D</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01110</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** fclass.s  	fd, fj 
+**指令格式：** 
+
+fclass.s  	fd, fj 
 
 fclass.d 	fd, fj
 
 **功能描述：** 本指令对浮点寄存器 fj 中的浮点数进行类别的判断，所得的判断结果一共由 10 比特信息组成，每比特的含义如下表所示:
 
-<table><tr><th colspan="1">Bit0</th><th colspan="1">Bit1</th><th colspan="1">Bit2</th><th colspan="1">Bit3</th><th colspan="1">Bit4</th><th colspan="1">Bit5</th><th colspan="1">Bit6</th><th colspan="1">Bit7</th><th colspan="1">Bit8</th><th colspan="1">Bit9</th></tr>
-<tr><td colspan="1" rowspan="2">SNaN</td><td colspan="1" rowspan="2">QNaN</td><td colspan="4">negative value</td><td colspan="4">positive value</td></tr>
-<tr><td colspan="1">∞</td><td colspan="1">normal</td><td colspan="1">subnormal</td><td colspan="1">0</td><td colspan="1">∞</td><td colspan="1">normal</td><td colspan="1">subnormal</td><td colspan="1">0</td></tr>
+<table>
+    <tr>
+        <th colspan="1">Bit0</th>
+        <th colspan="1">Bit1</th>
+        <th colspan="1">Bit2</th>
+        <th colspan="1">Bit3</th>
+        <th colspan="1">Bit4</th>
+        <th colspan="1">Bit5</th>
+        <th colspan="1">Bit6</th>
+        <th colspan="1">Bit7</th>
+        <th colspan="1">Bit8</th>
+        <th colspan="1">Bit9</th>
+    </tr>
+	<tr>
+        <td style="text-align: center;" colspan="1" rowspan="2">SNaN</td>
+        <td style="text-align: center;" colspan="1" rowspan="2">QNaN</td>
+        <td style="text-align: center;" colspan="4">negative value</td>
+        <td style="text-align: center;" colspan="4">positive value</td>
+    </tr>
+	<tr>
+        <td colspan="1">∞</td>
+        <td colspan="1">normal</td>
+        <td colspan="1">subnormal</td>
+        <td colspan="1">0</td><td colspan="1">∞</td>
+        <td colspan="1">normal</td>
+        <td colspan="1">subnormal</td>
+        <td colspan="1">0</td>
+    </tr>
 </table>
+
 
 当被判断的数据符合某个比特对应的条件时，结果信息向量的对应比特就会被置为 1。该指令对应IEEE 754-2008 标准中的 class(x)函数。
 
@@ -2512,28 +3281,67 @@ fclass.d 	fd, fj
 
 **FCLASS.S:**
 
-FR[fd][31:0] = FP32\_class(FR[fj][31:0])
+FR\[fd][31:0] = FP32\_class(FR\[fj][31:0])
 
 **FCLASS.D:**
 
 FR[fd] = FP64\_class(FR[fj])
 
-## **浮点比较指令**
-   ### **FCMP.cond.{S/D}**
+## 浮点比较指令
+   ### FCMP.cond.{S/D}
 
-||31|||20|19|15|14|10|9||||5|4|3|2||0|
-| :-: | - | :-: | :-: | -: | - | -: | - | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-|FCMP.cond.S|000011000001|cond|fk|fj|0|0|cd||||||||||||
-|FCMP.cond.D|000011000010|cond|fk|fj|0|0|cd||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="test-align: center;"> </td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">FCMP.cond.S</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000011</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0000</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">cond</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">cd</td>
+</tr>
+<tr>
+<td style="test-align: center;">FCMP.cond.D</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000011</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0000</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">cond</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">cd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** fcmp.cond.s  cc, fj, fk 
+**指令格式：** 
+
+fcmp.cond.s  cc, fj, fk 
 
 fcmp.cond.d  cc, fj, f
 
 **功能描述：** 这是一条浮点比较指令，将比较的结果存入指定的状态码（cc）。这条指令的 cond 有 22 种，这些比较条件以及判断的标准在下表中列出来:
 
 <table><tr><th colspan="1"><b>助记符</b></th><th colspan="1"><b>cond</b></th><th colspan="1"><b>含义</b></th><th colspan="1"><b>True Condition</b></th><th colspan="1"><b>QNaN是否 报例外</b></th><th colspan="1"><b>对应 IEEE 754-2008 函数</b></th></tr>
-<tr><td colspan="1" valign="bottom">CAF</td><td colspan="1" valign="bottom">Ox0</td><td colspan="1" valign="bottom">否</td><td colspan="1" valign="bottom">无</td><td colspan="1" rowspan="11">否</td><td colspan="1" valign="bottom"></td></tr>
+<tr><td colspan="1" valign="bottom">CAF</td><td colspan="1" valign="bottom">Ox0</td><td colspan="1">否</td><td colspan="1" valign="bottom">无</td><td colspan="1" rowspan="11" align="center" valign="middle">否</td><td colspan="1" valign="bottom"></td></tr>
 <tr><td colspan="1" valign="bottom">CUN</td><td colspan="1" valign="bottom">0x8</td><td colspan="1" valign="bottom">无法比较</td><td colspan="1" valign="bottom">UN</td><td colspan="1" valign="bottom">compareQuietUnordered</td></tr>
 <tr><td colspan="1" valign="bottom">CEQ</td><td colspan="1" valign="bottom">0x4</td><td colspan="1" valign="bottom">相等</td><td colspan="1" valign="bottom">EQ</td><td colspan="1" valign="bottom">compareQuietEqual</td></tr>
 <tr><td colspan="1" valign="bottom">CUEQ</td><td colspan="1" valign="bottom">OxC</td><td colspan="1" valign="bottom">相等或无法比较</td><td colspan="1" valign="bottom">UN EQ</td><td colspan="1" valign="bottom"></td></tr>
@@ -2544,7 +3352,7 @@ fcmp.cond.d  cc, fj, f
 <tr><td colspan="1" valign="bottom">CNE</td><td colspan="1" valign="bottom">0x10</td><td colspan="1" valign="bottom">不等</td><td colspan="1" valign="bottom">GT LT</td><td colspan="1" valign="bottom"></td></tr>
 <tr><td colspan="1" valign="bottom">COR</td><td colspan="1" valign="bottom">0x14</td><td colspan="1" valign="bottom">有序</td><td colspan="1" valign="bottom">GT LT EQ</td><td colspan="1" valign="bottom"></td></tr>
 <tr><td colspan="1" valign="bottom">CUNE</td><td colspan="1" valign="bottom">0x18</td><td colspan="1" valign="bottom">无法比较或不等</td><td colspan="1" valign="bottom">UN GT LT</td><td colspan="1" valign="bottom">compareQuietNotEqual</td></tr>
-<tr><td colspan="1" valign="bottom">SAF</td><td colspan="1" valign="bottom">0x1</td><td colspan="1" valign="bottom">否</td><td colspan="1" valign="bottom">无</td><td colspan="1" rowspan="11">是</td><td colspan="1" valign="bottom"></td></tr>
+<tr><td colspan="1" valign="bottom">SAF</td><td colspan="1" valign="bottom">0x1</td><td colspan="1" valign="bottom">否</td><td colspan="1" valign="bottom">无</td><td colspan="1" rowspan="11" align="center" valign="middle">是</td><td colspan="1" valign="bottom"></td></tr>
 <tr><td colspan="1" valign="bottom">SUN</td><td colspan="1" valign="bottom">0x9</td><td colspan="1" valign="bottom">不是大于小于或等于</td><td colspan="1" valign="bottom">UN</td><td colspan="1" valign="bottom"></td></tr>
 <tr><td colspan="1" valign="bottom">SEQ</td><td colspan="1" valign="bottom">0x5</td><td colspan="1" valign="bottom">相等</td><td colspan="1" valign="bottom">EQ</td><td colspan="1" valign="bottom">compareSignalingEqual</td></tr>
 <tr><td colspan="1" valign="bottom">SUEQ</td><td colspan="1" valign="bottom">OxD</td><td colspan="1" valign="bottom">不是大于或小于</td><td colspan="1" valign="bottom">UN EQ</td><td colspan="1" valign="bottom"></td></tr>
@@ -2558,12 +3366,39 @@ fcmp.cond.d  cc, fj, f
 <tr><td colspan="6">注：UN表示无法比较、EQ表示相等、LT表示小于。当有两个操作数中有至少一个NaN时，这两个数就无法比较。</td></tr>
 </table>
 
-## **浮点转换指令**
-   ### **FCVT.S.D**
 
-|31|24|23|15|14|10|9||||5|4||||0|
-| - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
-|00000001|000110010|00110|fj|fd||||||||||||
+## 浮点转换指令
+   ### FCVT.S.D
+
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10010</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00110</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** fcvt.s.d 	fd, fj
 
@@ -2571,13 +3406,39 @@ fcmp.cond.d  cc, fj, f
 
 **操作定义：**
 
-FR[fd][31:0] = FP32\_convertFormat(FR[fj], FP64)
+FR\[fd][31:0] = FP32\_convertFormat(FR[fj], FP64)
 
-### **FCVT.D.S**
+### FCVT.D.S
 
-|31|24|23|15|14|10|9||||5|4||||0|
-| - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
-|00000001|000110010|01001|fj|fd||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10010</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** fcvt.d.s 	fd, fj
 
@@ -2585,16 +3446,55 @@ FR[fd][31:0] = FP32\_convertFormat(FR[fj], FP64)
 
 **操作定义：**
 
-FR[fd] = FP64\_convertFormat(FR[fj][31:0], FP32)
+FR[fd] = FP64\_convertFormat(FR\[fj][31:0], FP32)
 
-### **FFINT.{S/D}.W**
+### FFINT.{S/D}.W
 
-||31|24|23|15|14|10|9||||5|4||||0|
-| - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
-|FFINT.S.W|00000001|000111010|00100|fj|fd||||||||||||
-|FFINT.D.W|00000001|000111010|01000|fj|fd||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="test-align: center;"> </td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">FFINT.S.W</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">11010</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00100</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+<tr>
+<td style="test-align: center;">FFINT.D.W</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">11010</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** ffint.s.w	fd, fj
+**指令格式：** 
+
+ffint.s.w	fd, fj
 
 ffint.d.w	fd, fj
 
@@ -2604,20 +3504,59 @@ ffint.d.w	fd, fj
 
 **FFINT.S.W:**
 
-FR[fd][31:0] = FP32\_convertFromInt(FR[fj][31:0], SINT32)
+FR\[fd][31:0] = FP32\_convertFromInt(FR\[fj][31:0], SINT32)
 
 **FFINT.D.W:**
 
-FR[fd] = FP64\_convertFromInt(FR[fj][31:0], SINT32)
+FR[fd] = FP64\_convertFromInt(FR\[fj][31:0], SINT32)
 
-### **FTINT.W.{S/D}**
+### FTINT.W.{S/D}
 
-||31|24|23|15|14|10|9||||5|4||||0|
-| - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
-|FTINT.W.S|00000001|000110110|00001|fj|fd||||||||||||
-|FTINT.W.D|00000001|000110110|00010|fj|fd||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="test-align: center;"> </td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">FFINT.W.S</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10110</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+<tr>
+<td style="test-align: center;">FFINT.W.D</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10110</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00010</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** ftint.w.s	fd, fj
+**指令格式：** 
+
+ftint.w.s	fd, fj
 
 ftint.w.d	fd, fj
 
@@ -2634,26 +3573,119 @@ ftint.w.d	fd, fj
 
 **FTINT.W.S:**
 
-FR[fd][31:0] = FP32convertToSint32(FR[fj][31:0], FCSR.RM)
+FR\[fd][31:0] = FP32convertToSint32(FR\[fj][31:0], FCSR.RM)
 
 **FTINT.W.D:**
 
 FR[fd] = FP64convertToSint32(FR[fj], FCSR.RM)
 
-### **FTINT{RM/RP/RZ/RNE}.W.{S/D}**
+### FTINT{RM/RP/RZ/RNE}.W.{S/D}
 
-||31|24|23|15|14|10|9||||5|4||||0|
-| - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
-|FTINTRM.W.S|00000001|000110100|00001|fj|fd||||||||||||
-|FTINTRM.W.D|00000001|000110100|00010|fj|fd||||||||||||
-|FTINTRP.W.S|00000001|000110100|10001|fj|fd||||||||||||
-|FTINTRP.W.D|00000001|000110100|10010|fj|fd||||||||||||
-|FTINTRZ.W.S|00000001|000110101|00001|fj|fd||||||||||||
-|FTINTRZ.W.D|00000001|000110101|00010|fj|fd||||||||||||
-|FTINTRNE.W.S|00000001|000110101|10001|fj|fd||||||||||||
-|FTINTRNE.W.D|00000001|000110101|10010|fj|fd||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="test-align: center;"> </td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">FTINTRM.W.S</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10100</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+<tr>
+<td style="test-align: center;">FTINTRM.W.D</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10100</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00010</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+    <tr>
+<td style="test-align: center;">FTINTRP.W.S</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10100</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+<tr>
+<td style="test-align: center;">FTINTRP.W.D</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10100</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10010</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+    <tr>
+<td style="test-align: center;">FTINTRZ.W.S</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10101</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+<tr>
+<td style="test-align: center;">FTINTRZ.W.D</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10101</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00010</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+    <tr>
+<td style="test-align: center;">FTINTRNE.W.S</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10101</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+<tr>
+<td style="test-align: center;">FTINTRNE.W.D</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10101</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10010</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** ftintrm.w.s 	fd, fj 	ftintrp.w.s 	fd, fj
+**指令格式：** 
+
+ftintrm.w.s 	fd, fj 	ftintrp.w.s 	fd, fj
 
 ftintrm.w.d	fd, fj 	ftintrp.w.d	fd, fj
 
@@ -2673,7 +3705,7 @@ FTINTRNE.W.{S/D}指令选择浮点寄存器 fj 中的单精度/双精度浮点�
 
 **FTINTRM.W.S:**
 
-FR[fd][31:0] = FP32convertToSint32(FR[fj][31:0], 3)
+FR\[fd][31:0] = FP32convertToSint32(FR\[fj][31:0], 3)
 
 **FTINTRM.W.D:**
 
@@ -2681,7 +3713,7 @@ FR[fd] = FP64convertToSint32(FR[fj], 3)
 
 **FTINTRP.W.S:**
 
-FR[fd][31:0] = FP32convertToSint32(FR[fj][31:0], 2)
+FR\[fd][31:0] = FP32convertToSint32(FR\[fj][31:0], 2)
 
 **FTINTRP.W.D:**
 
@@ -2689,7 +3721,7 @@ FR[fd] = FP64convertToSint32(FR[fj], 2)
 
 **FTINTRZ.W.S:**
 
-FR[fd][31:0] = FP32convertToSint32(FR[fj][31:0], 1)
+FR\[fd][31:0] = FP32convertToSint32(FR\[fj][31:0], 1)
 
 **FTINTRZ.W.D:**
 
@@ -2697,20 +3729,59 @@ FR[fd] = FP64convertToSint32(FR[fj], 1)
 
 **FTINTRNE.W.S:**
 
-FR[fd][31:0] = FP32convertToSint32(FR[fj][31:0], 0)
+FR\[fd][31:0] = FP32convertToSint32(FR\[fj][31:0], 0)
 
 **FTINTRNE.W.D:**
 
 FR[fd] = FP64convertToSint32(FR[fj], 0)
-## **浮点搬运指令**
-   ### **FMOV.{S/D}**
+## 浮点搬运指令
+   ### FMOV.{S/D}
 
-||31|24|23|15|14|10|9||||5|4||||0|
-| - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
-|FMOV.S|00000001|000101001|00101|fj|fd||||||||||||
-|FMOV.D|00000001|000101001|00110|fj|fd||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="test-align: center;"> </td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">FMOV.S</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00101</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+<tr>
+<td style="test-align: center;">FMOV.D</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00110</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** fmov.s 	fd, fj 
+**指令格式：** 
+
+fmov.s 	fd, fj 
 
 fmov.d 	fd, fj
 
@@ -2722,19 +3793,45 @@ fmov.d 	fd, fj
 
 **FMOV.S：**
 
-FR[fd][31:0] = FR[fj][31:0]
+FR\[fd][31:0] = FR\[fj][31:0]
 
 **FMOV.d：**
 
 FR[fd] = FR[fj]
 
-`	`**例外：**上述指令操作是非算术的，不会引发 IEEE 754 例外，也不修改浮点控制状态寄存器的 Cause 和 Flags域。
+**例外：**上述指令操作是非算术的，不会引发 IEEE 754 例外，也不修改浮点控制状态寄存器的 Cause 和 Flags域。
 
-### **FSEL**
+### FSEL
 
-|31|||20|19|18|17|15|14|10|9|5|4|0|||||
-| - | :-: | :-: | -: | :-: | :-: | :-: | -: | - | -: | - | -: | - | -: | :- | :- | :- | :- |
-|000011010000|0|0|ca|fk|fj|fd||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000011</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">00</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">ca</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** fsel 	fd, fj, fk, ca
 
@@ -2744,14 +3841,53 @@ FR[fd] = FR[fj]
 
 FR[fd] = CFR[ca] ? FR[fk] : FR[fj]
 
-### **MOVGR2FR.W, MOVGR2FRH.W**
+### MOVGR2FR.W, MOVGR2FRH.W
 
-||31|24|23|15|14|10|9||||5|4||||0|
-| - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
-|MOVGR2FR.W|00000001|000101001|01001|rj|fd||||||||||||
-|MOVGR2FRH.W|00000001|000101001|01011|rj|fd||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="test-align: center;"> </td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">MOVGR2FR.W</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+<tr>
+<td style="test-align: center;">MOVGR2FRH.W</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01010</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** movgr2fr.w 	fd, rj
+**指令格式：** 
+
+movgr2fr.w 	fd, rj
 
 movgr2frh.w 	fd, rj
 
@@ -2765,22 +3901,61 @@ MOVGR2FRH.W 将通用寄存器 rj 值写入浮点寄存器 fd 的高 32 位中�
 
 **MOVGR2FR.W：**
 
-FR[fd][31:0] = GR[rj]
+FR\[fd][31:0] = GR[rj]
 
 **MOVGR2FRH.W：**
 
-FR[fd][63:32] = GR[rj]
+FR\[fd][63:32] = GR[rj]
 
-FR[fd][31: 0] = FR[fd][31:0]
+FR\[fd][31: 0] = FR\[fd][31:0]
 
-### **MOVFR2GR.S, MOVFRH2GR.S**
+### MOVFR2GR.S, MOVFRH2GR.S
 
-||31|24|23|15|14|10|9||||5|4||||0|
-| - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
-|MOVFR2GR.S|00000001|000101001|01101|fj|rd||||||||||||
-|MOVFRH2GR.S|00000001|000101001|01111|fj|rd||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="test-align: center;"> </td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">MOVFR2GR.S</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01101</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+<tr>
+<td style="test-align: center;">MOVFRH2GR.S</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01110</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** movfr2gr.s 	rd, fj
+**指令格式：** 
+
+movfr2gr.s 	rd, fj
 
 movfrh2gr.s 	rd, fj
 
@@ -2792,20 +3967,59 @@ movfrh2gr.s 	rd, fj
 
 **MOVFR2GR.S：**
 
-GR[rd] = FR[fj][31:0]
+GR[rd] = FR\[fj][31:0]
 
 **MOVFRH2GR.S：**
 
-GR[rd] = FR[fj][63:32]
+GR[rd] = FR\[fj][63:32]
 
-### **MOVGR2FCSR, MOVFCSR2GR**
+### MOVGR2FCSR, MOVFCSR2GR
 
-||31|24|23|15|14|10|9||||5|4||||0|
-| - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
-|MOVGR2FCSR|00000001|000101001|10000|rj|fcsr||||||||||||
-|MOVFCSR2GR|00000001|000101001|10010|fcsr|rd||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="test-align: center;"> </td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">MOVGR2FCSR</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fcsr</td>
+</tr>
+<tr>
+<td style="test-align: center;">MOVFCSR2GR</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10010</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fcsr</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** movgr2fcsr 	fcsr, rj
+**指令格式：** 
+
+movgr2fcsr 	fcsr, rj
 
 movfcsr2gr 	rd, fcsr
 
@@ -2823,16 +4037,55 @@ FCSR[fcsr] = GR[rj]
 
 GR[rd] = FCSR[fcsr]
 
-`	`**注：**如果上述指令中的 fcsr 指示的浮点控制状态寄存器不存在，则结果不确定。
+**注：**如果上述指令中的 fcsr 指示的浮点控制状态寄存器不存在，则结果不确定。
 
-### **MOVFR2CF, MOVCF2FR**
+### MOVFR2CF, MOVCF2FR
 
-||31|24|23|15|14|10|9|8|7||5|4|3|2||0|||
-| - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
-|MOVFR2CF|00000001|000101001|10100|fj|0|0|cd||||||||||||
-|MOVCF2FR|00000001|000101001|10101|0|0|cj|fd||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="test-align: center;"> </td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">MOVFR2CF</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10101</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">cd</td>
+</tr>
+<tr>
+<td style="test-align: center;">MOVCF2FR</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10101</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">cj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** movfr2cf 	cd, fj
+**指令格式：** 
+
+movfr2cf 	cd, fj
 
 movcf2fr 	fd, cj
 
@@ -2846,20 +4099,59 @@ MOVCF2FR 将条件标志寄存器 cj 的值写入浮点寄存器 fd 的最低一
 
 **MOVFR2CF：**
 
-CFR[cd] = FR[fj][0]
+CFR[cd] = FR\[fj][0]
 
 **MOVCF2FR：**
 
-FR[fd][0] = ZeroExtend(CFR[cj], 64)
+FR\[fd][0] = ZeroExtend(CFR[cj], 64)
 
-### **MOVGR2CF, MOVCF2GR**
+### MOVGR2CF, MOVCF2GR
 
-||31|24|23|15|14|10|9|8|7||5|4|3|2||0|||
-| - | - | -: | - | -: | - | -: | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
-|MOVGR2CF|00000001|000101001|10110|rj|0|0|cd||||||||||||
-|MOVCF2GR|00000001|000101001|10111|0|0|cj|rd||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="test-align: center;"> </td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">MOVGR2CF</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10110</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">cd</td>
+</tr>
+<tr>
+<td style="test-align: center;">MOVCF2GR</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000000</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">0100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">01</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10111</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">cj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** movgr2cf 	cd, rj
+**指令格式：** 
+
+movgr2cf 	cd, rj
 
 movcf2gr 	rd, cj
 
@@ -2873,24 +4165,44 @@ MOVCF2GR 将条件标志寄存器 cj 的值写入通用寄存器 rd 的最低一
 
 **MOVGR2CF：**
 
-CFR[cd] = GR[rj][0]
+CFR[cd] = GR\[rj][0]
 
 **MOVCF2GR：**
 
-GR[rd][0] = ZeroExtend(CFR[cj], 32)
+GR\[rd][0] = ZeroExtend(CFR[cj], 32)
 
-## **浮点分支指令**
-   ### **BCEQZ**
+## 浮点分支指令
+   ### BCEQZ
 
-|31|26|25|||||||10|9|8|7||5|4||||0|
-| - | -: | - | :-: | :-: | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-|010010|offs[15:0]|0|0|cj|offs[20:16]|||||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 25%;     text-align: left;" colspan="4">25</td>
+<td style="width: 25%;     text-align: right;" colspan="4">10</td>
+<td style="width: 3.125%; text-align: left;">9</td>
+<td style="width: 3.125%; text-align: right;">8</td>
+<td style="width: 4.6875%; text-align: left;">7</td>
+<td style="width: 4.6875%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">010010</td>
+<td style="text-align: center;" colspan="8">offs21[15:0]</td>
+<td style="text-align: center;" colspan="2">00</td>
+<td style="text-align: center;" colspan="2">cj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">offs21[20:16]</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** bceqz 	cj, offs21
 
-**功能描述：** BCEQZ 对条件标志寄存器 cj 的值进行判断，如果等于 0 则跳转到目标地址，否则不跳转。
+**功能描述：** BCEQZ 对条件标志寄存器 cj 的值进行判断，如果<u>等于 0 则跳转</u>到目标地址，否则不跳转。
 
-跳转目标地址是将指令码中的 21 比特立即数 offs21 逻辑左移 2 位后再符号扩展，所得的偏移值加上该分支指令的 PC。
+跳转目标地址是将指令码中的 21 比特立即数 offs21 **逻辑左移** 2 位后再**符号扩展**，所得的偏移值加上该分支指令的 PC。
 
 **操作定义：**
 
@@ -2898,17 +4210,37 @@ if CFR[cj]==0 :
 
 PC = PC + SignExtend({offs21, 2'b0}, 32)
 
-### **BCNEZ**
+### BCNEZ
 
-|31|26|25|||||||10|9|8|7||5|4||||0|
-| - | -: | - | :-: | :-: | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-|010010|offs[15:0]|0|1|cj|offs[20:16]|||||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 25%;     text-align: left;" colspan="4">25</td>
+<td style="width: 25%;     text-align: right;" colspan="4">10</td>
+<td style="width: 3.125%; text-align: left;">9</td>
+<td style="width: 3.125%; text-align: right;">8</td>
+<td style="width: 4.6875%; text-align: left;">7</td>
+<td style="width: 4.6875%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">010010</td>
+<td style="text-align: center;" colspan="8">offs21[15:0]</td>
+<td style="text-align: center;" colspan="2">01</td>
+<td style="text-align: center;" colspan="2">cj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">offs21[20:16]</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** bcnez 	cj, offs21
 
-**功能描述：** BCNEZ 对条件标志寄存器 cj 的值进行判断，如果不等于 0 则跳转到目标地址，否则不跳转。
+**功能描述：** BCNEZ 对条件标志寄存器 cj 的值进行判断，如果<u>不等于 0 则跳转</u>到目标地址，否则不跳转。
 
-跳转目标地址是将指令码中的 21 比特立即数 offs21 逻辑左移 2 位后再符号扩展，所得的偏移值加上该分支指令的 PC。
+跳转目标地址是将指令码中的 21 比特立即数 offs21 **逻辑左移** 2 位后再符号扩展，所得的偏移值加上该分支指令的 PC。
 
 **操作定义：**
 
@@ -2920,17 +4252,62 @@ PC = PC + SignExtend({offs21, 2'b0}, 32)
 
 填入以字节为单位的偏移值，即指令码中offs<<2。
 
-## **浮点普通访存指令**
-   ### **FLD.{S/D}, FST.{S/D}**
+## 浮点普通访存指令
+   ### FLD.{S/D}, FST.{S/D}
 
-||31|22|21|10|9||||5|4||||0|
-| - | - | -: | - | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-|FLD.S|0010101100|si12|rj|fd|||||||||||
-|FLD.D|0010101101|si12|rj|fd|||||||||||
-|FST.S|0010101110|si12|rj|fd|||||||||||
-|FST.D|0010101111|si12|rj|fd|||||||||||
+<table>
+<tbody>
+<tr>
+<td></td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 18.75%;  text-align: left;" colspan="3">21</td>
+<td style="width: 18.75%;  text-align: right;" colspan="3">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">FLD.S</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">001010</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">1100</td>
+<td style="text-align: center; width: 6.25%;  " colspan="6">si12</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+<tr>
+<td style="test-align: center;">FLD.D</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">001010</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">1101</td>
+<td style="text-align: center; width: 6.25%;  " colspan="6">si12</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+<tr>
+<td style="test-align: center;">FLT.S</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">001010</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">1110</td>
+<td style="text-align: center; width: 6.25%;  " colspan="6">si12</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+<tr>
+<td style="test-align: center;">FLT.D</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">001010</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">1111</td>
+<td style="text-align: center; width: 6.25%;  " colspan="6">si12</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">fd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：** fld.s 	fd, rj, si12
+**指令格式：** 
+
+fld.s 	fd, rj, si12
 
 fld.d 	fd, rj, si12
 
@@ -2946,7 +4323,7 @@ FST.S 将浮点寄存器 fd 中低 32 位字数据写入到内存中。FST.D 将
 
 **操作定义：**
 
-`	`**FLD.S:**
+**FLD.S:**
 
 vaddr = GR[rj] + SignExtend(si12, 32)
 
@@ -2956,7 +4333,7 @@ paddr = AddressTranslation(vaddr)
 
 word = MemoryLoad(paddr, WORD)
 
-FR[fd][31:0] = word
+FR\[fd][31:0] = word
 
 **FLD.D:**
 
@@ -2978,7 +4355,7 @@ AddressComplianceCheck(vaddr)
 
 paddr = AddressTranslation(vaddr)
 
-MemoryStore(FR[fd][31:0], paddr, WORD)
+MemoryStore(FR\[fd][31:0], paddr, WORD)
 
 **FST.D:**
 
@@ -2988,25 +4365,63 @@ AddressComplianceCheck(vaddr)
 
 paddr = AddressTranslation(vaddr)
 
-MemoryStore(FR[fd][63:0], paddr, DOUBLEWORD)
+MemoryStore(FR\[fd][63:0], paddr, DOUBLEWORD)
 
-**例外：**如果访存地址非自然对齐1，则触发地址非对齐例外（ALE）。
+**例外：**如果访存地址非自然对齐[^1]，则触发地址非对齐例外（ALE）。
 
-# **特权指令**
-   ## **CSR 访问指令**
-      ### **CSRRD, CSRWR, CSRXCHG**
+# 特权指令
+   ## CSR 访问指令
+### CSRRD, CSRWR, CSRXCHG
 
-||31|24|23|||||||10|9|||||4||||0||
-| :-: | - | -: | - | :-: | :-: | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :- |
-|CSRRD|00000100|csr|00000|rd||||||||||||||||||
-|CSRWR|00000100|csr|00001|rd||||||||||||||||||
-|CSRXCHG|00000100|csr|rj!=0,1|rd||||||||||||||||||
+<table>
+<tbody>
+<tr>
+<td></td>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">24</td>
+<td style="width: 18.75%;  text-align: left;" colspan="3">23</td>
+<td style="width: 18.75%;  text-align: right;" colspan="3">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="test-align: center;">CSRRD</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000001</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">00</td>
+<td style="text-align: center; width: 6.25%;  " colspan="6">csr</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+<tr>
+<td style="test-align: center;">CSRWR</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000001</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">00</td>
+<td style="text-align: center; width: 6.25%;  " colspan="6">csr</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00001</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+<tr>
+<td style="test-align: center;">CSRXCHG</td>
+<td style="text-align: center; width: 18.75%; " colspan="2">000001</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">00</td>
+<td style="text-align: center; width: 6.25%;  " colspan="6">csr</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj!=0,1</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
-**指令格式：csrrd 		rd, csr\_num**
+**指令格式：**
 
-**csrwr 		rd, csr\_num**
+csrrd 		rd, csr\_num
 
-**csrxchg 	rd, rj, csr\_num**
+csrwr 		rd, csr\_num
+
+csrxchg 	rd, rj, csr\_num
 
 **功能描述：** 
 
@@ -3024,12 +4439,32 @@ CSRXCHG 指令根据通用寄存器 rj 中存放的写掩码信息，将通用�
 
 当 CSR 访问指令访问一个架构中未定义或硬件未实现的 CSR 时，读动作返回全 0 值，写动作不修改处理器的任何软件可见状态。需要提请注意的是，CSRWR 和 CSRXCHG 指令不仅包含更新 CSR 的写动作，也包含读取 CSR 旧值的读动作。
 
-## **Cache 维护指令**
-   ### **CACOP**
+## Cache 维护指令
+   ### CACOP
 
-|31|22|21|||||10|9||||5|4||||0|
-| - | -: | - | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-|0000011000|si12|rj|rd|||||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 18.75%;  text-align: left;" colspan="3">21</td>
+<td style="width: 18.75%;  text-align: right;" colspan="3">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000001</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">1000</td>
+<td style="text-align: center; width: 6.25%;  " colspan="6">si12</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rd</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** cacop 	code, rj, si12
 
@@ -3051,12 +4486,38 @@ code[4:3]=2 表示采用查询索引方式维护 Cache 一致性（Hit Invalidat
 
 code[4:3]=3 属于实现自定义的 Cache 操作，架构规范中不予明确的功能定义。
 
-## **TLB 维护指令**
-   ### **TLBSRCH**
+## TLB 维护指令
+   ### TLBSRCH
 
-|31|22|21|||||10|9||||5|4||||0|
-| - | -: | - | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-|0000011001\_001000001010|00000|00000||||||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000001</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">1001</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">00</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01010</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00000</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** tlbsrch
 
@@ -3066,11 +4527,37 @@ code[4:3]=3 属于实现自定义的 Cache 操作，架构规范中不予明确�
 
 TLB 中各项的索引值计算规则是，从 0 开始依次递增编号，从第 0 行至最后一行。
 
-### **TLBRD**
+### TLBRD
 
-|31|22|21|||||10|9||||5|4||||0|
-| - | -: | - | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-|0000011001\_001000001011|00000|00000||||||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000001</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">1001</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">00</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01011</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00000</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** tlbrd
 
@@ -3080,25 +4567,77 @@ TLB 中各项的索引值计算规则是，从 0 开始依次递增编号，从�
 
 需要注意的是，有效/无效 TLB 项和 TLB 中的页表项有效/无效是两个概念。如果访问所用的 index 值超过了 TLB 的范围，则处理器的行为不确定
 
-### **TLBWR**
+### TLBWR
 
-|31|22|21|||||10|9||||5|4||||0|
-| - | -: | - | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-|0000011001\_001000001100|00000|00000||||||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000001</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">1001</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">00</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01100</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00000</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** tlbwr
 
 **功能描述：** 
 
-`	`TLBWR 指令将 TLB 相关 CSR 中所存放的页表项信息写入到 TLB 的指定项。被填入的页表项信息来自于 CSR.TLBEHI、CSR.TLBELO0、CSR.TLBELO1 和 CSR.TLBIDX.PS。若此时 CSR.ESTAT.Ecode=0x3F，即处于 TLB 重填例外处理过程中，那么 TLB 中总是填入一个有效项（即 TLB 项的 E 位为 1）。否则的话，就需要看 CSR.TLBIDX.NE 位的值。此时如果 CSR.TLBIDX.NE=1，那么 TLB 中会被填入一个无效 TLB 项；仅当 CSR.TLBIDX.NE=0 时，TLB 中才会被填入一个有效 TLB 项。
+TLBWR 指令将 TLB 相关 CSR 中所存放的页表项信息写入到 TLB 的指定项。被填入的页表项信息来自于 CSR.TLBEHI、CSR.TLBELO0、CSR.TLBELO1 和 CSR.TLBIDX.PS。若此时 CSR.ESTAT.Ecode=0x3F，即处于 TLB 重填例外处理过程中，那么 TLB 中总是填入一个有效项（即 TLB 项的 E 位为 1）。否则的话，就需要看 CSR.TLBIDX.NE 位的值。此时如果 CSR.TLBIDX.NE=1，那么 TLB 中会被填入一个无效 TLB 项；仅当 CSR.TLBIDX.NE=0 时，TLB 中才会被填入一个有效 TLB 项。
 
 执行 TLBWR 时，页表项写入 TLB 的位置是由 CSR.TLBIDX 的 Index 域的值指定的。具体的对应规则请参看 TLBSRCH 指令中关于 TLB中各项索引值的计算规则。
 
-### **TLBFILL**
+### TLBFILL
 
-|31|22|21|||||10|9||||5|4||||0|||
-| - | -: | - | :-: | :-: | :-: | :-: | -: | - | :-: | :-: | :-: | -: | - | :-: | :-: | :-: | :-: | :- | :- |
-|0000011001\_001000001101|00000|00000||||||||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000001</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">1001</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">00</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01101</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00000</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** tlbfill
 
@@ -3108,11 +4647,37 @@ TLBFILL 指令将 TLB 相关 CSR 中所存放的页表项信息填入到 TLB 中
 
 执行 TLBFILL 时，页表项被填入到 TLB 的哪一项，是由硬件随机选择的。
 
-### **INVTLB**
+### INVTLB
 
-|31|23|22|15|14|10|9||5|4||||0|
-| - | -: | - | -: | - | -: | - | :-: | -: | - | :-: | :-: | :-: | -: |
-|000001100\_10010011|rk|rj|rd|||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000001</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">1001</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">00</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10011</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rk</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">rj</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">op</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** invtlb op, rj, rk
 
@@ -3129,7 +4694,7 @@ INVTLB 指令用于无效 TLB 中的内容，以维持 TLB 与内存之间页表
 各 op 对应的操作如下表所示，未在表中出现的 op 将触发保留指令例外。
 
 |**op**|**操作**|
-| :-: | :-: |
+| :-: | :-- |
 |0x0|清除所有页表项|
 |0x1|清除所有页表项，此时操作效果与 op=0 完全一致|
 |0x2|清除所有 G=1 的页表项|
@@ -3138,18 +4703,44 @@ INVTLB 指令用于无效 TLB 中的内容，以维持 TLB 与内存之间页表
 |0x5|清除 G=0，且 ASID 等于寄存器指定 ASID，且 VA 等于寄存器指定 VA 的页表项|
 |0x6|清除所有 G=1 或 ASID 等于寄存器指定 ASID，且 VA 等于寄存器指定 VA 的页表项|
 
-## **其它杂项指令**
-   ### **ERTN**
+## 其它杂项指令
+   ### ERTN
 
-|31|22|21|||||10|9||||5|4||||0|
-| - | -: | - | :-: | :-: | :-: | :-: | -: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-|0000011001|001000001110|00000|00000|||||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 7.8125%; text-align: left;">14</td>
+<td style="width: 7.8125%; text-align: right;">10</td>
+<td style="width: 7.8125%; text-align: left;">9</td>
+<td style="width: 7.8125%; text-align: right;">5</td>
+<td style="width: 7.8125%; text-align: left;">4</td>
+<td style="width: 7.8125%; text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000001</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">1001</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">00</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">01110</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00000</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">00000</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** ertn
 
 **功能描述：** 
 
-`	`ERTN 指令用于从例外处理返回。
+ERTN 指令用于从例外处理返回。
 
 将例外对应的 PPLV、PIE 等信息更新至 CSR.CRMD 中，同时跳转到例外所对应的 ERA处开始取指。
 
@@ -3157,11 +4748,31 @@ INVTLB 指令用于无效 TLB 中的内容，以维持 TLB 与内存之间页表
 
 执行 ERTN 指令时，如果 CSR.LLBCTL 中的 KLO 位不等于 1，则将 LLbit 置 0，否则 LLbit 不修改。
 
-### **IDLE**
+### IDLE
 
-|31|23|22|15|14|||||||||0|
-| - | -: | - | -: | - | -: | - | :-: | -: | - | :-: | :-: | :-: | -: |
-|000001100\_10010001|level|||||||||||||
+<table>
+<tbody>
+<tr>
+<td style="width: 9.375%;  text-align: left;">31</td>
+<td style="width: 9.375%;  text-align: right;">26</td>
+<td style="width: 6.25%;   text-align: left;">25</td>
+<td style="width: 6.25%;   text-align: right;">22</td>
+<td style="width: 3.125%;  text-align: left;">21</td>
+<td style="width: 3.125%;  text-align: right;">20</td>
+<td style="width: 7.8125%; text-align: left;">19</td>
+<td style="width: 7.8125%; text-align: right;">15</td>
+<td style="width: 23.4375%; text-align: left;" colspan="3">14</td>
+<td style="width: 23.4375%; text-align: right;" colspan="3">0</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 18.75%; " colspan="2">000001</td>
+<td style="text-align: center; width: 12.5%;  " colspan="2">1001</td>
+<td style="text-align: center; width: 6.25%;  " colspan="2">00</td>
+<td style="text-align: center; width: 15.625%;" colspan="2">10001</td>
+<td style="text-align: center; width: 15.625%;" colspan="6">level</td>
+</tr>
+</tbody>
+</table>
 
 **指令格式：** idle 	level
 
@@ -3174,54 +4785,3 @@ IDLE 指令执行完毕后，处理器核将停止取指进入等待状态，直
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#
-|31|30|29|28|27|26|25|24|23|22|21|20|19|18|17|16|15|14|13|12|11|10|9|8|7|6|5|4|3|2|1|0|
-| :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-|||||||||||||||||||||||||||||||||
-
-**指令格式：** 
-
-**功能描述：** 
-
-**操作定义：**
-
-**例外：**
-
-69
-
-
-[^1]:  所谓自然对齐是指，访问半字对象时地址是2字节边界对齐，访问字对象时地址是4字节边界对齐，访问双字对象时地址是8字节边界对齐，访问128 位向量对象时地址是16字节边界对齐，访问256位向量对象时地址是32字节边界对齐。
