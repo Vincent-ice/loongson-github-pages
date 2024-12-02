@@ -5,9 +5,9 @@ date: 2024-12-01
 原手册: https://vincent-ice.github.io/loongson-github-pages/2024-12-02-LoongArch32R-Manual.html
 ***有错误请及时联系我***
 
-# 基础整数指令定义
-## 算术运算类指令
-### ADD.W
+## 基础整数指令定义
+### 算术运算类指令
+#### ADD.W
 
 <table>
 <tbody>
@@ -49,7 +49,7 @@ tmp = GR[rj] + GR[rk]
 
 GR[rd] = tmp[31:0]
 
-### SUB.W
+#### SUB.W
 
 <table>
 <tbody>
@@ -91,7 +91,7 @@ tmp = GR[rj] - GR[rk]
 
 GR[rd] = tmp[31:0]
 
-### ADDI.W
+#### ADDI.W
 
 <table>
 <tbody>
@@ -128,7 +128,7 @@ tmp = GR[rj] + SignExtend(si12, 32)
 
 GR[rd] = tmp[31:0]
 
-### LUI12I.W
+#### LUI12I.W
 
 <table>
 <tbody>
@@ -156,7 +156,7 @@ GR[rd] = tmp[31:0]
 
 GR[rd] = {si20, 12'b0}
 
-### SLT
+#### SLT
 
 <table>
 <tbody>
@@ -199,7 +199,7 @@ GR[rd] = (signed(GR[rj]) < signed(GR[rk])) ? 1 : 0
 
 
 
-### SLTU
+#### SLTU
 
 <table>
 <tbody>
@@ -242,7 +242,7 @@ GR[rd] = (unsigned(GR[rj]) < unsigned(GR[rk])) ? 1 : 0
 
 
 
-### SLTI
+#### SLTI
 
 <table>
 <tbody>
@@ -280,7 +280,7 @@ GR[rd] = (signed(GR[rj]) < signed(tmp)) ? 1 : 0
 
 
 
-### SLTUI
+#### SLTUI
 
 <table>
 <tbody>
@@ -318,7 +318,7 @@ GR[rd] = (unsigned(GR[rj]) < unsigned(tmp)) ? 1 : 0
 
 
 
-### PCADDU12I
+#### PCADDU12I
 
 <table>
 <tbody>
@@ -348,7 +348,7 @@ GR[rd] = PC + SignExtend({si20, 12'b0}, 32)
 
 
 
-### MUL.W
+#### MUL.W
 
 <table>
 <tbody>
@@ -392,7 +392,7 @@ GR[rd] = product[31:0]
 
 
 
-### MULH.W
+#### MULH.W
 
 <table>
 <tbody>
@@ -436,7 +436,7 @@ GR[rd] = product[63:32]
 
 
 
-### MULH.WU
+#### MULH.WU
 
 <table>
 <tbody>
@@ -480,7 +480,7 @@ GR[rd] = product[63:32]
 
 
 
-### DIV.W，DIV.WU
+#### DIV.W，DIV.WU
 
 <table>
 <tbody>
@@ -547,7 +547,7 @@ GR[rd] = quotient[31:0]
 
 
 
-### MOD.W，MOD.WU
+#### MOD.W，MOD.WU
 
 <table>
 <tbody>
@@ -614,8 +614,8 @@ GR[rd] = remainder[31:0]
 
 
 
-## 逻辑运算类指令
-   ### AND
+### 逻辑运算类指令
+   #### AND
 
 <table>
 <tbody>
@@ -656,7 +656,7 @@ GR[rd] = GR[rj] & GR[rk]
 
 
 
-### OR
+#### OR
 
 <table>
 <tbody>
@@ -698,7 +698,7 @@ GR[rd] = GR[rj] | GR[rk]
 
 
 
-### NOR
+#### NOR
 
 <table>
 <tbody>
@@ -740,7 +740,7 @@ GR[rd] = ~(GR[rj] | GR[rk])
 
 
 
-### XOR
+#### XOR
 
 <table>
 <tbody>
@@ -782,7 +782,7 @@ GR[rd] = GR[rj] ^ GR[rk]
 
 
 
-### ANDI
+#### ANDI
 
 <table>
 <tbody>
@@ -818,7 +818,7 @@ GR[rd] = GR[rj] & ZeroExtend(ui12, 32)
 
 
 
-### ORI
+#### ORI
 
 <table>
 <tbody>
@@ -855,7 +855,7 @@ GR[rd] = GR[rj] | ZeroExtend(ui12, 32)
 
 
 
-### XORI
+#### XORI
 
 <table>
 <tbody>
@@ -890,8 +890,8 @@ GR[rd] = GR[rj] | ZeroExtend(ui12, 32)
 GR[rd] = GR[rj] ^ ZeroExtend(ui12, 32)
 
 
-## 移位运算类指令
-   ### SLL.W
+### 移位运算类指令
+   #### SLL.W
 
 <table>
 <tbody>
@@ -935,7 +935,7 @@ GR[rd] = tmp[31:0]
 
 
 
-### SRL.W
+#### SRL.W
 
 <table>
 <tbody>
@@ -979,7 +979,7 @@ GR[rd] = tmp[31:0]
 
 
 
-### SRA.W
+#### SRA.W
 
 <table>
 <tbody>
@@ -1023,7 +1023,7 @@ GR[rd] = tmp[31:0]
 
 
 
-### SLLI.W
+#### SLLI.W
 
 <table>
 <tbody>
@@ -1067,7 +1067,7 @@ GR[rd] = tmp[31:0]
 
 
 
-### SRLI.W
+#### SRLI.W
 
 <table>
 <tbody>
@@ -1111,7 +1111,7 @@ GR[rd] = tmp[31:0]
 
 
 
-### SRAI.W
+#### SRAI.W
 
 <table>
 <tbody>
@@ -1155,8 +1155,8 @@ GR[rd] = tmp[31:0]
 
 
 
-## 转移指令
-   ### BEQ
+### 转移指令
+   #### BEQ
 
 <table>
 <tbody>
@@ -1193,7 +1193,7 @@ if GR[rj] == GR[rd] :
 
 
 
-### BNE
+#### BNE
 
 <table>
 <tbody>
@@ -1230,7 +1230,7 @@ if GR[rj] != GR[rd] :
 
 
 
-### BLT
+#### BLT
 
 <table>
 <tbody>
@@ -1267,7 +1267,7 @@ if signed(GR[rj]) < signed(GR[rd]) :
 
 
 
-### BGE
+#### BGE
 
 <table>
 <tbody>
@@ -1304,7 +1304,7 @@ if signed(GR[rj]) >= signed(GR[rd]) :
 
 
 
-### BLTU
+#### BLTU
 
 <table>
 <tbody>
@@ -1341,7 +1341,7 @@ if unsigned(GR[rj]) < unsigned(GR[rd]) :
 
 
 
-### BGEU
+#### BGEU
 
 <table>
 <tbody>
@@ -1379,7 +1379,7 @@ if unsigned(GR[rj]) >= unsigned(GR[rd]) :
 
 
 
-### B
+#### B
 
 <table>
 <tbody>
@@ -1414,7 +1414,7 @@ PC = PC + SignExtend({offs26, 2'b0}, 32)
 
 
 
-### BL
+#### BL
 
 <table>
 <tbody>
@@ -1451,7 +1451,7 @@ PC = PC + SignExtend({offs26, 2'b0}, 32)
 
 
 
-### JIRL
+#### JIRL
 
 <table>
 <tbody>
@@ -1492,8 +1492,8 @@ PC = GR[rj] + SignExtend({offs16, 2'b0}, 32)
 
 填入以字节为单位的偏移值，即指令码中offs<<2。
 
-## 普通访存指令
-   ### LD.B，LD.H，LD.W
+### 普通访存指令
+   #### LD.B，LD.H，LD.W
 
 <table>
 <tbody>
@@ -1589,7 +1589,7 @@ GR[rd] = word
 
 **例外：**如果访存地址非自然对齐[^1]，则触发地址非对齐例外（ALE）。
 
-### LD.BU，LD.HU
+#### LD.BU，LD.HU
 
 <table>
 <tbody>
@@ -1663,7 +1663,7 @@ GR[rd] = ZeroExtend(halfword, 32)
 
 **例外：**如果访存地址非自然对齐[^1]，则触发地址非对齐例外（ALE）。
 
-### ST.B，ST.H，ST.W
+#### ST.B，ST.H，ST.W
 
 <table>
 <tbody>
@@ -1753,7 +1753,7 @@ MemoryStore(GR[rd][31:0], paddr, WORD)
 
 **例外：**如果访存地址非自然对齐[^1]，则触发地址非对齐例外（ALE）。
 
-### PRELD
+#### PRELD
 
 <table>
 <tbody>
@@ -1791,8 +1791,8 @@ PRELD 指令中的 hint 提示处理器预取的类型以及取回的数据填�
 
 [^1]:  所谓自然对齐是指，访问半字对象时地址是2字节边界对齐，访问字对象时地址是4字节边界对齐，访问双字对象时地址是8字节边界对齐，访问128 位向量对象时地址是16字节边界对齐，访问256位向量对象时地址是32字节边界对齐。
 
-## 原子访存指令
-   ### LL.W, SC.W
+### 原子访存指令
+   #### LL.W, SC.W
 
 <table>
 <tbody>
@@ -1850,8 +1850,8 @@ vaddr = GR[rj] + SignExtend({si14, 2'b0}, 32)
 
 
 
-## 栅障指令
-   ### DBAR
+### 栅障指令
+   #### DBAR
 
 <table>
 <tbody>
@@ -1887,7 +1887,7 @@ hint 值为 0 是默认必须实现的，其指示一个完全功能的同步栅
 
 
 
-### IBAR
+#### IBAR
 
 <table>
 <tbody>
@@ -1921,8 +1921,8 @@ hint 值为 0 是默认必须实现的。它能够确保“IBAR 0”指令之后
 
 
 
-## 其它杂项指令
-   ### SYSCALL
+### 其它杂项指令
+   #### SYSCALL
 
 <table>
 <tbody>
@@ -1956,7 +1956,7 @@ hint 值为 0 是默认必须实现的。它能够确保“IBAR 0”指令之后
 
 **例外：**执行SYSCALL指令将确定地立刻触发系统调用例外（SYS）。
 
-### BREAK
+#### BREAK
 
 <table>
 <tbody>
@@ -1990,7 +1990,7 @@ hint 值为 0 是默认必须实现的。它能够确保“IBAR 0”指令之后
 
 **例外：**执行BREAK指令将确定地立刻触发断点例外（BRK）。
 
-### RDCNTV{L/H}.W, RDCNTID
+#### RDCNTV{L/H}.W, RDCNTID
 
 <table>
 <tbody>
@@ -2075,9 +2075,9 @@ GR[rj] = Counter ID
 
 
 
-# 基础浮点数指令
+## 基础浮点数指令
    ## 浮点运算类指令
-### FADD.{S/D}
+#### FADD.{S/D}
 
 <table>
 <tbody>
@@ -2139,7 +2139,7 @@ FR\[fd][31:0] = FP32\_addition(FR\[fj][31:0], FR\[fk][31:0])
 
 FR[fd] = FP64\_addition(FR[fj], FR[fk])
 
-### FSUB.{S/D}
+#### FSUB.{S/D}
 
 <table>
 <tbody>
@@ -2201,7 +2201,7 @@ FR\[fd][31:0] = FP32\_subtraction(FR\[fj][31:0], FR\[fk][31:0])
 
 FR[fd] = FP64\_subtraction(FR[fj], FR[fk])
 
-### FMUL.{S/D}
+#### FMUL.{S/D}
 
 <table>
 <tbody>
@@ -2263,7 +2263,7 @@ FR\[fd][31:0] = FP32\_multiplication(FR\[fj][31:0], FR\[fk][31:0])
 
 FR[fd] = FP64\_multiplication(FR[fj], FR[fk])
 
-### FDIV.{S/D}
+#### FDIV.{S/D}
 
 <table>
 <tbody>
@@ -2325,7 +2325,7 @@ FR\[fd][31:0] = FP32\_division(FR\[fj][31:0], FR\[fk][31:0])
 
 FR[fd] = FP64\_division(FR[fj], FR[fk])
 
-### FMADD.{S/D}
+#### FMADD.{S/D}
 
 <table>
 <tbody>
@@ -2387,7 +2387,7 @@ FR\[fd][31:0] = FP32\_fusedMultiplyAdd(FR\[fj][31:0], FR\[fk][31:0], FR\[fa][31:
 
 FR[fd] = FP64\_fusedMultiplyAdd(FR[fj], FR[fk], FR[fa])
 
-### FMSUB.{S/D}
+#### FMSUB.{S/D}
 
 <table>
 <tbody>
@@ -2449,7 +2449,7 @@ FR\[fd][31:0] = FP32\_fusedMultiplyAdd(FR\[fj][31:0], FR\[fk][31:0], -FR\[fa][31
 
 FR[fd] = FP64\_fusedMultiplyAdd(FR[fj], FR[fk], -FR[fa])
 
-### FNMADD.{S/D}
+#### FNMADD.{S/D}
 
 <table>
 <tbody>
@@ -2511,7 +2511,7 @@ FR\[fd][31:0] = -FP32\_fusedMultiplyAdd(FR\[fj][31:0], FR\[fk][31:0], FR\[fa][31
 
 FR[fd] = -FP64\_fusedMultiplyAdd(FR[fj], FR[fk], FR[fa])
 
-### FNMSUB.{S/D}
+#### FNMSUB.{S/D}
 
 <table>
 <tbody>
@@ -2573,7 +2573,7 @@ FR\[fd][31:0] = -FP32\_fusedMultiplyAdd(FR\[fj][31:0], FR\[fk][31:0], -FR\[fa][3
 
 FR[fd] = -FP64\_fusedMultiplyAdd(FR[fj], FR[fk], -FR[fa])
 
-### FMAX.{S/D}
+#### FMAX.{S/D}
 
 <table>
 <tbody>
@@ -2635,7 +2635,7 @@ FR\[fd][31:0] = FP32\_maxNum(FR\[fj][31:0], FR\[fk][31:0])
 
 FR[fd] = FP64\_maxNum(FR[fj], FR[fk])
 
-### FMIN.{S/D}
+#### FMIN.{S/D}
 
 <table>
 <tbody>
@@ -2697,7 +2697,7 @@ FR\[fd][31:0] = FP32\_minNum(FR\[fj][31:0], FR\[fk][31:0])
 
 FR[fd] = FP64\_minNum(FR[fj], FR[fk])
 
-### FMAXA.{S/D}
+#### FMAXA.{S/D}
 
 <table>
 <tbody>
@@ -2759,7 +2759,7 @@ FR\[fd][31:0] = FP32\_maxNumMag(FR\[fj][31:0], FR\[fk][31:0])
 
 FR[fd] = FP64\_maxNumMag(FR[fj], FR[fk])
 
-### FMINA.{S/D}
+#### FMINA.{S/D}
 
 <table>
 <tbody>
@@ -2821,7 +2821,7 @@ FR\[fd][31:0] = FP32\_minNumMag(FR\[fj][31:0], FR\[fk][31:0])
 
 FR[fd] = FP64\_minNumMag(FR[fj], FR[fk])
 
-### FABS.{S/D}
+#### FABS.{S/D}
 
 <table>
 <tbody>
@@ -2883,7 +2883,7 @@ FR\[fd][31:0] = FP32\_abs(FR\[fj][31:0])
 
 FR[fd] = FP64\_abs(FR[fj])
 
-### FNEG.{S/D}
+#### FNEG.{S/D}
 
 <table>
 <tbody>
@@ -2945,7 +2945,7 @@ FR\[fd][31:0] = FP32\_negate(FR\[fj][31:0])
 
 FR[fd] = FP64\_negate(FR[fj])
 
-### FSQRT.{S/D}
+#### FSQRT.{S/D}
 
 <table>
 <tbody>
@@ -3007,7 +3007,7 @@ FR\[fd][31:0] = FP32\_squareRoot(FR\[fj][31:0])
 
 FR[fd] = FP64\_squareRoot(FR[fj])
 
-### FRECIP.{S/D}
+#### FRECIP.{S/D}
 
 <table>
 <tbody>
@@ -3069,7 +3069,7 @@ FR\[fd][31:0] = FP32\_division(1.0, FR\[fj][31:0])
 
 FR[fd] = FP64\_division(1.0, FR[fj])
 
-### FRSQRT.{S/D}
+#### FRSQRT.{S/D}
 
 <table>
 <tbody>
@@ -3131,7 +3131,7 @@ FR\[fd][31:0] = FP32\_division(1.0, FP\_squareRoot(FR\[fj][31:0]))
 
 FR[fd] = FP64\_division(1.0, FP\_squareRoot(FR[fj]))
 
-### FCOPYSIGN.{S/D}
+#### FCOPYSIGN.{S/D}
 
 <table>
 <tbody>
@@ -3193,7 +3193,7 @@ FR\[fd][31:0] = FP32\_copySign(FR\[fj][31:0], FR\[fk][31:0])
 
 FR[fd] = FP64\_copySign(FR[fj], FR[fk])
 
-### FCLASS.{S/D}
+#### FCLASS.{S/D}
 
 <table>
 <tbody>
@@ -3288,8 +3288,8 @@ FR\[fd][31:0] = FP32\_class(FR\[fj][31:0])
 
 FR[fd] = FP64\_class(FR[fj])
 
-## 浮点比较指令
-   ### FCMP.cond.{S/D}
+### 浮点比较指令
+   #### FCMP.cond.{S/D}
 
 <table>
 <tbody>
@@ -3368,8 +3368,8 @@ fcmp.cond.d  cc, fj, f
 </table>
 
 
-## 浮点转换指令
-   ### FCVT.S.D
+### 浮点转换指令
+   #### FCVT.S.D
 
 <table>
 <tbody>
@@ -3409,7 +3409,7 @@ fcmp.cond.d  cc, fj, f
 
 FR\[fd][31:0] = FP32\_convertFormat(FR[fj], FP64)
 
-### FCVT.D.S
+#### FCVT.D.S
 
 <table>
 <tbody>
@@ -3449,7 +3449,7 @@ FR\[fd][31:0] = FP32\_convertFormat(FR[fj], FP64)
 
 FR[fd] = FP64\_convertFormat(FR\[fj][31:0], FP32)
 
-### FFINT.{S/D}.W
+#### FFINT.{S/D}.W
 
 <table>
 <tbody>
@@ -3511,7 +3511,7 @@ FR\[fd][31:0] = FP32\_convertFromInt(FR\[fj][31:0], SINT32)
 
 FR[fd] = FP64\_convertFromInt(FR\[fj][31:0], SINT32)
 
-### FTINT.W.{S/D}
+#### FTINT.W.{S/D}
 
 <table>
 <tbody>
@@ -3580,7 +3580,7 @@ FR\[fd][31:0] = FP32convertToSint32(FR\[fj][31:0], FCSR.RM)
 
 FR[fd] = FP64convertToSint32(FR[fj], FCSR.RM)
 
-### FTINT{RM/RP/RZ/RNE}.W.{S/D}
+#### FTINT{RM/RP/RZ/RNE}.W.{S/D}
 
 <table>
 <tbody>
@@ -3735,8 +3735,8 @@ FR\[fd][31:0] = FP32convertToSint32(FR\[fj][31:0], 0)
 **FTINTRNE.W.D:**
 
 FR[fd] = FP64convertToSint32(FR[fj], 0)
-## 浮点搬运指令
-   ### FMOV.{S/D}
+### 浮点搬运指令
+   #### FMOV.{S/D}
 
 <table>
 <tbody>
@@ -3802,7 +3802,7 @@ FR[fd] = FR[fj]
 
 **例外：**上述指令操作是非算术的，不会引发 IEEE 754 例外，也不修改浮点控制状态寄存器的 Cause 和 Flags域。
 
-### FSEL
+#### FSEL
 
 <table>
 <tbody>
@@ -3842,7 +3842,7 @@ FR[fd] = FR[fj]
 
 FR[fd] = CFR[ca] ? FR[fk] : FR[fj]
 
-### MOVGR2FR.W, MOVGR2FRH.W
+#### MOVGR2FR.W, MOVGR2FRH.W
 
 <table>
 <tbody>
@@ -3910,7 +3910,7 @@ FR\[fd][63:32] = GR[rj]
 
 FR\[fd][31: 0] = FR\[fd][31:0]
 
-### MOVFR2GR.S, MOVFRH2GR.S
+#### MOVFR2GR.S, MOVFRH2GR.S
 
 <table>
 <tbody>
@@ -3974,7 +3974,7 @@ GR[rd] = FR\[fj][31:0]
 
 GR[rd] = FR\[fj][63:32]
 
-### MOVGR2FCSR, MOVFCSR2GR
+#### MOVGR2FCSR, MOVFCSR2GR
 
 <table>
 <tbody>
@@ -4040,7 +4040,7 @@ GR[rd] = FCSR[fcsr]
 
 **注：**如果上述指令中的 fcsr 指示的浮点控制状态寄存器不存在，则结果不确定。
 
-### MOVFR2CF, MOVCF2FR
+#### MOVFR2CF, MOVCF2FR
 
 <table>
 <tbody>
@@ -4106,7 +4106,7 @@ CFR[cd] = FR\[fj][0]
 
 FR\[fd][0] = ZeroExtend(CFR[cj], 64)
 
-### MOVGR2CF, MOVCF2GR
+#### MOVGR2CF, MOVCF2GR
 
 <table>
 <tbody>
@@ -4172,8 +4172,8 @@ CFR[cd] = GR\[rj][0]
 
 GR\[rd][0] = ZeroExtend(CFR[cj], 32)
 
-## 浮点分支指令
-   ### BCEQZ
+### 浮点分支指令
+   #### BCEQZ
 
 <table>
 <tbody>
@@ -4211,7 +4211,7 @@ if CFR[cj]==0 :
 
 PC = PC + SignExtend({offs21, 2'b0}, 32)
 
-### BCNEZ
+#### BCNEZ
 
 <table>
 <tbody>
@@ -4253,8 +4253,8 @@ PC = PC + SignExtend({offs21, 2'b0}, 32)
 
 填入以字节为单位的偏移值，即指令码中offs<<2。
 
-## 浮点普通访存指令
-   ### FLD.{S/D}, FST.{S/D}
+### 浮点普通访存指令
+   #### FLD.{S/D}, FST.{S/D}
 
 <table>
 <tbody>
@@ -4370,9 +4370,9 @@ MemoryStore(FR\[fd][63:0], paddr, DOUBLEWORD)
 
 **例外：**如果访存地址非自然对齐[^1]，则触发地址非对齐例外（ALE）。
 
-# 特权指令
+## 特权指令
    ## CSR 访问指令
-### CSRRD, CSRWR, CSRXCHG
+#### CSRRD, CSRWR, CSRXCHG
 
 <table>
 <tbody>
@@ -4440,8 +4440,8 @@ CSRXCHG 指令根据通用寄存器 rj 中存放的写掩码信息，将通用�
 
 当 CSR 访问指令访问一个架构中未定义或硬件未实现的 CSR 时，读动作返回全 0 值，写动作不修改处理器的任何软件可见状态。需要提请注意的是，CSRWR 和 CSRXCHG 指令不仅包含更新 CSR 的写动作，也包含读取 CSR 旧值的读动作。
 
-## Cache 维护指令
-   ### CACOP
+### Cache 维护指令
+   #### CACOP
 
 <table>
 <tbody>
@@ -4487,8 +4487,8 @@ code[4:3]=2 表示采用查询索引方式维护 Cache 一致性（Hit Invalidat
 
 code[4:3]=3 属于实现自定义的 Cache 操作，架构规范中不予明确的功能定义。
 
-## TLB 维护指令
-   ### TLBSRCH
+### TLB 维护指令
+   #### TLBSRCH
 
 <table>
 <tbody>
@@ -4528,7 +4528,7 @@ code[4:3]=3 属于实现自定义的 Cache 操作，架构规范中不予明确�
 
 TLB 中各项的索引值计算规则是，从 0 开始依次递增编号，从第 0 行至最后一行。
 
-### TLBRD
+#### TLBRD
 
 <table>
 <tbody>
@@ -4568,7 +4568,7 @@ TLB 中各项的索引值计算规则是，从 0 开始依次递增编号，从�
 
 需要注意的是，有效/无效 TLB 项和 TLB 中的页表项有效/无效是两个概念。如果访问所用的 index 值超过了 TLB 的范围，则处理器的行为不确定
 
-### TLBWR
+#### TLBWR
 
 <table>
 <tbody>
@@ -4608,7 +4608,7 @@ TLBWR 指令将 TLB 相关 CSR 中所存放的页表项信息写入到 TLB 的�
 
 执行 TLBWR 时，页表项写入 TLB 的位置是由 CSR.TLBIDX 的 Index 域的值指定的。具体的对应规则请参看 TLBSRCH 指令中关于 TLB中各项索引值的计算规则。
 
-### TLBFILL
+#### TLBFILL
 
 <table>
 <tbody>
@@ -4648,7 +4648,7 @@ TLBFILL 指令将 TLB 相关 CSR 中所存放的页表项信息填入到 TLB 中
 
 执行 TLBFILL 时，页表项被填入到 TLB 的哪一项，是由硬件随机选择的。
 
-### INVTLB
+#### INVTLB
 
 <table>
 <tbody>
@@ -4704,8 +4704,8 @@ INVTLB 指令用于无效 TLB 中的内容，以维持 TLB 与内存之间页表
 |0x5|清除 G=0，且 ASID 等于寄存器指定 ASID，且 VA 等于寄存器指定 VA 的页表项|
 |0x6|清除所有 G=1 或 ASID 等于寄存器指定 ASID，且 VA 等于寄存器指定 VA 的页表项|
 
-## 其它杂项指令
-   ### ERTN
+### 其它杂项指令
+   #### ERTN
 
 <table>
 <tbody>
@@ -4749,7 +4749,7 @@ ERTN 指令用于从例外处理返回。
 
 执行 ERTN 指令时，如果 CSR.LLBCTL 中的 KLO 位不等于 1，则将 LLbit 置 0，否则 LLbit 不修改。
 
-### IDLE
+#### IDLE
 
 <table>
 <tbody>
